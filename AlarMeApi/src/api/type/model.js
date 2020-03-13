@@ -1,14 +1,17 @@
 import mongoose, { Schema } from 'mongoose'
+import { typePlaces } from '.enumTypePlaces'
 
 const typeSchema = new Schema({
   description: {
     type: String
   },
   typePlaces: {
-    type: String
+    type: String,
+    enum: [typePlaces],
+    default: "UNKNOWN"
   },
   ubication: {
-    type: String
+    type: [String]
   }
 }, {
   timestamps: true,
