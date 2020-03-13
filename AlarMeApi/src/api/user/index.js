@@ -2,9 +2,15 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { password as passwordAuth, master, token } from '../../services/passport'
-import { index, showMe, show, create, update, updatePassword, destroy } from './controller'
+import { index, showMe, show, create, update, updatePassword, destroy, updateName } from './controller'
 import { schema } from './model'
 export User, { schema } from './model'
+
+
+const multer = require('multer')
+const storage = multer.memoryStorage()
+const upload = multer({ storage })
+
 
 const router = new Router()
 const { email, password, name, picture, role } = schema.tree
@@ -41,11 +47,12 @@ router.get('/me',
  * @api {get} /users/:id Retrieve user
  * @apiName RetrieveUser
  * @apiGroup User
- * @apiPermission public
+ * @apiPermission admin
  * @apiSuccess {Object} user User's data.
  * @apiError 404 User not found.
  */
 router.get('/:id',
+  token({ required: true, roles: ['admin'] }),
   show)
 
 /**
@@ -57,8 +64,7 @@ router.get('/:id',
  * @apiParam {String} email User's email.
  * @apiParam {String{6..}} password User's password.
  * @apiParam {String} [name] User's name.
- * @apiParam {String} [picture] User's picture.
- * @apiParam {String=user,admin} [role=user] User's role.
+ * @apiParam {file} [avatar] User's picture.
  * @apiSuccess (Sucess 201) {Object} user User's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 401 Master access only.
@@ -66,17 +72,31 @@ router.get('/:id',
  */
 router.post('/',
   master(),
-  body({ email, password, name, picture, role }),
+  upload.single('avatar'),
   create)
 
 /**
- * @api {put} /users/:id Update user
+ * @api {get} /users/img/:id Retrieve the user's picture
+ * @apiName RetrievePictureUser
+ * @apiGroup User
+ * @apiPermission user
+ * @apiParam {String} access_token User access_token.
+ * @apiSuccess {Object} user User's picture.
+ * @apiError 401 User has not privilages.
+ * @apiError 404 User not found.
+ */
+router.get('/img/:id',
+  token({required:true}),
+  getImage);
+
+
+/**
+ * @api {put} /users/:id Update user (ONLY NAME)
  * @apiName UpdateUser
  * @apiGroup User
  * @apiPermission user
  * @apiParam {String} access_token User access_token.
  * @apiParam {String} [name] User's name.
- * @apiParam {String} [picture] User's picture.
  * @apiSuccess {Object} user User's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 401 Current user or admin access only.
@@ -84,8 +104,26 @@ router.post('/',
  */
 router.put('/:id',
   token({ required: true }),
-  body({ name, picture }),
-  update)
+  body({ name }),
+  updateName)
+
+/**
+ * @api {put} /users/:id/img Update of user's picture
+ * @apiName UpdatePictureUser
+ * @apiGroup User
+ * @apiPermission user
+ * @apiParam {String} access_token User access_token.
+ * @apiParam {String} [avatar] User's picture.
+ * @apiSuccess {Object} user User's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 401 Current user has not privilages.
+ * @apiError 404 User not found.
+ */
+router.put('/:id/img',
+  token({ required: true }),
+  // body({ name }),
+  upload.single('avatar'),
+  updateImg)
 
 /**
  * @api {put} /users/:id/password Update password
@@ -117,4 +155,34 @@ router.delete('/:id',
   token({ required: true, roles: ['admin'] }),
   destroy)
 
+/**
+ * @api {delete} /users/:id/img Delete user's picture
+ * @apiName DeletePictureUser
+ * @apiGroup User
+ * @apiPermission user
+ * @apiParam {String} access_token Token  User access_token.
+ * @apiSuccess (Success 200) 200 User's data.
+ * @apiError 401 Current user has not privilages.
+ * @apiError 404 User not found.
+ */
+router.delete('/:id/img',
+  token({ required: true }),
+  deleteImg)
+
+User.countDocuments({role: 'admin'}, function(err, count){
+  if (err) console.log(err)
+  if (count < 1) {
+    User.create({
+      name: 'John Smith',
+      email: 'admin@administrador.com',
+      password: '12345678',
+      role: 'admin',
+      validated: true
+    })
+    .then((user) => console.log('Usuario admin creado'))
+    .catch(err)
+  } else
+    console.log('Ya existe un usuario administrador')
+})
+  
 export default router
