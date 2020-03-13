@@ -11,6 +11,7 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Alarm.count(query)
     .then(count => Alarm.find(query, select, cursor)
       .populate('createdBy')
+      .populate('type')
       .then((alarms) => ({
         count,
         rows: alarms.map((alarm) => alarm.view())
@@ -22,6 +23,7 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
 export const show = ({ params }, res, next) =>
   Alarm.findById(params.id)
     .populate('createdBy')
+    .populate('type')
     .then(notFound(res))
     .then((alarm) => alarm ? alarm.view() : null)
     .then(success(res))
@@ -30,6 +32,7 @@ export const show = ({ params }, res, next) =>
 export const update = ({ user, bodymen: { body }, params }, res, next) =>
   Alarm.findById(params.id)
     .populate('createdBy')
+    .populate('type')
     .then(notFound(res))
     .then(authorOrAdmin(res, user, 'createdBy'))
     .then((alarm) => alarm ? Object.assign(alarm, body).save() : null)
