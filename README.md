@@ -17,6 +17,7 @@ Para ello, el equipo docente de Salesianos Triana ha marcado una serie de docume
 
 
 1. [Descripción detallada del sistema](#DDS)
+2. [Documento de historias de usuario](#DHU)
 <br/><br/>
 <br/><br/>
 
@@ -56,6 +57,30 @@ Otro tipo de alarma es la del tipo transporte. En este tipo el usuario podrá co
 Por último, el usuario podrá elegir un destino a su antojo en un mapa.
 
 Para usar la aplicación será necesario registrarse y loguearse.
+<br/><br/>
+<br/><br/>
 
-
-
+## Documento de historias de usuario.<a name="DHU"></a>
+---
+| ID   |      Historia de usuario      | Usuario  | Esfuerzo  | Asignado a |
+|------|:-----------------------------:|:--------:|:---------:|:----------:|
+|01    | Inicio de sesión              |  Todos   |           |            |
+|02    | Registro                      |  Usuario |           |            |
+|03    | Crear alarma predefinida      |  Admin   |           |            |
+|04    | Modificar alarma predefinida  |  Admin   |           |            |
+|05    | Eliminar alarma predefinida   |  Admin   |           |            |
+|06    | Listar alarmas predefinidas   |  Admin   |           |            |
+|07    | Listar usuarios               |  Admin   |           |            |
+|08    | Deshabilitar usuario          |  Admin   |           |            |
+|09    | Listar alarmas                |  Usuario |           |            |
+|10    | Crear alarma predefinida      |  Usuario |           |            |
+|11    | Crear alarma trasnporte       |  Usuario |           |            |
+|12    | Crear alarma personalizada    |  Usuario |           |            |
+|13    | Modificar alarma              |  Usuario |           |            |
+|14    | Eliminar alarma               |  Usuario |           |            |
+|15    | Compartir alarma              |  Usuario |           |            |
+|16    | Cerrar sesión                 |  Todos   |           |            |
+|17    | Subir foto de perfil          |  Usuario |           |            |
+|18    | Eliminar foto de perfil       |  Usuario |           |            |
+|19    | Modificar foto de perfil      |  Usuario |           |            |
+|20    | Modificar nombre o contraseña |  Usuario |           |            |
