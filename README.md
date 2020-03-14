@@ -68,23 +68,65 @@ Para usar la aplicación será necesario registrarse y loguearse.
 ---
 | ID   |      Historia de usuario      | Usuario  | Esfuerzo  | Asignado a |
 |------|:-----------------------------:|:--------:|:---------:|:----------:|
-|01    | Inicio de sesión              |  Todos   |           |            |
-|02    | Registro                      |  Usuario |           |            |
-|03    | Crear alarma predefinida      |  Admin   |           |            |
-|04    | Modificar alarma predefinida  |  Admin   |           |            |
-|05    | Eliminar alarma predefinida   |  Admin   |           |            |
-|06    | Listar alarmas predefinidas   |  Admin   |           |            |
-|07    | Listar usuarios               |  Admin   |           |            |
-|08    | Deshabilitar usuario          |  Admin   |           |            |
-|09    | Listar alarmas                |  Usuario |           |            |
-|10    | Crear alarma predefinida      |  Usuario |           |            |
-|11    | Crear alarma trasnporte       |  Usuario |           |            |
-|12    | Crear alarma personalizada    |  Usuario |           |            |
-|13    | Modificar alarma              |  Usuario |           |            |
-|14    | Eliminar alarma               |  Usuario |           |            |
-|15    | Compartir alarma              |  Usuario |           |            |
-|16    | Cerrar sesión                 |  Todos   |           |            |
-|17    | Subir foto de perfil          |  Usuario |           |            |
-|18    | Eliminar foto de perfil       |  Usuario |           |            |
-|19    | Modificar foto de perfil      |  Usuario |           |            |
-|20    | Modificar nombre o contraseña |  Usuario |           |            |
+|01.1  | Inicio de sesión  Android     |  Usuario |     6     |E.M.Escacena|
+|01.2  | Inicio de sesión  Angular     |  Admin   |     6     |J.M.Bargueno|
+|02    | Registro Android              |  Usuario |     6     |J.M.Bargueno|
+|03    | Crear alarma predefinida      |  Admin   |     6     |E.M.Escacena|
+|04    | Modificar alarma predefinida  |  Admin   |     6     |E.M.Escacena|
+|05    | Eliminar alarma predefinida   |  Admin   |     5     |E.M.Escacena|
+|06    | Listar alarmas predefinidas   |  Admin   |     5     |E.M.Escacena|
+|07    | Listar usuarios               |  Admin   |     5     |J.M.Bargueno|
+|08    | Deshabilitar usuario          |  Admin   |     5     |J.M.Bargueno|
+|09    | Listar alarmas                |  Usuario |     7     |J.M.Bargueno|
+|10    | Crear/Modificar alarma predefinida      |  Usuario |    10     |E.M.Escacena|
+|11    | Crear/Modificar alarma transporte       |  Usuario |    10     |J.M.Bargueno|
+|12    | Crear/Modificar alarma personalizada    |  Usuario |    10     |E.M.Escacena|
+|14    | Eliminar alarma               |  Usuario |     5     |J.M.Bargueno|
+|15    | Compartir alarma              |  Usuario |     7     |J.M.Bargueno|
+|16    | Cerrar sesión                 |  Usuario |     5     |J.M.Bargueno|
+|17    | Subir foto de perfil          |  Usuario |     8     |E.M.Escacena|
+|18    | Eliminar foto de perfil       |  Usuario |     6     |E.M.Escacena|
+|19    | Modificar foto de perfil      |  Usuario |     7     |E.M.Escacena|
+|20    | Modificar nombre              |  Usuario |     5     |J.M.Bargueno|
+|21    | Modificar contraseña          |  Usuario |     6     |E.M.Escacena|
+|22    | Cerrar sesión Angular         |  Admin   |     5     |J.M.Bargueno|
+
+<br/><br/>
+
+Otras tares inherentes a la realización de las historias de usuarios:
+| ID   |      Tarea                    | Donde    | Esfuerzo  | Asignado a |
+|------|:-----------------------------:|:--------:|:---------:|:----------:|
+|100   | Modelo usuario                |   API    |     1     |J.M.Bargueno|
+|101   | Modelo alarma                 |   API    |     1     |J.M.Bargueno|
+|102   | Modelo tipo                   |   API    |     1     |J.M.Bargueno|
+|103   | Endpoint usuario              |   API    |     10    |E.M.Escacena|
+|104   | Endpoint alarm                |   API    |     10    |J.M.Bargueno|
+|105   | Endpoint tipo                 |   API    |     5     |J.M.Bargueno|
+|106   | Authentication                |   API    |     6     |E.M.Escacena|
+|107   | Autorization                  |   API    |     6     |J.M.Bargueno|
+|108   | Multer - peticiones multipart |   API    |     8     |E.M.Escacena|
+|109   | Retrofit API AlarmMe          | Android  |     6     |E.M.Escacena|
+|110   | Retrofit API GoogleMaps       | Android  |     6     |E.M.Escacena|
+|111   | Retrofit API GooglePlaces     | Android  |     6     |E.M.Escacena|
+|112   | Retrofit API Consorcios       | Android  |     6     |J.M.Bargueno|
+|113   | Retrofit API Geocoding        | Android  |     6     |J.M.Bargueno|
+|114   | Retrofit API Firebase         | Android  |     6     |J.M.Bargueno|
+|115   | Servicio API AlarmMe          | Angular  |     6     |J.M.Bargueno|
+
+Total de puntos de Esfuerzo de cada alumno:
+
+#### J.M. Bargueno
+|      Donde    | Puntos    |
+|:-------------:|:---------:|
+| Angular       | 27        |
+| Android       | 68        |
+| API           | 24        |
+| Total         | 119       |
+
+#### E.M. Escacena
+|      Donde    | Puntos    |
+|:-------------:|:---------:|
+| Angular       | 22        |
+| Android       | 71        |
+| API           | 24        |
+| Total         | 117       |
