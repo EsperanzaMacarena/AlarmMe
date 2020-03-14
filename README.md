@@ -17,6 +17,7 @@ Para ello, el equipo docente de Salesianos Triana ha marcado una serie de docume
 
 
 1. [Descripción detallada del sistema](#DDS)
+2. [Documento de historias de usuario](#DHU)
 <br/><br/>
 <br/><br/>
 
@@ -56,6 +57,20 @@ Otro tipo de alarma es la del tipo transporte. En este tipo el usuario podrá co
 Por último, el usuario podrá elegir un destino a su antojo en un mapa.
 
 Para usar la aplicación será necesario registrarse y loguearse.
+<br/><br/>
+<br/><br/>
 
-
-
+## Documento de historias de usuario.<a name="DHU"></a>
+---
+| ID   |      Historia de usuario      | Usuario  | Esfuerzo  | Asignado a |
+|------|:-----------------------------:|:--------:|:---------:|:----------:|
+|01    | Inicio de sesión              |  Todos   |           |            |
+|02    | Registro                      |  Usuario |           |            |
+|03    | Crear alarma predefinida      |  Admin   |           |            |
+|04    | Modificar alarma predefinida  |  Admin   |           |            |
+|05    | Eliminar alarma predefinida   |  Admin   |           |            |
+|06    | Listar alarmas predefinidas   |  Admin   |           |            |
+|07    | Listar usuarios               |  Admin   |           |            |
+|08    | Deshabilitar usuario          |  Admin   |           |            |
+|09    |                               |  Usuario |           |            |
+|10    |                               |  Usuario |           |            |
