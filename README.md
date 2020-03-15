@@ -100,9 +100,8 @@ Otras tares inherentes a la realización de las historias de usuarios:
 |102   | Modelo tipo                   |   API    |     1     |J.M.Bargueno|
 |103   | Endpoint usuario              |   API    |     10    |E.M.Escacena|
 |104   | Endpoint alarm                |   API    |     10    |J.M.Bargueno|
-|105   | Endpoint tipo                 |   API    |     5     |J.M.Bargueno|
-|106   | Authentication                |   API    |     6     |E.M.Escacena|
-|107   | Autorization                  |   API    |     6     |J.M.Bargueno|
+|105   | Endpoint tipo                 |   API    |     5     |E.M.Escacena|
+|106   | Authentication                |   API    |     6     |J.M.Bargueno|
 |108   | Multer - peticiones multipart |   API    |     8     |E.M.Escacena|
 |109   | Retrofit API AlarmMe          | Android  |     6     |E.M.Escacena|
 |110   | Retrofit API GoogleMaps       | Android  |     6     |E.M.Escacena|
@@ -123,7 +122,7 @@ Total de puntos de Esfuerzo de cada alumno:
 |      Donde    | Puntos    |
 |:-------------:|:---------:|
 | Angular       | 27        |
-| Android       | 68        |
+| Android       | 61        |
 | API           | 24        |
 | Total         | 112       |
 
@@ -132,5 +131,5 @@ Total de puntos de Esfuerzo de cada alumno:
 |:-------------:|:---------:|
 | Angular       | 22        |
 | Android       | 71        |
-| API           | 24        |
-| Total         | 117       |
+| API           | 23        |
+| Total         | 116       |
