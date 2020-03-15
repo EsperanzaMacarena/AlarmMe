@@ -1,9 +1,11 @@
 const express = require('express')
 const router = express.Router()
+const controller = require('../controller/users')
+const middleware = require('../middleware/index')
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.json({users: [{name: 'Timmy'}]})
-})
+router.post('/login',controller.login);
+router.post('/register', controller.register);
+router.get('/users', middleware.ensureAuthenticatedAndAdmin, controller.getUsers);
+
 
 module.exports = router

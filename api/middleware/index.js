@@ -1,5 +1,5 @@
 const passport = require("passport");
-const error_types = require("../controllers/error_types");
+const error_types = require("../controller/error_types");
 
 let middlewares = {
   ensureAuthenticated: (req, res, next) => {

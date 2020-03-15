@@ -10,11 +10,8 @@ const LocalStrategy = require('passport-local').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const bcrypt = require('bcryptjs');
 const user_routes = require('./routes/users');
-const estacion_routes = require('./routes/estacion');
-const medicion_routes = require('./routes/medicion')
-const init_routes = require('./routes/init')
 const middleware = require('./middleware/index');
-const User = require('./models/user');
+const User = require('./model/user');
 require('dotenv').config();
 
 /* ##### MONGO ##### */
@@ -30,10 +27,10 @@ db.once('open', () => {
     console.log('Conectado!');
 });
 
-passport.use(new LocalStrategy((username, password, done) => {
-    let busqueda = (username.includes('@')) ? { email: username } : { username: username };
+passport.use(new LocalStrategy((email, password, done) => {
+    console.log("EMAIL "+ email);
 
-    User.findOne(busqueda, (err, user) => {
+    User.findOne(email, (err, user) => {
         if (err) return done(null, false);
         if (!bcrypt.compareSync(password, user.password)) {
             return done(null, false);
@@ -62,7 +59,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(passport.initialize())
 
-
+app.use('/api/', user_routes);
 app.use(middleware.errorHandler);
 app.use(middleware.notFoundHandler);
 
