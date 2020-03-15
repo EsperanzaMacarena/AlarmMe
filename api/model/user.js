@@ -22,7 +22,7 @@ const imgSchema = new Schema({
       required: true,
       minlength: 6
     },
-    name: {
+    fullname: {
       type: String,
       index: true,
       trim: true
@@ -33,6 +33,10 @@ const imgSchema = new Schema({
       default: 'user'
     },
     picture: imgSchema,
+    enabled: {
+      type: Boolean,
+      default: true
+    },
   }, {
     timestamps: true
   })
