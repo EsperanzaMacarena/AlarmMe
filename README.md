@@ -111,12 +111,10 @@ Otras tares inherentes a la realización de las historias de usuarios:
 |114   | Retrofit API Firebase         | Android  |     6     |J.M.Bargueno|
 |115   | Servicio API AlarmMe          | Angular  |     6     |J.M.Bargueno|
 
-Otras tareas inherentes a la documentación del seguimiento del proyecto:
-
-Documentación:
+<br/><br/>
 
 
-Total de puntos de Esfuerzo de cada alumno:
+Total de puntos de esfuerzo de cada alumno:
 
 #### J.M. Bargueno
 |      Donde    | Puntos    |
