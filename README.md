@@ -82,7 +82,6 @@ Para usar la aplicación será necesario registrarse y loguearse.
 |11    | Crear/Modificar alarma transporte       |  Usuario |    10     |J.M.Bargueno|
 |12    | Crear/Modificar alarma personalizada    |  Usuario |    10     |E.M.Escacena|
 |14    | Eliminar alarma               |  Usuario |     5     |J.M.Bargueno|
-|15    | Compartir alarma              |  Usuario |     7     |J.M.Bargueno|
 |16    | Cerrar sesión                 |  Usuario |     5     |J.M.Bargueno|
 |17    | Subir foto de perfil          |  Usuario |     8     |E.M.Escacena|
 |18    | Eliminar foto de perfil       |  Usuario |     6     |E.M.Escacena|
@@ -113,6 +112,11 @@ Otras tares inherentes a la realización de las historias de usuarios:
 |114   | Retrofit API Firebase         | Android  |     6     |J.M.Bargueno|
 |115   | Servicio API AlarmMe          | Angular  |     6     |J.M.Bargueno|
 
+Otras tareas inherentes a la documentación del seguimiento del proyecto:
+
+Documentación:
+
+
 Total de puntos de Esfuerzo de cada alumno:
 
 #### J.M. Bargueno
@@ -121,7 +125,7 @@ Total de puntos de Esfuerzo de cada alumno:
 | Angular       | 27        |
 | Android       | 68        |
 | API           | 24        |
-| Total         | 119       |
+| Total         | 112       |
 
 #### E.M. Escacena
 |      Donde    | Puntos    |
