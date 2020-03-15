@@ -33,8 +33,6 @@ const imgSchema = new Schema({
       default: 'user'
     },
     picture: imgSchema,
-  }, {
-    timestamps: true
   })
 
   module.exports = mongoose.model('User', userSchema);
