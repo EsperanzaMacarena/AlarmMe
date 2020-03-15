@@ -7,16 +7,18 @@ const alarmSchema = new Schema({
     required: true
   },
   type: {
-    type: String
+    type: Schema.ObjectId,
+    ref: 'Type',
+    required: false
   },
   periocity: {
-    type: String
+    type: [String]
   },
   done: {
-    type: String
+    type: Boolean
   },
   activated: {
-    type: String
+    type: Boolean
   }
 }, {
   timestamps: true,

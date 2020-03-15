@@ -1,10 +1,16 @@
 import crypto from 'crypto'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import mongoose, { Schema } from 'mongoose'
 import mongooseKeywords from 'mongoose-keywords'
 import { env } from '../../config'
 
 const roles = ['user', 'admin']
+
+
+const imgSchema = new Schema({
+  data: String, 
+  contentType: String
+});
 
 const userSchema = new Schema({
   email: {
@@ -30,25 +36,9 @@ const userSchema = new Schema({
     enum: roles,
     default: 'user'
   },
-  picture: {
-    type: String,
-    trim: true
-  }
+  picture: imgSchema,
 }, {
   timestamps: true
-})
-
-userSchema.path('email').set(function (email) {
-  if (!this.picture || this.picture.indexOf('https://gravatar.com') === 0) {
-    const hash = crypto.createHash('md5').update(email).digest('hex')
-    this.picture = `https://gravatar.com/avatar/${hash}?d=identicon`
-  }
-
-  if (!this.name) {
-    this.name = email.replace(/^(.+)@.+$/, '$1')
-  }
-
-  return email
 })
 
 userSchema.pre('save', function (next) {
@@ -63,30 +53,30 @@ userSchema.pre('save', function (next) {
   }).catch(next)
 })
 
-userSchema.methods = {
-  view (full) {
-    let view = {}
-    let fields = ['id', 'name', 'picture']
-
-    if (full) {
-      fields = [...fields, 'email', 'createdAt']
-    }
-
-    fields.forEach((field) => { view[field] = this[field] })
-
-    return view
-  },
-
-  authenticate (password) {
-    return bcrypt.compare(password, this.password).then((valid) => valid ? this : false)
-  }
-}
-
 userSchema.statics = {
   roles
 }
 
 userSchema.plugin(mongooseKeywords, { paths: ['email', 'name'] })
+
+userSchema.methods = {
+  view (full) {
+    const view = {
+      id: this.id,
+      name: this.name,
+      email:  this.email,
+      role: this.role,
+      picture: this.picture != null ? '/users/img/' + this.id : null,
+    }
+    return full ? {
+      ...view
+    } : view 
+  },
+  
+  authenticate (password) {
+    return bcrypt.compare(password, this.password).then((valid) => valid ? this : false)
+  }
+}
 
 const model = mongoose.model('User', userSchema)
 

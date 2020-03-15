@@ -28,18 +28,11 @@ const config = {
     apiRoot: process.env.API_ROOT || '',
     masterKey: requireProcessEnv('MASTER_KEY'),
     jwtSecret: requireProcessEnv('JWT_SECRET'),
-    mongo: {
-      options: {
-        db: {
-          safe: true
-        }
-      }
-    }
   },
   test: { },
   development: {
     mongo: {
-      uri: 'mongodb://localhost/alarm-me-api-dev',
+      uri: process.env.MONGODB_URI || 'mongodb://localhost/alarm-me-api-dev',
       options: {
         debug: true
       }
@@ -49,7 +42,10 @@ const config = {
     ip: process.env.IP || undefined,
     port: process.env.PORT || 8080,
     mongo: {
-      uri: process.env.MONGODB_URI || 'mongodb://localhost/alarm-me-api'
+      uri: process.env.MONGODB_URI || 'mongodb://localhost/alarm-me-api',
+      options: {
+        debug: false
+      }
     }
   }
 }
