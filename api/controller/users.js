@@ -96,7 +96,7 @@ let controller = {
         });
     },
     disabledUser: (req, res, next) => {
-        const id = req.user._id
+        const id = req.params.id
         User.updateOne({ _id: id }, { $set:{enabled: req.body.enabled }}).exec((error, response) => {
             if (error) res.send(404, error.message);
             else User.findById(id).exec((error, user) => {

@@ -11,12 +11,12 @@ router.post('/login',controller.login);
 router.post('/register', controller.register);
 router.get('/users', middleware.ensureAuthenticatedAndAdmin, controller.getUsers);
 router.get('/user/me',middleware.ensureAuthenticated,controller.getMe);
-router.get('/img/:id',middleware.ensureAuthenticated, controller.getImage);
-router.put('/user/:id', middleware.ensureAuthenticated, controller.updateName);
-router.put('/user/:id/img', middleware.ensureAuthenticated, upload.single('avatar'),controller.updateImg);
-router.put('/user/:id/password', middleware.ensureAuthenticated, controller.updatePassword);
+router.get('/img',middleware.ensureAuthenticated, controller.getImage);
+router.put('/user', middleware.ensureAuthenticated, controller.updateName);
+router.put('/user/img', middleware.ensureAuthenticated, upload.single('avatar'),controller.updateImg);
+router.put('/user/password', middleware.ensureAuthenticated, controller.updatePassword);
 router.post('/users/:id', middleware.ensureAuthenticatedAndAdmin,controller.disabledUser);
-router.delete('/user/:id/img',middleware.ensureAuthenticated, controller.deleteImg);
+router.delete('/user/img',middleware.ensureAuthenticated, controller.deleteImg);
 
 
 module.exports = router
