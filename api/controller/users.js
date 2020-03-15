@@ -109,7 +109,7 @@ let controller = {
         User.updateOne({ _id: id }, { $set:{picture: undefined }}).exec((error, response) => {
             if (error) res.send(404, error.message);
             else User.findById(id).exec((error, user) => {
-                res.status(204).json({"error":"Picture deleted"});
+                res.status(204).json({"result":"Picture deleted"});
            });
         });
     },
