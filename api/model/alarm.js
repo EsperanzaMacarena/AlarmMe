@@ -16,7 +16,11 @@ const alarmSchema = new Schema({
       type: Boolean
     },
     activated: {
-      type: Boolean
+      type: Boolean,
+      default:true
+    },
+    ubication: {
+      type: [String]
     }
   })
 

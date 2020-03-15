@@ -30,18 +30,21 @@ let controller = {
             if (error || !user) {
                 next(new error_types.Error404("username or password not correct."))
             } else {
-                const payload = {
-                    sub: user.id,
-                    exp: Date.now() + parseInt(process.env.JWT_LIFETIME),
-                    username: req.body.username,
-                    password: req.body.password,
-                };
-                const token = jwt.sign(JSON.stringify(payload), process.env.JWT_SECRET, {algorithm: process.env.JWT_ALGORITHM});
-                res.json({ 
-                    username: user.username,
-                    token: token,
-                });
-
+                if(user.enabled){
+                    const payload = {
+                        sub: user.id,
+                        exp: Date.now() + parseInt(process.env.JWT_LIFETIME),
+                        username: req.body.username,
+                        password: req.body.password,
+                    };
+                    const token = jwt.sign(JSON.stringify(payload), process.env.JWT_SECRET, {algorithm: process.env.JWT_ALGORITHM});
+                    res.json({ 
+                        username: user.username,
+                        token: token,
+                    });
+    
+                }else res.status(400).json({"error":"Su cuenta ha sido desactivada"});
+               
             }
         })(req, res)
     },
@@ -60,43 +63,54 @@ let controller = {
         });
     },
     updateName: (req, res, next) => {
-        const id = req.user._id
-        User.updateOne({ id }, { fullname: req.body.fullname }).exec((error, response) => {
+        const id = req.user._id;
+        User.updateOne({ _id: id }, { $set:{fullname: req.body.fullname }}).exec((error, response) => {
             if (error) res.send(404, error.message);
-            else res.status(200).json(response);
+            else User.findById(id).exec((error, user) => {
+                 res.status(200).json(user);
+            });
         });
     },
     updateImg: (req, res, next) => {
         const id = req.user._id
-        User.updateOne({ id }, {
-            picture: {
+        User.updateOne({ _id: id }, {
+            $set:{picture: {
                 data: req.file.buffer.toString('base64'),
                 contentType: req.file.mimetype
             }
+        }
         }).exec((error, response) => {
             if (error) res.send(404, error.message);
-            else res.status(200).json(response);
+            else User.findById(id).exec((error, user) => {
+                res.status(200).json(user);
+           });
         });
     },
     updatePassword: (req, res, next) => {
         const id = req.user._id
-        User.updateOne({ id }, { password: req.body.password }).exec((error, response) => {
+        User.updateOne({ _id: id }, { $set:{password: req.body.password }}).exec((error, response) => {
             if (error) res.send(404, error.message);
-            else res.status(200).json(response);
+            else User.findById(id).exec((error, user) => {
+                res.status(200).json(user);
+           });
         });
     },
     disabledUser: (req, res, next) => {
-        const id = req.user._id
-        User.updateOne({ id }, { enabled: req.body.enabled }).exec((error, response) => {
+        const id = req.params.id
+        User.updateOne({ _id: id }, { $set:{enabled: req.body.enabled }}).exec((error, response) => {
             if (error) res.send(404, error.message);
-            else res.status(200).json(response);
+            else User.findById(id).exec((error, user) => {
+                res.status(200).json(user);
+           });
         });
     },
     deleteImg: (req, res, next) => {
         const id = req.user._id
-        User.updateOne({ id }, { picture: undefined }).exec((error, response) => {
+        User.updateOne({ _id: id }, { $set:{picture: undefined }}).exec((error, response) => {
             if (error) res.send(404, error.message);
-            else res.status(204).json("Picture deleted");
+            else User.findById(id).exec((error, user) => {
+                res.status(204).json({"result":"Picture deleted"});
+           });
         });
     },
     getImage: (req, res, next) => {
