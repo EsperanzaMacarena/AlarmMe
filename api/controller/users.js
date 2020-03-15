@@ -26,20 +26,19 @@ let controller = {
         })
     },
     login: (req, res, next) => {
-        passport.authenticate("local", { session: false }, (error, user) => {
+        passport.authenticate("local", {session: false}, (error, user) => {
             if (error || !user) {
-                console.log("ERROR LOGIN "+error);
-                console.log("USER LOGIN "+user);
-                next(new error_types.Error404("Email or password not correct."))
+                next(new error_types.Error404("username or password not correct."))
             } else {
                 const payload = {
-                    sub: user._id,
+                    sub: user.id,
                     exp: Date.now() + parseInt(process.env.JWT_LIFETIME),
-                    email: user.email
+                    username: req.body.username,
+                    password: req.body.password,
                 };
-                const token = jwt.sign(JSON.stringify(payload), process.env.JWT_SECRET, { algorithm: process.env.JWT_ALGORITHM });
-                res.json({
-                    email: user.email,
+                const token = jwt.sign(JSON.stringify(payload), process.env.JWT_SECRET, {algorithm: process.env.JWT_ALGORITHM});
+                res.json({ 
+                    username: user.username,
                     token: token,
                 });
 

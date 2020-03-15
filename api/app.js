@@ -27,10 +27,10 @@ db.once('open', () => {
     console.log('Conectado!');
 });
 
-passport.use(new LocalStrategy((email, password, done) => {
-    console.log("EMAIL "+ email);
+passport.use(new LocalStrategy((username, password, done) => {
+    let busqueda = (username.includes('@')) ? { email: username } : { username: username };
 
-    User.findOne(email, (err, user) => {
+    User.findOne(busqueda, (err, user) => {
         if (err) return done(null, false);
         if (!bcrypt.compareSync(password, user.password)) {
             return done(null, false);
@@ -38,6 +38,7 @@ passport.use(new LocalStrategy((email, password, done) => {
         return done(null, user);
     });
 }));
+
 
 let opts = {}
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
