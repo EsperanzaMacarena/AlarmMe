@@ -11,21 +11,18 @@ const typePlaces = [
     "BICYCLE_STORE",
     "STORE",
     "SUPERMARKET",
-    "PET_STORE",
-    "UNKNOWN"
+    "PET_STORE"
 ]
 
 const typeSchema = new Schema({
     description: {
-      type: String
+      type: String,
+      required: true
     },
     typePlaces: {
       type: String,
       enum: [typePlaces],
-      default: "UNKNOWN"
-    },
-    ubication: {
-      type: String
+      required: true
     }
   })
 
