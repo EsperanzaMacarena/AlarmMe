@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  serverUrl: 'https://alarm-me-api.herokuapp.com/',
-  loginUrl: 'https://alarm-me-api.herokuapp.com/auth?access_token=',
+  serverUrl: 'https://alarm-me-api.herokuapp.com/api/',
+  loginUrl: 'https://alarm-me-api.herokuapp.com/api/login',
   clientId: 'alarmme-angular',
   masterKey: 'Proyecto6-2DAM'
 };

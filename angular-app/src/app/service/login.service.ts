@@ -28,7 +28,7 @@ export class LoginService {
     const params = new HttpParams()
         .set('username', loginDto.email)
         .set('password', loginDto.password);
-    return this.http.post<LoginResponse>("https://alarm-me-api.herokuapp.com/auth?access_token="+"Proyecto6-2DAM", params,
+    return this.http.post<LoginResponse>("https://alarm-me-api.herokuapp.com/api/login", params,
       httpOptionsLogin
     );
   }
