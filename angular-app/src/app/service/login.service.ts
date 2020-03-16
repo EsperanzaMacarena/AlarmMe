@@ -5,9 +5,7 @@ import { LoginDto } from '../dto/login.dto';
 import { LoginResponse } from '../model/login-response.interface';
 import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+
 
 const jwtToken = 'jwtToken';
 
@@ -16,7 +14,9 @@ const httpOptionsLogin = {//application/x-www-form-urlencoded
     'Basic ' + btoa(`alarmme:secret`)).append('Content-type','application/x-www-form-urlencoded')
 };
 
-
+@Injectable({
+  providedIn: 'root'
+})
 export class LoginService {
 
   constructor(
