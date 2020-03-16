@@ -24,7 +24,6 @@ router.post("/", middleware.ensureAuthenticated, AlarmController.newAlarm);
  * @apiGroup Alarm
  * @apiPermission user
  * @apiParam type Alarm's type.
- * @apiParam periocity Alarm's periocity.
  * @apiParam done Alarm's done.
  * @apiParam activated Alarm's activated.
  * @apiSuccess {Object} alarm Alarm's data.
@@ -50,10 +49,8 @@ router.delete("/", middleware.ensureAuthenticated, AlarmController.deleteAlarm);
  * @apiName RetrieveAlarms
  * @apiGroup Alarm
  * @apiPermission user
- * @apiParam {String} access_token user access token.
  * @apiUse listParams
- * @apiSuccess {Number} count Total amount of alarms.
- * @apiSuccess {Object[]} rows List of alarms.
+ * @apiSuccess {Object[]}  List of alarms.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 401 user access only.
  */
