@@ -16,8 +16,10 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Converter;
 import retrofit2.Response;
 
 public class UserRepository {
@@ -37,11 +39,14 @@ public class UserRepository {
                     login.setValue(response.body());
 
                 } else {
-                    Gson gson = new Gson();
-                    Error error = gson.fromJson(response.errorBody().charStream(), Error.class);
-                    Toast.makeText(MyApp.getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-
-
+                    try {
+                        Gson gson = new Gson();
+                        Log.d("ERROR", response.toString());
+                        Error error = gson.fromJson(response.errorBody().string(), Error.class);
+                        Toast.makeText(MyApp.getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }catch(IOException ex){
+                        Log.d("EX",ex.getMessage());
+                    }
                 }
             }
 
