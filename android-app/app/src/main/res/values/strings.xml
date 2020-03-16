@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">AlarmMe</string>
+    <string name="email">Email</string>
+    <string name="password">Contraseña</string>
+    <string name="forgot_password">¿Has olvidado tu contraseña?</string>
+    <string name="login">Login</string>
+    <string name="dont_have_account">¿Aún no tienes una cuenta?</string>
+    <string name="sign_up">Regístrate</string>
 </resources>
