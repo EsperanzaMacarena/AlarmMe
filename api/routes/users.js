@@ -106,7 +106,7 @@ router.put('/user/password', middleware.ensureAuthenticated, controller.updatePa
  * @api {put} /api/user/:id Set field enabled
  * @apiName UpdateFieldEnabled
  * @apiGroup User
- * @apiParam {String} access_token User access_token.
+ * @apiParam {String} access_token Admin access_token.
  * @apiParam {String} enabled True if user is enabled, false if user is disabled.
  * @apiSuccess (Success 200) {Object} user User's data.
  * @apiError 401 Current user or admin access only.
