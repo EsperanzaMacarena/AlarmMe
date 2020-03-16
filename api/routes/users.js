@@ -65,7 +65,7 @@ router.get('/user/me',middleware.ensureAuthenticated,controller.getMe);
  */
 router.get('/img',middleware.ensureAuthenticated, controller.getImage);
 /**
- * @api {put} /user Update of current user's name
+ * @api {put} /api/user Update of current user's name
  * @apiName UpdateUserName
  * @apiGroup User
  * @apiPermission user
@@ -78,7 +78,7 @@ router.get('/img',middleware.ensureAuthenticated, controller.getImage);
 router.put('/user', middleware.ensureAuthenticated, controller.updateName);
 
 /**
- * @api {put} /user/img Update of current user's picture
+ * @api {put} /api/user/img Update of current user's picture
  * @apiName UpdatePictureUser
  * @apiGroup User
  * @apiPermission user
@@ -91,7 +91,7 @@ router.put('/user', middleware.ensureAuthenticated, controller.updateName);
 router.put('/user/img', middleware.ensureAuthenticated, upload.single('avatar'),controller.updateImg);
 
 /**
- * @api {put} /user/password Update current user's password
+ * @api {put} /api/user/password Update current user's password
  * @apiName UpdatePassword
  * @apiGroup User
  * @apiParam {String} access_token User access_token.
@@ -103,7 +103,7 @@ router.put('/user/img', middleware.ensureAuthenticated, upload.single('avatar'),
 router.put('/user/password', middleware.ensureAuthenticated, controller.updatePassword);
 
 /**
- * @api {put} /user/:id Set field enabled
+ * @api {put} /api/user/:id Set field enabled
  * @apiName UpdateFieldEnabled
  * @apiGroup User
  * @apiParam {String} access_token User access_token.
@@ -115,7 +115,7 @@ router.put('/user/password', middleware.ensureAuthenticated, controller.updatePa
 router.put('/users/:id', middleware.ensureAuthenticatedAndAdmin,controller.disabledUser);
 
 /**
- * @api {delete} /user/img Delete of current user's picture
+ * @api {delete} /api/user/img Delete of current user's picture
  * @apiName DeletePictureUser
  * @apiGroup User
  * @apiPermission user

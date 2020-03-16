@@ -1,7 +1,413 @@
 [
   {
+    "type": "delete",
+    "url": "/user/img",
+    "title": "Delete of current user's picture",
+    "name": "DeletePictureUser",
+    "group": "User",
+    "permission": [
+      {
+        "name": "user"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>Token  User access_token.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 204": [
+          {
+            "group": "Success 204",
+            "optional": false,
+            "field": "200",
+            "description": "<p>User's data.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Current user or admin access only.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>User not found.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/users.js",
+    "groupTitle": "User"
+  },
+  {
+    "type": "get",
+    "url": "/api/user/me",
+    "title": "Retrieve current user",
+    "name": "RetrieveCurrentUser",
+    "group": "User",
+    "permission": [
+      {
+        "name": "user"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>User access_token.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "user",
+            "description": "<p>User's data.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/users.js",
+    "groupTitle": "User"
+  },
+  {
+    "type": "get",
+    "url": "/api/img",
+    "title": "Retrieve the user's picture",
+    "name": "RetrievePictureUser",
+    "group": "User",
+    "permission": [
+      {
+        "name": "user"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>User access_token.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "user",
+            "description": "<p>User's picture.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>User not found.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/users.js",
+    "groupTitle": "User"
+  },
+  {
+    "type": "put",
+    "url": "/user/:id",
+    "title": "Set field enabled",
+    "name": "UpdateFieldEnabled",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>User access_token.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "enabled",
+            "description": "<p>True if user is enabled, false if user is disabled.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "user",
+            "description": "<p>User's data.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Current user or admin access only.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>User not found.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/users.js",
+    "groupTitle": "User"
+  },
+  {
+    "type": "put",
+    "url": "/user/password",
+    "title": "Update current user's password",
+    "name": "UpdatePassword",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>User access_token.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>User's new password.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "user",
+            "description": "<p>User's data.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Current user or admin access only.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>User not found.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/users.js",
+    "groupTitle": "User"
+  },
+  {
+    "type": "put",
+    "url": "/user/img",
+    "title": "Update of current user's picture",
+    "name": "UpdatePictureUser",
+    "group": "User",
+    "permission": [
+      {
+        "name": "user"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>User access_token.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "avatar",
+            "description": "<p>User's picture.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "user",
+            "description": "<p>User's data.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Current user or admin access only.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>User not found.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/users.js",
+    "groupTitle": "User"
+  },
+  {
+    "type": "put",
+    "url": "/user",
+    "title": "Update of current user's name",
+    "name": "UpdateUserName",
+    "group": "User",
+    "permission": [
+      {
+        "name": "user"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>User access_token.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "fullname",
+            "description": "<p>User's name.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "user",
+            "description": "<p>User's data.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Current user or admin access only.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>User not found.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/users.js",
+    "groupTitle": "User"
+  },
+  {
     "type": "post",
-    "url": "/login",
+    "url": "/api/login",
     "title": "Login",
     "name": "Login",
     "group": "Users",
@@ -27,9 +433,9 @@
     },
     "success": {
       "fields": {
-        "Success 201": [
+        "Success 200": [
           {
-            "group": "Success 201",
+            "group": "Success 200",
             "type": "String",
             "optional": false,
             "field": "token",
@@ -62,7 +468,7 @@
   },
   {
     "type": "post",
-    "url": "/register",
+    "url": "/api/register",
     "title": "Register User",
     "name": "RegisterUser",
     "group": "Users",
@@ -132,7 +538,7 @@
   },
   {
     "type": "get",
-    "url": "/users",
+    "url": "/api/users",
     "title": "Retrieve users",
     "name": "RetrieveUsers",
     "group": "Users",
