@@ -29,8 +29,6 @@ AlarmMe se configura a través de tres aplicaciones:
 ### API REST AlarmMe
 Aplicación realizada con NodeJs, Express y MongoDB. Se realizarán los métodos básicos CRUD de los modelos User, Alarm y Type, además de los convenientes para la ejecución de los requisitos mínimos del sistema.
 
-El inicio de sesión será a través de autenticación básica y requerirá para la consumición de cualquier ruta de la API (salvo login y registro) token JWT.
-
 ### AlarmMe Web
 La aplicación Web está realizada con Angular Material y está diseñada para el administrador de AlarmMe.
 
