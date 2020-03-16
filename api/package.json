@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "start-dev": "nodemon ./bin/www",
+    "docs": "apidoc -i routes -o docs && apidoc-markdown -p docs -o DocumentationRoutesAlarmMeAPI.md",
     "debug": "node --inspect-brk ./bin/www"
   },
   "dependencies": {
