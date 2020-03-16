@@ -129,3 +129,82 @@ Total de puntos de esfuerzo de cada alumno:
 | Android       | 71        |
 | API           | 23        |
 | Total         | 116       |
+
+<br/><br/>
+<br/><br/>
+
+## Diagrama UML de AlarmMe API
+![Diagrama UML](./AlarmMeUML.jpg)
+<br/><br/>
+<br/><br/>
+
+## Modelo de la Base de Datos de AlarmMe en MongoDB
+```javascript
+const userSchema = new Schema({
+    email: {
+      type: String,
+      match: /^\S+@\S+.\S+$/,
+      required: true,
+      unique: true,
+      trim: true,
+      lowercase: true
+    },
+    password: {
+      type: String,
+      required: true,
+      minlength: 6
+    },
+    fullname: {
+      type: String,
+      index: true,
+      trim: true
+    },
+    role: {
+      type: String,
+      enum: roles,
+      default: 'user'
+    },
+    picture: imgSchema,
+    enabled: {
+      type: Boolean,
+      default: true
+    },
+  }, {
+    timestamps: true
+  })
+```
+```javascript
+const typeSchema = new Schema({
+    description: {
+      type: String
+    },
+    typePlaces: {
+      type: String,
+      enum: [typePlaces],
+      default: "UNKNOWN"
+    },
+    ubication: {
+      type: String
+    }
+  })
+```
+```javascript
+const alarmSchema = new Schema({
+    createdBy: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
+    },
+    type: {
+      type: Schema.Types.ObjectId,
+      ref: 'Type',
+      required: false
+    },
+    done: {
+      type: Boolean
+    },
+    activated: {
+      type: Boolean
+    }
+  })
+```
