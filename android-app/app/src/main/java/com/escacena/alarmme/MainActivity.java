@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -70,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent register = new Intent(this, );
-                //startActivity(register);
+                Intent register = new Intent(MainActivity.this, RegisterActivity.class );
+                startActivity(register);
             }
         });
     }

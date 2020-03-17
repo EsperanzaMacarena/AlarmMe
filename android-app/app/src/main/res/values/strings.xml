@@ -6,4 +6,7 @@
     <string name="login">Login</string>
     <string name="dont_have_account">¿Aún no tienes una cuenta?</string>
     <string name="sign_up">Regístrate</string>
+    <string name="repeat_password">Repeat password</string>
+    <string name="hint_fullname">Fullname</string>
+    <string name="hint_register">Register</string>
 </resources>

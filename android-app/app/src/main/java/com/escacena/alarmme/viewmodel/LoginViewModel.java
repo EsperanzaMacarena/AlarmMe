@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 
 import com.escacena.alarmme.repository.UserRepository;
 import com.escacena.alarmme.request.RequestLogin;
+import com.escacena.alarmme.request.RequestRegister;
 import com.escacena.alarmme.response.ResponseLogin;
 
 import lombok.NonNull;
@@ -20,5 +21,6 @@ public class LoginViewModel extends AndroidViewModel {
     }
 
     public LiveData<ResponseLogin> login(RequestLogin req){return repository.login(req);}
+    public LiveData<ResponseLogin> register (RequestRegister req) {return repository.register(req);}
 
 }
