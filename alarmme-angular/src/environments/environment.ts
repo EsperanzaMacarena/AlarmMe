@@ -3,8 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  serverUrl: 'https://alarm-me-api.herokuapp.com/api/',
+  loginUrl: 'https://alarm-me-api.herokuapp.com/api/login',
+  clientId: 'alarmme-angular',
+  clientSecret: 'AlarmMeElProyectoMasPepinoCovd2019'
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

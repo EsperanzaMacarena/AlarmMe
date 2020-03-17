@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from './service/authentication.service';
+import { AuthService } from './service/auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,7 +11,7 @@ export class AppComponent implements OnInit{
   sessionId: string =localStorage.getItem('sessionId');
 
   
- constructor(private auth: AuthenticationService){}
+ constructor(private auth: AuthService){}
  
   ngOnInit(){
     
@@ -30,7 +30,7 @@ export class AppComponent implements OnInit{
   
  
   logout(){
-    localStorage.removeItem('sessionId');
+    localStorage.removeItem('token');
     this.sessionId=null;
   }
  
