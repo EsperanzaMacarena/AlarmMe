@@ -1,0 +1,24 @@
+
+
+
+
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" class="container">
+    <div class="logo"><img class="imglogo" src="../../assets/logo.png"></div>
+    <div class="login" fxLayoutAlign="center center" fxLayout="column" fxLayoutGap="10px">
+        <form class="example-form">
+            
+            <mat-form-field class="example-full-width">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Email" [(ngModel)]="loginDto.username" #em="ngModel" required [email]="true">
+            </mat-form-field>
+          
+            <mat-form-field class="example-full-width">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" [(ngModel)]="loginDto.password" #pwd="ngModel"  required />
+            </mat-form-field>
+          </form>
+        <mat-chip color="#81c784" selected (click)="login()" value="Login">Login</mat-chip>
+
+    </div>
+</div>
+
