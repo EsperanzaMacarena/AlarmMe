@@ -14,7 +14,7 @@
     <ng-container matColumnDef="editar">
         <th mat-header-cell *matHeaderCellDef> Editar </th>
         <td mat-cell *matCellDef="let element"> 
-            <button mat-raised-button (click)="create(element._id,false)">
+            <button mat-raised-button (click)="open(element,true)">
             <mat-icon>edit</mat-icon>
         </button>
     </td>
@@ -31,6 +31,6 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
-<button mat-fab class="mat-fab-bottom-right" (click)="create(null, true)" style="z-index: 9;">
+<button mat-fab class="mat-fab-bottom-right" (click)="open(false)" style="z-index: 9;">
     <mat-icon class="mat-24" style="color: white;">add</mat-icon>
 </button>

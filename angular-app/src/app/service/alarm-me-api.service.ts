@@ -1,3 +1,4 @@
+import { TypeCreateRequest } from './../request/type-create.interface';
 import { BASE_URL } from './../dashboard/commons';
 import { Observable } from 'rxjs';
 import { Type } from './../model/type.interface';
@@ -20,5 +21,13 @@ export class AlarmMeApiService {
 
   getTypes():Observable<Type[]>{
     return this.http.get<Type[]>(BASE_URL+'/type',httpOptions);
+  }
+
+  createType(type:TypeCreateRequest):Observable<Type>{
+    return this.http.post<Type>(BASE_URL+'/type', type, httpOptions);
+  }
+
+  updateType(type:Type):Observable<Type>{
+    return this.http.put<Type>(BASE_URL+'/type', type, httpOptions);
   }
 }
