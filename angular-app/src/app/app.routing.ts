@@ -1,8 +1,10 @@
 import { Routes } from '@angular/router';
 
 import { AdminLayoutComponent, AuthLayoutComponent } from './core';
+import { LoginComponent } from './login/login.component';
 
-export const AppRoutes: Routes = [{
+export const AppRoutes: Routes = [
+  {
   path: '',
   component: AdminLayoutComponent,
   children: [{

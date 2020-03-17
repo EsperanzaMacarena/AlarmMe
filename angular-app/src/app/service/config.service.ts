@@ -1,8 +1,7 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { of } from 'rxjs';
+import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-
+import { of } from 'rxjs';
 
 interface Config {
   serverUrl: string,
@@ -19,9 +18,10 @@ export function configServiceInitializerFactory(config: ConfigService): Function
   providedIn: 'root'
 })
 export class ConfigService {
+
   config: Config;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   load(): Promise<any> {
     console.log('load resources');
