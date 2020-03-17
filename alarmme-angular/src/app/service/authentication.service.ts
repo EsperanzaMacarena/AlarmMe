@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TokenResponse } from '../responses/token-response';
-import { SessionResponse } from '../responses/session-response';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { enlaces } from '../variables/variables';
 import { SessionNewDto } from '../dto/session-new.dto';
@@ -21,7 +19,7 @@ const httpOptions = {
 export class AuthenticationService {
     
     constructor(private http: HttpClient){}
-    getTokenRequest():Observable<TokenResponse>{
+   /* getTokenRequest():Observable<TokenResponse>{
         return this.http.get<TokenResponse>(authURL+'/token/new'+enlaces.key);
     }
     getSessionID():Observable<SessionResponse>{
@@ -30,5 +28,5 @@ export class AuthenticationService {
             authURL+'/session/new'+enlaces.key,
             sessiondto,
             httpOptions);
-    }
+    }*/
 }

@@ -5,7 +5,6 @@ import { ListDto } from '../dto/listDto.dto';
 import { Lista } from '../models/lista-interface';
 import { MatDialog } from '@angular/material/dialog';
 import { FormularioCrearListaComponent } from '../formulario-crear-lista/formulario-crear-lista.component';
-import { SnackbarCrearListaComponent } from '../snackbar-crear-lista/snackbar-crear-lista.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 
@@ -29,12 +28,9 @@ export class ListadoListasComponent implements OnInit {
     this.loadLists();
   }
   loadLists(){
-    this.peliculaServicio.getListas(localStorage.getItem('sessionId')).subscribe(resp=>{
-      console.log(resp.results);
-        this.listas=resp.results;
-    })
+   
   }
-  openCreateNewList(){
+ /* openCreateNewList(){
     const sesion=localStorage.getItem('sessionId');
 
     const dialogRef=this.dialog.open(FormularioCrearListaComponent);
@@ -54,6 +50,6 @@ export class ListadoListasComponent implements OnInit {
     });
    
 
-  }
+  }*/
   
 }
