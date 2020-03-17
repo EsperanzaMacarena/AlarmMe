@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { AppRoutingModule } from './app-routing.module';
+import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
@@ -20,7 +20,10 @@ import {MatChipsModule} from '@angular/material/chips';
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
+const routes: Routes = [ 
+  { path: '', component: LoginComponent }
 
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,8 +35,12 @@ export function tokenGetter() {
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    FlexLayoutModule,
     BrowserModule,
-    AppRoutingModule,
+    RouterModule.forRoot(
+      routes,
+      { enableTracing: false } // <-- debugging purposes only
+    ),
     HttpClientModule,
     FlexLayoutModule,
 
