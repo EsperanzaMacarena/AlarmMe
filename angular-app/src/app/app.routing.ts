@@ -5,13 +5,17 @@ import { LoginComponent } from './dashboard/login/login.component';
 
 export const AppRoutes: Routes = [
   {
-  path: '',
+  path: 'admin',
   component: AdminLayoutComponent,
   children: [{
     path: '',
     loadChildren: './dashboard/dashboard.module#DashboardModule'
   }]
-}, /*{
+},  {
+  path: '',
+  component: LoginComponent
+}
+,/*{
   path: '',
   component: LoginComponent,
   children: [{

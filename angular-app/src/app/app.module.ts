@@ -1,3 +1,5 @@
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { LoginComponent } from './dashboard/login/login.component';
 import {
   AdminLayoutComponent,
   AuthLayoutComponent,
@@ -9,6 +11,11 @@ import {
   SidebarComponent
 } from './core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {
+  MatInputModule ,
+  MatFormFieldModule,
+  
+} from '@angular/material';
 import {
   MatButtonModule,
   MatCardModule,
@@ -37,19 +44,22 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { NgMaterialMultilevelMenuModule } from 'ng-material-multilevel-menu';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { RouterModule } from '@angular/router';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { LoginComponent } from './dashboard/login/login.component';
 import { AuthService } from './service/auth.service';
+import { configServiceInitializerFactory, ConfigService } from './service/config.service';
+import { JwtModule } from '@auth0/angular-jwt';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
-
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   wheelSpeed: 2,
@@ -66,13 +76,23 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     OptionsComponent,
     MenuComponent,
     AdminLayoutComponent,
+    LoginComponent,
     LayoutComponent,
     AuthLayoutComponent,
     
   ],
   imports: [
     MatSnackBarModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ["example.com"],
+        blacklistedRoutes: ["example.com/examplebadroute/"]
+      }
+    }),
     BrowserModule,
+    MatInputModule ,
+    MatFormFieldModule,  
     MatChipsModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(AppRoutes),
@@ -109,6 +129,12 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     
   ],
   providers: [
+    JwtHelperService, {
+      provide: APP_INITIALIZER,
+      useFactory: configServiceInitializerFactory,
+      deps: [ConfigService],
+      multi: true
+    },
     AuthService,
     {
       provide: PERFECT_SCROLLBAR_CONFIG,

@@ -29,7 +29,7 @@ login(loginDto: LoginDto): Observable<LoginResponse> {
     );
   }
 
-  public getToken(): string {
+  public static getToken(): string {
     return localStorage.getItem("token");
   }
 

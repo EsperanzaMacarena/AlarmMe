@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.authentication.login(this.loginDto).subscribe(result => {
       this.authentication.setToken(result.token);
-      console.log(this.jwtHelper.decodeToken(this.authentication.getToken()));
+      console.log(this.jwtHelper.decodeToken( AuthService.getToken()));
       //this.router.navigate(['/']);  
       this.snackBar.open('Authentication ok.');
     },
