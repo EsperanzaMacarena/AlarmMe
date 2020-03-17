@@ -9,9 +9,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
-  selector: 'app-listado-listas',
-  templateUrl: './listado-listas.component.html',
-  styleUrls: ['./listado-listas.component.css']
+  selector: 'app-tipo-lista',
+  templateUrl: './tipo-lista.component.html',
+  styleUrls: ['./tipo-lista.component.css']
 })
 export class ListadoListasComponent implements OnInit {
   listas :Lista[];

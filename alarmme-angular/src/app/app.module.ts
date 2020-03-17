@@ -12,7 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthenticationService } from './service/authentication.service';
 import { FormularioCrearListaComponent } from './formulario-crear-lista/formulario-crear-lista.component';
-import { ListadoListasComponent } from './listado-listas/listado-listas.component';
+import { ListadoListasComponent } from './tipo-lista/tipo-lista.component';
 import {MatInputModule} from '@angular/material/input'; 
 import { FormsModule } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table'; 

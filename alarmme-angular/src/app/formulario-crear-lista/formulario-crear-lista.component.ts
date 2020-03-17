@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ListDto } from '../dto/listDto.dto';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ListadoListasComponent } from '../listado-listas/listado-listas.component';
+import { ListadoListasComponent } from '../tipo-lista/tipo-lista.component';
 import { PeliculasService } from '../service/peliculas.service';
 import { TouchSequence } from 'selenium-webdriver';
 
