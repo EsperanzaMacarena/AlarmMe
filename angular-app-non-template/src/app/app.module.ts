@@ -12,6 +12,10 @@ import { AlarmeApiService } from './service/alarme-api.service';
 import { ConfigService, configServiceInitializerFactory } from './service/config.service';
 import { FormsModule }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './header/header.component';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatChipsModule} from '@angular/material/chips';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -20,9 +24,13 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    HeaderComponent
   ],
   imports: [
+    MatChipsModule,
+    MatFormFieldModule,
+    MatInputModule,
     FormsModule,
     BrowserModule,
     AppRoutingModule,

@@ -1,20 +1,24 @@
+
+
+
+
 <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" class="container">
+    <div class="logo"><img class="imglogo" src="../../assets/logo.png"></div>
     <div class="login" fxLayoutAlign="center center" fxLayout="column" fxLayoutGap="10px">
-        <label>Usuario</label>
-        <input type="email" [(ngModel)]="loginDto.username" #em="ngModel" required [email]="true" />
-
-        <div [hidden]="em.valid || em.pristine" class="alert alert-danger">
-            <p *ngIf="em.errors?.required">El campo email es requerido.</p>
-            <p *ngIf="em.errors?.email">El campo email debe estar bien formado.</p>
-        </div>
-        <label>Contraseña</label>
-        <input type="password" [(ngModel)]="loginDto.password" #pwd="ngModel"  required />
-
-        <div [hidden]="pwd.valid || pwd.pristine" class="alert alert-danger">
-            <p *ngIf="pwd.errors?.required"> El campo contraseña es requerido.</p>
-            <p *ngIf="pwd.errors?.pattern">La contraeña debe ser un número entre 4 y 6 dígitos</p>
-        </div>
+        <form class="example-form">
+            
+            <mat-form-field class="example-full-width">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Email" [(ngModel)]="loginDto.username" #em="ngModel" required [email]="true">
+            </mat-form-field>
+          
+            <mat-form-field class="example-full-width">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" [(ngModel)]="loginDto.password" #pwd="ngModel"  required />
+            </mat-form-field>
+          </form>
         <button mat-raised-button color="primary" (click)="login()" value="Login">Login</button>
 
     </div>
 </div>
+

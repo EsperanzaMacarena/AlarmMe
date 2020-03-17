@@ -6,6 +6,24 @@
 .login {
     padding: 50px 50px;
     width: 300px;
-    border: 1px solid rgba(0, 0, 0, 0.555);
-    border-radius: 15%;
+
 }
+
+.logo{
+    text-align: center;
+}
+
+.imglogo{
+    width: 250px;
+    height: 250px;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
