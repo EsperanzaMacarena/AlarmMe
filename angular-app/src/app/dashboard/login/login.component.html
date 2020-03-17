@@ -5,7 +5,7 @@
             
             <mat-form-field class="example-full-width">
               <mat-label>Email</mat-label>
-              <input matInput placeholder="Email" [(ngModel)]="loginDto.username" required [email]="true" name="email">
+              <input matInput [(ngModel)]="loginDto.username" required [email]="true" name="email">
             </mat-form-field>
           
             <mat-form-field class="example-full-width">
@@ -13,8 +13,7 @@
               <input matInput type="password" [(ngModel)]="loginDto.password"  required name="password"/>
             </mat-form-field>
           </form>
-        <mat-chip color="#81c784" selected (click)="login()" value="Login">Login</mat-chip>
-
+        <button mat-button color="primary" (click)="login()" value="Login">Login</button>
     </div>
 </div>
 
