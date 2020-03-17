@@ -25,7 +25,8 @@ export class AuthService {
 
 login(loginDto: LoginDto): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(
-      'https://alarm-me-api.herokuapp.com/api/login',loginDto,
+      'https://alarm-me-api.herokuapp.com/api/login',
+      loginDto,
       httpOptions
     );
   }

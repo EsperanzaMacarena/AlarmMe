@@ -13,7 +13,8 @@
               <input matInput type="password" [(ngModel)]="loginDto.password" #pwd="ngModel"  required name="password" />
             </mat-form-field>
           </form>
-        <mat-chip color="primary" selected (click)="login()" value="Login">Login</mat-chip>
+        
+        <button mat-raised-button color="primary" (click)="login()" value="Login">Login</button>
 
     </div>
 </div>
