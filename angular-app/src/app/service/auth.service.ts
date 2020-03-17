@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginDto } from '../dto/login.dto';
 import { LoginResponse } from '../model/login-response.interface';
 import { Observable } from 'rxjs';
-
+import {BASE_URL} from '../dashboard/commons';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -24,7 +24,7 @@ export class AuthService {
 
 login(loginDto: LoginDto): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(
-      'https://alarm-me-api.herokuapp.com/api/login',loginDto,
+     BASE_URL+'/login',loginDto,
       httpOptions
     );
   }

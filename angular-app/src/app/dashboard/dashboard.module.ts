@@ -21,6 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { ConfigService, configServiceInitializerFactory } from '../service/config.service';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { AlarmMeApiService } from '../service/alarm-me-api.service';
+import { TipoListaComponent } from './tipo-lista/tipo-lista.component';
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
@@ -49,7 +50,7 @@ export function tokenGetter() {
       }
     })
   ],
-  declarations: [DashboardComponent,LoginComponent],
+  declarations: [DashboardComponent,LoginComponent, TipoListaComponent],
   providers:[
     AlarmMeApiService,
     ConfigService,
