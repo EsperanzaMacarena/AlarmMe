@@ -1,0 +1,19 @@
+.menu{
+    font-size: 15px;
+    
+}
+img{
+    width: 130px;
+}
+span:first-child{
+    font-size: 22px;
+
+}
+
+
+
+.example-spacer {
+flex: 1 1 auto;
+}
+
+a { text-decoration: none; color:white;  }

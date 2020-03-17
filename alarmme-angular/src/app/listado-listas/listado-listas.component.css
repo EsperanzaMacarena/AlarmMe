@@ -1,0 +1,42 @@
+.example-icon {
+    padding: 0 14px;
+    font-size: 40px;
+    margin-right: 20px;
+  }
+.example-icon:hover{
+    text-shadow: 4px 4px 8px #000000;
+}
+.example-spacer {
+    flex: 1 1 auto;
+}
+.contenedor{
+    margin-top: 25px;
+    width: 100%;
+}
+h1{
+    text-align: center;
+}
+td {
+    margin-left:20px;
+    font-size: 18px;
+    text-transform: capitalize;
+}
+.mat-header-cell{
+    text-align: center;
+    font-weight: bolder;
+    font-size: 20px;
+    text-transform: uppercase;
+    background-color: #002984;
+    color:white;
+}
+table{
+    margin: 0 auto;
+  
+}
+mat-icon{
+    font-size: 40px;
+    vertical-align: sub !important;
+}
+button{
+    margin-top: 10px;
+}

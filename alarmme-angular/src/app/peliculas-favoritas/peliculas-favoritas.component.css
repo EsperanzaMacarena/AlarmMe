@@ -1,0 +1,28 @@
+h1{
+    text-align: center;
+    margin-top: 150px;
+}
+
+.container{
+    padding: 10px;
+    font-family: "Roboto";
+}
+.imgPeli{
+    object-fit: cover;
+    width: 200px;
+    padding: 5px;
+}
+.flotar{
+    float: left;
+}
+tspan{
+    color: black;
+}
+.mat-card-title{
+    font-weight: 800;
+}
+
+.letraPequena{
+    font-size: 11px;
+    font-style: italic;
+}

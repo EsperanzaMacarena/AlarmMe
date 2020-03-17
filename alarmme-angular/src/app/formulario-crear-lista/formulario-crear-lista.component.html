@@ -1,0 +1,23 @@
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" class="container">
+ <h3 mat-dialog-title>{{ tituloDialog}}</h3>
+ <div mat-dialog-content>
+    <form class="example-form">
+      <mat-form-field class="example-full-width" fxLayout="row">
+        <input matInput placeholder="Nombre de la lista" [(ngModel)]="lista.name" #nombre="ngModel" required name="nombrelista">
+        <mat-error *ngIf="nombre.errors?.required">La lista debe tener un nombre</mat-error>
+      </mat-form-field>
+    
+      <mat-form-field class="example-full-width" fxLayout="row">
+        <textarea matInput placeholder="Descripción de la lista" [(ngModel)]="lista.description" #descripcion="ngModel" name="descripcionlista"></textarea>
+      </mat-form-field>
+    </form>
+  </div>
+ <div mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="cerrarDialog()">Cancelar</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="lista" cdkFocusInitial>Guardar</button>
+
+ </div>
+  
+</div>
+
+
