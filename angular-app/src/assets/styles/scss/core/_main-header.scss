@@ -22,7 +22,7 @@ mat-toolbar {
     border-radius: 50%;
     width: 13px;
     height: 13px;
-    background-color: mat-color($warn);
+    background-color: #263238;
     border: 4px solid mat-color($warn);
     color: white;
     text-align: center;
@@ -54,11 +54,9 @@ mat-toolbar {
     }
 
     .logo {
-      background-image: url(/assets/images/logo.svg);
-      width: 109px;
-      height: 25px;
-      -webkit-background-size: 109px 25px;
-      background-size: 109px 25px;
+      
+      width: 61px;
+      height: 61px;
       margin: auto;
     }
 
@@ -99,13 +97,14 @@ mat-toolbar {
 @media ($mat-xsmall) and (orientation: portrait) {
   mat-toolbar {
     &.main-header {
+      
       .branding {
         padding: 0 16px 0 16px;
       }
 
       .logo {
-        width: 87px;
-        height: 20px;
+        width: 90px;
+        height: 90px;
         -webkit-background-size: 87px 20px;
         background-size: 87px 20px;
       }
@@ -128,4 +127,20 @@ mat-toolbar {
       }
     }
   }
+}
+.mat-toolbar {
+  background: #49694B;
+  color: white;
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+  height: 90px;
+}
+
+.myStyle{
+  text-align: center;
+}
+
+.myStyle a{
+  margin-right: 55px;
 }

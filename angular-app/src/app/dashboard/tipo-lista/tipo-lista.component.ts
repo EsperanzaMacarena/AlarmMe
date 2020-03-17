@@ -9,9 +9,9 @@ import { MatDialog } from '@angular/material';
   styleUrls: ['./tipo-lista.component.scss']
 })
 export class TipoListaComponent implements OnInit {
-  displayedColumns = ['tipo', 'descripción', 'Lugar','editar','borrar'];
+  displayedColumns = ['tipo', 'lugar','editar','eliminar'];
   
-  types: Type[];
+  types: Type[]
 
   constructor(
     private service:AlarmMeApiService,
@@ -28,14 +28,11 @@ export class TipoListaComponent implements OnInit {
       this.types=resp;
     })
   }
-  create(){
+  create(id:String, isNew:boolean){
     //Crear un dialogo para crear/modificar
   }
-  update(){
-    //crear un dialogo para crear/modificar
-  }
 
-  delete(){
+  delete(id:String){
     //crear un diálogo para confirmar eliminar
   }
 

@@ -9,6 +9,9 @@ import {
   MatMenuModule,
   MatProgressBarModule
 } from '@angular/material';
+import {MatTableModule} from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
+
 import { ChartsModule } from 'ng2-charts';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
@@ -39,10 +42,11 @@ registerLocaleData(localeEs, 'es');
     MatProgressBarModule,
     MatMenuModule,
     ChartsModule,
+    MatDialogModule,
     FormsModule,
     NgxDatatableModule,
     FlexLayoutModule,
-    
+    MatTableModule,
   ],
   declarations: [DashboardComponent, TipoListaComponent],
   providers:[

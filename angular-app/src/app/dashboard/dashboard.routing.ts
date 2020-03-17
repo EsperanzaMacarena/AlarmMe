@@ -6,7 +6,7 @@ import { DashboardComponent } from './dashboard.component';
 
 export const DashboardRoutes: Routes = [
   {
-    path: '/type',
+    path: 'type',
     component: TipoListaComponent
   }
 ];
