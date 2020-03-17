@@ -34,12 +34,17 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/login' },
   { path: '**', component: PaginaNoEncontradaComponent }
 ];
+
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
 @NgModule({
   declarations: [
     AppComponent,
     FormularioCrearListaComponent,
     ListadoListasComponent,
-    LoginComponent
+    LoginComponent,
+    PaginaNoEncontradaComponent
   
   ],
   imports: [
@@ -64,7 +69,14 @@ const routes: Routes = [
     MatDialogModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ["example.com"],
+        blacklistedRoutes: ["example.com/examplebadroute/"]
+      }
+    }),
   ],
   providers: [
     AuthService,

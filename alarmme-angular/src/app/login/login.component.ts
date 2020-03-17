@@ -14,7 +14,9 @@ export class LoginComponent implements OnInit {
 
   loginDto : LoginDto;
 
-  constructor(private authentication: AuthService, private router: Router,private snackBar: MatSnackBar, private jwtHelper: JwtHelperService) { }
+  constructor(private authentication: AuthService, private router: Router,private snackBar: MatSnackBar, private jwtHelper: JwtHelperService) {
+    this.loginDto = new LoginDto('', '');
+   }
 
   ngOnInit(): void {
   }
