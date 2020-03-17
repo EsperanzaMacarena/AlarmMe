@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { AdminLayoutComponent, AuthLayoutComponent } from './core';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './dashboard/login/login.component';
 
 export const AppRoutes: Routes = [
   {
@@ -11,14 +11,14 @@ export const AppRoutes: Routes = [
     path: '',
     loadChildren: './dashboard/dashboard.module#DashboardModule'
   }]
-}, {
+}, /*{
   path: '',
-  component: AuthLayoutComponent,
+  component: LoginComponent,
   children: [{
     path: 'session',
     loadChildren: './session/session.module#SessionModule'
   }]
-}, {
+},*/ {
   path: '**',
   redirectTo: 'session/404'
 }];

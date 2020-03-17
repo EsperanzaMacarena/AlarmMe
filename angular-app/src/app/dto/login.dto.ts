@@ -1,4 +1,8 @@
-export class LoginDto {
+export interface LoginDto{
+    username:String,
+    password:String
+}
+/*export class LoginDto {
     
     constructor(public username: string, public password: string) {
     }
@@ -9,4 +13,4 @@ export class LoginDto {
             password: this.password
         };
     }
-}
+}*/
