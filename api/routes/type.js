@@ -65,3 +65,5 @@ router.put('/type/:id', middleware.ensureAuthenticatedAndAdmin, controller.updat
  * @apiError 401 admin access only.
  */
 router.delete('/type/:id', middleware.ensureAuthenticatedAndAdmin, controller.delete);
+
+module.exports = router;

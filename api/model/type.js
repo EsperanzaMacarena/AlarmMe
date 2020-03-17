@@ -2,16 +2,16 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const typePlaces = [
-    "ATM",
-    "BAKERY",
-    "BANK",
-    "BOOK_STORE",
-    "PHARMACY", 
-    "DRUGSTORE",
-    "BICYCLE_STORE",
-    "STORE",
-    "SUPERMARKET",
-    "PET_STORE"
+    'ATM',
+    'BAKERY',
+    'BANK',
+    'BOOK_STORE',
+    'PHARMACY', 
+    'DRUGSTORE',
+    'BICYCLE_STORE',
+    'STORE',
+    'SUPERMARKET',
+    'PET_STORE'
 ]
 
 const typeSchema = new Schema({
@@ -20,8 +20,8 @@ const typeSchema = new Schema({
       required: true
     },
     typePlaces: {
-      type: String,
-      enum: [typePlaces],
+      type: [String],
+      enum: typePlaces,
       required: true
     }
   })
