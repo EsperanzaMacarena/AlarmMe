@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const alarmSchema = new Schema({
+    name:{
+      type: String,
+      required: true
+    },
     createdBy: {
       type: Schema.ObjectId,
       ref: 'User',
