@@ -36,7 +36,12 @@ login(loginDto: LoginDto): Observable<LoginResponse> {
   public setToken(token: string) {
     localStorage.setItem("token", token);
   }
-
+  public setRol(role: string) {
+    localStorage.setItem("rol", role);
+  }
+  public setEmail(email: string) {
+    localStorage.setItem("email", email);
+  }
   public clearToken() {
     localStorage.removeItem("token");
   }

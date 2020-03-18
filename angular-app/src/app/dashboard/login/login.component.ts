@@ -27,6 +27,9 @@ export class LoginComponent implements OnInit {
   login() {
     this.authentication.login(this.loginDto).subscribe(result => {
       this.authentication.setToken(result.token);
+      this.authentication.setEmail(result.email);
+      this.authentication.setRol(result.rol);
+
       console.log(this.jwtHelper.decodeToken( AuthService.getToken()));
       this.router.navigate(['/admin/type']);  
       //this.snackBar.open('Authentication ok.');
