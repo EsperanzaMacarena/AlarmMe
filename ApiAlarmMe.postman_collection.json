@@ -1,343 +1,405 @@
 {
 	"info": {
-		"_postman_id": "2bb6196b-83ca-4d50-b980-cd987fb9022c",
+		"_postman_id": "a99adc85-32c2-4797-959e-22123c2b94f2",
 		"name": "ApiAlarmMe",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Login",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"username\": \"admin@administrador.com\",\n    \"password\":\"12345678\"\n}\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}api/login",
-					"host": [
-						"{{url}}api"
-					],
-					"path": [
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get current user",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZTZlMThiZDNiNTc2MjIwNDQ0Y2RmZGUiLCJleHAiOjE1ODQyNzY3NjA3MjMsInVzZXJuYW1lIjoiYWRtaW5AcHJ1ZWJhLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2NzgifQ.eu4YUE46FLL4QxmaNfUEOm3u1yzLVzrwybYUFyw7Fno",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:3000/api/user/me",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"user",
-						"me"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update User's picture",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZTZlMThiZDNiNTc2MjIwNDQ0Y2RmZGUiLCJleHAiOjE1ODQyNzcwMTE1NzYsInVzZXJuYW1lIjoiYWRtaW5AcHJ1ZWJhLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2NzgifQ.B4wr9OjpBXptdJ4paqUOKxbFVBeDKitm-c-K0EPO1_g",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "avatar",
-							"type": "file",
-							"src": "/C:/Users/Alejandro/Downloads/prueba xiaomi note 7.jpg"
-						}
-					]
-				},
-				"url": {
-					"raw": "localhost:3000/api/user/img",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"user",
-						"img"
-					],
-					"query": [
-						{
-							"key": "avatar",
-							"value": null,
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update User's name",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZTZlMThiZDNiNTc2MjIwNDQ0Y2RmZGUiLCJleHAiOjE1ODQyNzcwMTE1NzYsInVzZXJuYW1lIjoiYWRtaW5AcHJ1ZWJhLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2NzgifQ.B4wr9OjpBXptdJ4paqUOKxbFVBeDKitm-c-K0EPO1_g",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"fullname\":\"Xavier Smitch\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:3000/api/user/",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"user",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get User's picture",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZTZlMThiZDNiNTc2MjIwNDQ0Y2RmZGUiLCJleHAiOjE1ODQyODg4NjA0MjYsInVzZXJuYW1lIjoiYWRtaW5AcHJ1ZWJhLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2NzgifQ.pSAzlCH9kJA8lvRG9rqIWXw545sYAZmk7vOhoedTzPM",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:3000/api/img/",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"img",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Register",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"email\": \"admin@prueba.com\",\n    \"fullname\":\"John Smith\",\n    \"password\":\"12345678\"\n}\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:3000/api/register",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"register"
-					],
-					"query": [
-						{
-							"key": "email",
-							"value": "admin@administrador.com",
-							"disabled": true
+			"name": "User",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"admin@administrador.com\",\n    \"password\":\"12345678\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						{
-							"key": "password",
-							"value": "12345678",
-							"disabled": true
+						"url": {
+							"raw": "{{url}}api/login",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"login"
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "Get current user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZTZlMThiZDNiNTc2MjIwNDQ0Y2RmZGUiLCJleHAiOjE1ODQyNzY3NjA3MjMsInVzZXJuYW1lIjoiYWRtaW5AcHJ1ZWJhLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2NzgifQ.eu4YUE46FLL4QxmaNfUEOm3u1yzLVzrwybYUFyw7Fno",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/user/me",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User's picture",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZTZlMThiZDNiNTc2MjIwNDQ0Y2RmZGUiLCJleHAiOjE1ODQyNzcwMTE1NzYsInVzZXJuYW1lIjoiYWRtaW5AcHJ1ZWJhLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2NzgifQ.B4wr9OjpBXptdJ4paqUOKxbFVBeDKitm-c-K0EPO1_g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/C:/Users/Alejandro/Downloads/prueba xiaomi note 7.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/user/img",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"img"
+							],
+							"query": [
+								{
+									"key": "avatar",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User's name",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZTZlMThiZDNiNTc2MjIwNDQ0Y2RmZGUiLCJleHAiOjE1ODQyNzcwMTE1NzYsInVzZXJuYW1lIjoiYWRtaW5AcHJ1ZWJhLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2NzgifQ.B4wr9OjpBXptdJ4paqUOKxbFVBeDKitm-c-K0EPO1_g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"fullname\":\"Xavier Smitch\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/user/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User's picture",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZTZlMThiZDNiNTc2MjIwNDQ0Y2RmZGUiLCJleHAiOjE1ODQyODg4NjA0MjYsInVzZXJuYW1lIjoiYWRtaW5AcHJ1ZWJhLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2NzgifQ.pSAzlCH9kJA8lvRG9rqIWXw545sYAZmk7vOhoedTzPM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/img/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"img",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"admin@prueba.com\",\n    \"fullname\":\"John Smith\",\n    \"password\":\"12345678\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"register"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "admin@administrador.com",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "Get Type Alarm",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZTZiZGM2MDg2YTljOTNjZGNmNDJlZTgiLCJleHAiOjE1ODQ0NDM4ODUyMjAsInVzZXJuYW1lIjoiYWRtaW5AYWRtaW5pc3RyYWRvci5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4In0.gbsSXH_w4Oy27rF4TmBuo_d9jN9MweDVPuLwNcXn2Fk",
-							"type": "string"
+			"name": "Alarms",
+			"item": [
+				{
+					"name": "Get alarms",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
 						}
-					]
+					},
+					"response": []
 				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}api/type",
-					"host": [
-						"{{url}}api"
-					],
-					"path": [
-						"type"
-					]
+				{
+					"name": "Create alarm",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Alams by User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get alarm by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "Create Type",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZTZiZGM2MDg2YTljOTNjZGNmNDJlZTgiLCJleHAiOjE1ODQ0NDM4ODUyMjAsInVzZXJuYW1lIjoiYWRtaW5AYWRtaW5pc3RyYWRvci5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4In0.gbsSXH_w4Oy27rF4TmBuo_d9jN9MweDVPuLwNcXn2Fk",
-							"type": "string"
+			"name": "Type",
+			"item": [
+				{
+					"name": "Delete Type",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZTZiZGM2MDg2YTljOTNjZGNmNDJlZTgiLCJleHAiOjE1ODQ1MTE4NTE5NzAsInVzZXJuYW1lIjoiYWRtaW5AYWRtaW5pc3RyYWRvci5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4In0.a3etEIR4btDefE3NSBkLkWBzjbT148IPE7YsxcJ5j1g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/type/5e70bb362662dc0017c613a1",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"type",
+								"5e70bb362662dc0017c613a1"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"description\":\"Comprar pan\",\n\t\"places\":\"BAKERY\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Get Enum Places",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZTZiZGM2MDg2YTljOTNjZGNmNDJlZTgiLCJleHAiOjE1ODQ1MTE4NTE5NzAsInVzZXJuYW1lIjoiYWRtaW5AYWRtaW5pc3RyYWRvci5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4In0.a3etEIR4btDefE3NSBkLkWBzjbT148IPE7YsxcJ5j1g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/type/places",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"type",
+								"places"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}api/type",
-					"host": [
-						"{{url}}api"
-					],
-					"path": [
-						"type"
-					]
+				{
+					"name": "Create Type",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZTZiZGM2MDg2YTljOTNjZGNmNDJlZTgiLCJleHAiOjE1ODQ0NDM4ODUyMjAsInVzZXJuYW1lIjoiYWRtaW5AYWRtaW5pc3RyYWRvci5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4In0.gbsSXH_w4Oy27rF4TmBuo_d9jN9MweDVPuLwNcXn2Fk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"description\":\"Comprar pan\",\n\t\"places\":\"BAKERY\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}api/type",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"type"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Type Alarm",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZTZiZGM2MDg2YTljOTNjZGNmNDJlZTgiLCJleHAiOjE1ODQ0NDM4ODUyMjAsInVzZXJuYW1lIjoiYWRtaW5AYWRtaW5pc3RyYWRvci5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4In0.gbsSXH_w4Oy27rF4TmBuo_d9jN9MweDVPuLwNcXn2Fk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}api/type",
+							"host": [
+								"{{url}}api"
+							],
+							"path": [
+								"type"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Enum Places",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZTZiZGM2MDg2YTljOTNjZGNmNDJlZTgiLCJleHAiOjE1ODQ1MTE4NTE5NzAsInVzZXJuYW1lIjoiYWRtaW5AYWRtaW5pc3RyYWRvci5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4In0.a3etEIR4btDefE3NSBkLkWBzjbT148IPE7YsxcJ5j1g",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}api/type/places",
-					"host": [
-						"{{url}}api"
-					],
-					"path": [
-						"type",
-						"places"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete Type",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZTZiZGM2MDg2YTljOTNjZGNmNDJlZTgiLCJleHAiOjE1ODQ1MTE4NTE5NzAsInVzZXJuYW1lIjoiYWRtaW5AYWRtaW5pc3RyYWRvci5jb20iLCJwYXNzd29yZCI6IjEyMzQ1Njc4In0.a3etEIR4btDefE3NSBkLkWBzjbT148IPE7YsxcJ5j1g",
-							"type": "string"
-						}
-					]
-				},
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{url}}api/type/5e70bb362662dc0017c613a1",
-					"host": [
-						"{{url}}api"
-					],
-					"path": [
-						"type",
-						"5e70bb362662dc0017c613a1"
-					]
-				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"event": [
