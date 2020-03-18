@@ -67,6 +67,6 @@ export class TipoCreateDialogComponent implements OnInit {
   }
 
   close(){
-
+    this.dialogo.close(null);
   }
 }

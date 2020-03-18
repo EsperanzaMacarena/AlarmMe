@@ -64,7 +64,8 @@ registerLocaleData(localeEs, 'es');
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   entryComponents:[
-    TipoCreateDialogComponent
+    TipoCreateDialogComponent,
+    TipoDeleteDialogComponent
   ]
 })
 export class DashboardModule {}

@@ -66,9 +66,10 @@ export class TipoListaComponent implements OnInit {
     }
   }
 
-  delete(type: Type) {
-    const dialogRef = this.dialog.open(TipoDeleteDialogComponent,{data: {edit:false,type: type}});
-    dialogRef.afterClosed().subscribe(resp=>{
+  delete(typeDelete: Type) {
+    console.log(typeDelete);
+    const dialogR = this.dialog.open(TipoDeleteDialogComponent,{data: {edit:false,type: typeDelete}});
+    dialogR.afterClosed().subscribe(resp=>{
       if(resp!=null){
         if (resp == true) {
           this.snackbar.open("Tipo de alarma eliminada correctamente", "cerrar", this.config);

@@ -18,6 +18,16 @@ export class TipoDeleteDialogComponent implements OnInit {
   }
 
   delete(){
-    
+    console.log(this.data.type._id)
+    this.service.deleteType(this.data.type._id).subscribe(resp=>{
+      this.dialogo.close(true);
+    }),error =>{
+      this.dialogo.close(false);
+    };
+  }
+
+  
+  close(){
+    this.dialogo.close(null);
   }
 }

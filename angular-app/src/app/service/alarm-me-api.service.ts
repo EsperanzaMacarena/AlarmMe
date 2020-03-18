@@ -34,4 +34,8 @@ export class AlarmMeApiService {
   getPlaces():Observable<String[]>{
     return this.http.get<String[]>(BASE_URL+'/places',httpOptions);
   }
+
+  deleteType(id:String):Observable<any>{
+    return this.http.delete(BASE_URL+'/type/'+id,httpOptions);
+  }
 }
