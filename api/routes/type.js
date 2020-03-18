@@ -15,6 +15,17 @@ const controller = require('../controller/type')
 router.get('/type', middleware.ensureAuthenticatedAndAdmin, controller.getAll);
 
 /**
+ * @api {get} /api/places Retrieve types of Places (enum)
+ * @apiName RetrieveTypesPlaces
+ * @apiGroup Type
+ * @apiPermission admin
+ * @apiParam {String} access_token admin access token.
+ * @apiSuccess (Success 200) {Object[]} List of types.
+ * @apiError 401 Admin can access only.
+ */
+router.get('/places', middleware.ensureAuthenticatedAndAdmin,controller.getPlaces);
+
+/**
  * @api {get} /api/type/:id Retrieve type
  * @apiName RetrieveType
  * @apiGroup Type
@@ -65,5 +76,6 @@ router.put('/type/:id', middleware.ensureAuthenticatedAndAdmin, controller.updat
  * @apiError 401 admin access only.
  */
 router.delete('/type/:id', middleware.ensureAuthenticatedAndAdmin, controller.delete);
+
 
 module.exports = router;

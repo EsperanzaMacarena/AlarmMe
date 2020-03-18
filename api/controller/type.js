@@ -4,7 +4,7 @@ let controller = {
     register: (req, res, next) => {
         let type = new Type({
             description: req.body.description,
-            typePlaces: req.body.typePlaces
+            places: req.body.places
         });
         type.save()
             .then(t => res.status(201).json(t))
@@ -20,9 +20,9 @@ let controller = {
         const id= req.params.id;
         Type.updateOne({ _id: id },{ $set:{
             description: req.body.description,
-            typePlaces: req.body.typePlaces
+            places: req.body.places
         }}).exec((error, response) => {
-            if (error) res.send(404, error.message);
+            if (error) res.status(404).json(error.message);
             else Type.findById(id).exec((error, type) => {
                  res.status(200).json(type);
             });
@@ -31,16 +31,19 @@ let controller = {
     delete:(req,res,next)=>{
         const id= req.params.id;
         Type.remove({ _id: id }).exec((error, response) => {
-            if (error) res.send(404, error.message);
+            if (error) res.status(404).json(error.message);
             else res.status(204).json({"result":"Type removed"});
         });
     },
     getOne:(req,res,next)=>{
         const id= req.params.id;
         Type.findById(id).exec((error, type) => {
-            if (error) res.send(404, error.message);
+            if (error) res.status(404).json(error.message);
             else res.status(200).json(type);
        });
+    },
+    getPlaces:(req,res,next)=>{
+        res.status(200).json(Type.schema.path('places').enumValues);
     }
 }
 
