@@ -140,7 +140,7 @@ Total de puntos de esfuerzo de cada alumno:
 <br/><br/>
 
 ## Diagrama UML de AlarmMe API.<a name="UML"></a>
-![Diagrama UML](./AlarmMeUML.jpg)
+![Diagrama UML](./Documentation/AlarmMeUML.jpg)
 <br/><br/>
 <br/><br/>
 
@@ -218,7 +218,7 @@ const alarmSchema = new Schema({
 <br/><br/>
 
 ## Sketching web y android.<a name="SKETCHING"></a>
-[Sketching](./SketchingAlarmMe.pdf)
+[Sketching](./Documentation/SketchingAlarmMe.pdf)
 <br/><br/>
 <br/><br/>
 
