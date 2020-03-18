@@ -23,11 +23,11 @@ import retrofit2.Callback;
 import retrofit2.Converter;
 import retrofit2.Response;
 
-public class UserRepository {
+public class LoginRegisterRepository {
     private ServiceAlarmMeAPI service;
     private MutableLiveData<ResponseLogin> login = new MutableLiveData<>();
 
-    public UserRepository() {
+    public LoginRegisterRepository() {
         this.service = AlarmMeAPI.getInstance(false).getService();
     }
 

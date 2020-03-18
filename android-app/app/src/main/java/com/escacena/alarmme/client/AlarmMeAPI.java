@@ -1,6 +1,9 @@
 package com.escacena.alarmme.client;
 
+import android.content.SharedPreferences;
+
 import com.escacena.alarmme.common.Constants;
+import com.escacena.alarmme.common.SharedPreferencesManager;
 import com.escacena.alarmme.service.ServiceAlarmMeAPI;
 
 import okhttp3.OkHttpClient;
@@ -17,12 +20,32 @@ public class AlarmMeAPI {
 
 
     public AlarmMeAPI(boolean withToken) {
+        if(withToken){
+            createWithToken();
+        }else{
+            createWithoutToken();
+        }
+    }
+
+    public static AlarmMeAPI getInstance(boolean withToken) {
+        if (instance == null)
+            instance = new AlarmMeAPI(withToken);
+        return instance;
+    }
+
+    public ServiceAlarmMeAPI getService() {
+        return service;
+    }
+
+    public void createWithToken() {
         loggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
+
         httpClient = new OkHttpClient.Builder().addInterceptor(loggingInterceptor);
-        if (withToken) {
-            //TODO: AÑADIR INTERCEPTOR CON TOKEN
-        } else {
-            //TODO: ELIMINAR INTERCEPTOR CON TOKEN EN EL HTTPCLIENT
+
+        String token = SharedPreferencesManager.getSharedPreferencesManager().getString("token", null);
+
+        if (token != null) {
+            httpClient.addInterceptor(new InterceptorToken(token));
         }
 
         retrofit = new Retrofit
@@ -34,14 +57,18 @@ public class AlarmMeAPI {
         service = retrofit.create(ServiceAlarmMeAPI.class);
     }
 
-    public static AlarmMeAPI getInstance(boolean withToken) {
-        if (instance == null)
-            instance = new AlarmMeAPI(withToken);
-        return instance;
-    }
+    public void createWithoutToken() {
+        loggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
 
-    public ServiceAlarmMeAPI getService() {
-        return service;
+        httpClient = new OkHttpClient.Builder().addInterceptor(loggingInterceptor);
+
+        retrofit = new Retrofit
+                .Builder()
+                .baseUrl(Constants.BASE_URL_ALARMME_API)
+                .client(httpClient.build())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        service = retrofit.create(ServiceAlarmMeAPI.class);
     }
 
 }
