@@ -233,6 +233,16 @@ EN CONSTRUCCIÓN
 <br/><br/>
 
 ## Informes de seguimiento del proyecto.<a name ="SEGUIMIENTO"></a>
-EN CONSTRUCCIÓN
+
+#### 17 Marzo 2020
+[Informe 01](./Informes/Entrega_17032020/INF01_17032020.pdf)
+
+#### 18 Marzo 2020
+[DSP 01](./Informes/Entrega_18032020/DSP18032020.pdf)
+
+[Colección Postman](./ApiAlarmMe.postman_collection.json)
+
+[Datos de usuarios de prueba](./Informes/Entrega_18032020/DatosUsuarioAProbar.txt)
+
 <br/><br/>
 <br/><br/>
