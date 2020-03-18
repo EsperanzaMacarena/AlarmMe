@@ -1,5 +1,5 @@
 export interface TypeCreateRequest {
    
     description: String,
-    typePlaces: String[],
+    places: String,
 }

@@ -30,4 +30,8 @@ export class AlarmMeApiService {
   updateType(type:Type):Observable<Type>{
     return this.http.put<Type>(BASE_URL+'/type', type, httpOptions);
   }
+
+  getPlaces():Observable<String[]>{
+    return this.http.get<String[]>(BASE_URL+'/places',httpOptions);
+  }
 }

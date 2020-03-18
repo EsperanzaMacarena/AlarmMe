@@ -4,19 +4,19 @@
         <mat-form-field>
             <mat-label>Título del tipo de alarma:</mat-label>
 
-            <input matInput [(ngModel)]="type.description" placeholder="Título" [formControl]="titulo" required>
+            <input matInput [(ngModel)]="data.edit?type.description:typeN.description" placeholder="Título" [formControl]="titulo" required>
             <mat-error *ngIf="titulo.invalid">Escriba un título</mat-error>
 
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Lugar asociado al tipo de alarma</mat-label>
-            <!--HACER UN ENDPOINT DE PLACES
-        <mat-select [(value)]="type.typePlaces">
-            <mat-option *ngFor="let sprint of sprints" value="{{sprint.id}}">
-                {{ sprint.data.titulo }}
+          
+        <mat-select [(value)]="data.edit?type.places:typeN.places">
+            <mat-option *ngFor="let place of places" value="{{place}}">
+                {{ place }}
             </mat-option>
-        </mat-select>-->
+        </mat-select>
         </mat-form-field>
 
     </form>
@@ -24,5 +24,5 @@
 </div>
 <div mat-dialog-actions>
     <button mat-raised-button (click)="close()" color="warn">Cancelar</button>
-    <button mat-raised-button (click)="!data.edit?createStory():editStory()" cdkFocusInitial>Ok</button>
+    <button mat-raised-button (click)="data.edit?create():edit()" cdkFocusInitial>Ok</button>
 </div>

@@ -13,6 +13,7 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class TipoCreateDialogComponent implements OnInit {
   type :Type
+  places: String[]
   typeN :TypeCreateRequest
   titulo = new FormControl('', [Validators.required]);
   place = new FormControl('', [Validators.required]);
@@ -24,19 +25,28 @@ export class TipoCreateDialogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getPlaces();
     this.checkData();
   }
+
+  getPlaces(){
+    this.places=[];
+    this.service.getPlaces().subscribe(resp=>{
+      this.places=resp;
+    });
+  }
+
   checkData(){
     if(this.data.edit){
       this.type = {
         _id:this.data.type._id,
         description:this.data.type.description,
-        typePlaces:this.data.type.typePlaces
+        places:this.data.type.places
       }
     }else{
       this.typeN={
         description:'',
-        typePlaces:[]
+        places:''
       }
     }
   }

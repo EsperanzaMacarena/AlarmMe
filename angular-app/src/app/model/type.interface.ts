@@ -1,5 +1,5 @@
 export interface Type {
-    typePlaces: String[],
+    places: String,
     _id: String,
     description: String,
 }
