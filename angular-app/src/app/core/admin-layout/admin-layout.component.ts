@@ -36,7 +36,9 @@ export class AdminLayoutComponent  {
 
 @Component({
   selector: 'app-layout-inner',
-  templateUrl: './admin-layout.component.html'
+  templateUrl: './admin-layout.component.html',
+  styleUrls: ['./admin-layout.component.scss']
+
 })
 export class LayoutComponent implements OnInit, OnDestroy {
   private layoutRouter: Subscription;
