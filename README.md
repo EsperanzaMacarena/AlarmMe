@@ -18,6 +18,12 @@ Para ello, el equipo docente de Salesianos Triana ha marcado una serie de docume
 
 1. [Descripción detallada del sistema](#DDS)
 2. [Documento de historias de usuario](#DHU)
+3. [Diagrama UML de AlarmMe API](#UML)
+4. [Modelo de la Base de Datos de AlarmMe en MongoDB](#DB)
+4. [Sketching web y android](#SKETCHING)
+5. [Documentación de rutas AlarmMeAPI](#ROUTES)
+6. [Proyecto de empresa](#EMPRESA)
+7. [Informes de seguimiento del proyecto](#SEGUIMIENTO)
 <br/><br/>
 <br/><br/>
 
@@ -133,12 +139,12 @@ Total de puntos de esfuerzo de cada alumno:
 <br/><br/>
 <br/><br/>
 
-## Diagrama UML de AlarmMe API
+## Diagrama UML de AlarmMe API.<a name="UML"></a>
 ![Diagrama UML](./AlarmMeUML.jpg)
 <br/><br/>
 <br/><br/>
 
-## Modelo de la Base de Datos de AlarmMe en MongoDB
+## Modelo de la Base de Datos de AlarmMe en MongoDB.<a name="DB"></a>
 ```javascript
 const userSchema = new Schema({
     email: {
@@ -208,3 +214,25 @@ const alarmSchema = new Schema({
     }
   })
 ```
+<br/><br/>
+<br/><br/>
+
+## Sketching web y android.<a name="SKETCHING"></a>
+[Sketching](./SketchingAlarmMe.pdf)
+<br/><br/>
+<br/><br/>
+
+## Documentación de rutas de AlarmMeAPI.<a name="ROUTES"></a>
+EN CONSTRUCCIÓN
+<br/><br/>
+<br/><br/>
+
+## Proyecto de empresa AlarmMe.<a name ="EMPRESA"></a>
+EN CONSTRUCCIÓN
+<br/><br/>
+<br/><br/>
+
+## Informes de seguimiento del proyecto.<a name ="SEGUIMIENTO"></a>
+EN CONSTRUCCIÓN
+<br/><br/>
+<br/><br/>

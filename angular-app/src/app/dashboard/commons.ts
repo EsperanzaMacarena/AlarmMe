@@ -1,0 +1,1 @@
+export const BASE_URL ='https://alarm-me-api.herokuapp.com/api';

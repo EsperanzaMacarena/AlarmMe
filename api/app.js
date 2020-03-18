@@ -10,6 +10,9 @@ const LocalStrategy = require('passport-local').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const bcrypt = require('bcryptjs');
 const user_routes = require('./routes/users');
+const type_routes = require('./routes/type');
+const alarm_routes = require ('./routes/alarm')
+
 const middleware = require('./middleware/index');
 const User = require('./model/user');
 require('dotenv').config();
@@ -54,14 +57,24 @@ passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
 }));
 
 const app = express()
-
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+});
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(passport.initialize())
+app.use('/api/', type_routes);
 
 app.use('/api/', user_routes);
+app.use('/api/', alarm_routes);
 app.use(middleware.errorHandler);
 app.use(middleware.notFoundHandler);
+
+
 
 module.exports = app
