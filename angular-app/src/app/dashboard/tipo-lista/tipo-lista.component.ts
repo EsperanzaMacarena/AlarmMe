@@ -1,3 +1,4 @@
+import { TipoDeleteDialogComponent } from './../tipo-delete-dialog/tipo-delete-dialog.component';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Type } from './../../model/type.interface';
 import { AlarmMeApiService } from './../../service/alarm-me-api.service';
@@ -65,8 +66,19 @@ export class TipoListaComponent implements OnInit {
     }
   }
 
-  delete(id: String) {
-    //crear un diálogo para confirmar eliminar
+  delete(type: Type) {
+    const dialogRef = this.dialog.open(TipoDeleteDialogComponent,{data: {edit:false,type: type}});
+    dialogRef.afterClosed().subscribe(resp=>{
+      if(resp!=null){
+        if (resp == true) {
+          this.snackbar.open("Tipo de alarma eliminada correctamente", "cerrar", this.config);
+          window.location.reload();
+        } else {
+          this.snackbar.open("No se ha podido eliminar el tipo de alarma.\nVuelva a intenarlo.", "cerrar", this.config);
+        }
+       
+      }
+    });
   }
 
 }
