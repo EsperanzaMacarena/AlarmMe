@@ -8,5 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class ResponseLogin {
+    private String email;
+    private String rol;
     private String token;
 }

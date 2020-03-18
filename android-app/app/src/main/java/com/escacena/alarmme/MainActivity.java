@@ -18,6 +18,7 @@ import android.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.escacena.alarmme.common.MyApp;
+import com.escacena.alarmme.common.SharedPreferencesManager;
 import com.escacena.alarmme.request.RequestLogin;
 import com.escacena.alarmme.response.ResponseLogin;
 import com.escacena.alarmme.viewmodel.LoginViewModel;
@@ -61,8 +62,9 @@ public class MainActivity extends AppCompatActivity {
                         password.getText().toString())).observe(MainActivity.this, new Observer<ResponseLogin>() {
                     @Override
                     public void onChanged(ResponseLogin responseLogin) {
-                        //Intent success = new Intent(this, );
-                        //startActivity(success);
+                        SharedPreferencesManager.setSomeStringValue("token", responseLogin.getToken());
+                        Intent success = new Intent(MainActivity.this, BoardActivity.class );
+                        startActivity(success);
                         Toast.makeText(MyApp.getContext(), "LOGIN SUCCESSFUL", Toast.LENGTH_LONG).show();
                     }
                 });

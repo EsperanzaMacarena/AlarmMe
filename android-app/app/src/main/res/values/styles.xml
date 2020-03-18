@@ -12,4 +12,8 @@
         <item name="colorControlHighlight">@color/grey_60</item>
         <item name="colorControlNormal">@color/grey_40</item>
     </style>
+    <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/blue_grey_300</item>
+        <item name="android:textColorSecondary">@color/colorPrimaryDark</item>
+    </style>
 </resources>

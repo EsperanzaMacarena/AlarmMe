@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -55,8 +56,8 @@ public class RegisterActivity extends AppCompatActivity {
                                 public void onChanged(ResponseLogin responseLogin) {
 
                                     SharedPreferencesManager.setSomeStringValue("token", responseLogin.getToken());
-                                    //Intent success = new Intent(this, );
-                                    //startActivity(success);
+                                    Intent success = new Intent(RegisterActivity.this, BoardActivity.class );
+                                    startActivity(success);
                                     Toast.makeText(MyApp.getContext(), "LOGIN SUCCESSFUL", Toast.LENGTH_LONG).show();
                                 }
                             });
