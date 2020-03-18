@@ -27,8 +27,8 @@ export class AlarmMeApiService {
     return this.http.post<Type>(BASE_URL+'/type', type, httpOptions);
   }
 
-  updateType(type:Type):Observable<Type>{
-    return this.http.put<Type>(BASE_URL+'/type', type, httpOptions);
+  updateType(type:TypeCreateRequest, id :String):Observable<Type>{
+    return this.http.put<Type>(BASE_URL+'/type/'+id, type, httpOptions);
   }
 
   getPlaces():Observable<String[]>{

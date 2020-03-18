@@ -12,7 +12,6 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./tipo-create-dialog.component.scss']
 })
 export class TipoCreateDialogComponent implements OnInit {
-  type :Type
   places: String[]
   typeN :TypeCreateRequest
   titulo = new FormControl('', [Validators.required]);
@@ -38,8 +37,7 @@ export class TipoCreateDialogComponent implements OnInit {
 
   checkData(){
     if(this.data.edit){
-      this.type = {
-        _id:this.data.type._id,
+      this.typeN = {
         description:this.data.type.description,
         places:this.data.type.places
       }
@@ -61,7 +59,7 @@ export class TipoCreateDialogComponent implements OnInit {
   }
 
   update(){
-    this.service.updateType(this.type).subscribe(resp=>{
+    this.service.updateType(this.typeN, this.data.type._id).subscribe(resp=>{
       this.dialogo.close(true);
     }),error =>{
       this.dialogo.close(false);

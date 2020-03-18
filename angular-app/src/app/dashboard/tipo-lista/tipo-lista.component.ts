@@ -40,10 +40,12 @@ export class TipoListaComponent implements OnInit {
       dialogRef.afterClosed().subscribe(resp=>{
         if(resp!=null){
           if (resp == true) {
-            this.snackbar.open("Tipo de alarma creada correctamente", "cerrar", this.config);
+            this.snackbar.open("Tipo de alarma editada correctamente", "cerrar", this.config);
+            window.location.reload();
           } else {
-            this.snackbar.open("No se ha podido registar el nuevo tipo de alarma.\nVuelva a intentarlo.", "cerrar", this.config);
+            this.snackbar.open("No se ha podido editar el tipo de alarma.\nVuelva a intenarlo.", "cerrar", this.config);
           }
+         
         }
       });
     
@@ -53,9 +55,10 @@ export class TipoListaComponent implements OnInit {
       dialogRef2.afterClosed().subscribe(resp => {
         if (resp != null) {
           if (resp == true) {
-            this.snackbar.open("Tipo de alarma editada correctamente", "cerrar", this.config);
+            this.snackbar.open("Tipo de alarma creada correctamente", "cerrar", this.config);
+            window.location.reload();
           } else {
-            this.snackbar.open("No se ha podido editar el tipo de alarma.\nVuelva a intenarlo.", "cerrar", this.config);
+            this.snackbar.open("No se ha podido registar el nuevo tipo de alarma.\nVuelva a intentarlo.", "cerrar", this.config);
           }
         }
       })
