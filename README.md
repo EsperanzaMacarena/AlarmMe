@@ -18,6 +18,12 @@ Para ello, el equipo docente de Salesianos Triana ha marcado una serie de docume
 
 1. [Descripción detallada del sistema](#DDS)
 2. [Documento de historias de usuario](#DHU)
+3. [Diagrama UML de AlarmMe API](#UML)
+4. [Modelo de la Base de Datos de AlarmMe en MongoDB](#DB)
+4. [Sketching web y android](#SKETCHING)
+5. [Documentación de rutas AlarmMeAPI](#ROUTES)
+6. [Proyecto de empresa](#EMPRESA)
+7. [Informes de seguimiento del proyecto](#SEGUIMIENTO)
 <br/><br/>
 <br/><br/>
 
@@ -28,8 +34,6 @@ AlarmMe se configura a través de tres aplicaciones:
 
 ### API REST AlarmMe
 Aplicación realizada con NodeJs, Express y MongoDB. Se realizarán los métodos básicos CRUD de los modelos User, Alarm y Type, además de los convenientes para la ejecución de los requisitos mínimos del sistema.
-
-El inicio de sesión será a través de autenticación básica y requerirá para la consumición de cualquier ruta de la API (salvo login y registro) token JWT.
 
 ### AlarmMe Web
 La aplicación Web está realizada con Angular Material y está diseñada para el administrador de AlarmMe.
@@ -131,3 +135,104 @@ Total de puntos de esfuerzo de cada alumno:
 | Android       | 71        |
 | API           | 23        |
 | Total         | 116       |
+
+<br/><br/>
+<br/><br/>
+
+## Diagrama UML de AlarmMe API.<a name="UML"></a>
+![Diagrama UML](./AlarmMeUML.jpg)
+<br/><br/>
+<br/><br/>
+
+## Modelo de la Base de Datos de AlarmMe en MongoDB.<a name="DB"></a>
+```javascript
+const userSchema = new Schema({
+    email: {
+      type: String,
+      match: /^\S+@\S+.\S+$/,
+      required: true,
+      unique: true,
+      trim: true,
+      lowercase: true
+    },
+    password: {
+      type: String,
+      required: true,
+      minlength: 6
+    },
+    fullname: {
+      type: String,
+      index: true,
+      trim: true
+    },
+    role: {
+      type: String,
+      enum: roles,
+      default: 'user'
+    },
+    picture: imgSchema,
+    enabled: {
+      type: Boolean,
+      default: true
+    },
+  }, {
+    timestamps: true
+  })
+```
+```javascript
+const typeSchema = new Schema({
+    description: {
+      type: String
+    },
+    typePlaces: {
+      type: String,
+      enum: [typePlaces],
+      default: "UNKNOWN"
+    },
+    ubication: {
+      type: String
+    }
+  })
+```
+```javascript
+const alarmSchema = new Schema({
+    createdBy: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
+    },
+    type: {
+      type: Schema.Types.ObjectId,
+      ref: 'Type',
+      required: false
+    },
+    done: {
+      type: Boolean
+    },
+    activated: {
+      type: Boolean
+    }
+  })
+```
+<br/><br/>
+<br/><br/>
+
+## Sketching web y android.<a name="SKETCHING"></a>
+[Sketching](./SketchingAlarmMe.pdf)
+<br/><br/>
+<br/><br/>
+
+## Documentación de rutas de AlarmMeAPI.<a name="ROUTES"></a>
+EN CONSTRUCCIÓN
+<br/><br/>
+<br/><br/>
+
+## Proyecto de empresa AlarmMe.<a name ="EMPRESA"></a>
+EN CONSTRUCCIÓN
+<br/><br/>
+<br/><br/>
+
+## Informes de seguimiento del proyecto.<a name ="SEGUIMIENTO"></a>
+EN CONSTRUCCIÓN
+<br/><br/>
+<br/><br/>
