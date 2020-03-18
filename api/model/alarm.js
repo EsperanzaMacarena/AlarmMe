@@ -3,12 +3,12 @@ const Schema = mongoose.Schema;
 
 const alarmSchema = new Schema({
     createdBy: {
-      type: Schema.Types.ObjectId,
+      type: Schema.ObjectId,
       ref: 'User',
       required: true
     },
     type: {
-      type: Schema.Types.ObjectId,
+      type: Schema.ObjectId,
       ref: 'Type',
       required: false
     },
@@ -16,7 +16,11 @@ const alarmSchema = new Schema({
       type: Boolean
     },
     activated: {
-      type: Boolean
+      type: Boolean,
+      default:true
+    },
+    ubication: {
+      type: [String]
     }
   })
 

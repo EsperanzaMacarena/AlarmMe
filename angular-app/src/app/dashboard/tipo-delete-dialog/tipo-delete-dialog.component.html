@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Eliminar</h1>
+<div mat-dialog-content>
+    <p>¿Está seguro de eliminar {{data.type.description}}?</p>
+
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button (click)="close()" color="warn">Cancelar</button>
+    <button mat-raised-button (click)="delete()" cdkFocusInitial>Eliminar</button>
+</div>
