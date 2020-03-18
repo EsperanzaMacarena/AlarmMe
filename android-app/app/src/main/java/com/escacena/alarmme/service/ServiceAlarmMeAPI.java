@@ -21,4 +21,6 @@ public interface ServiceAlarmMeAPI {
 
     @GET("alarms")
     Call<List<ResponseAllAlarm>> getAllAlarms ();
+
+    @GET("types")
 }

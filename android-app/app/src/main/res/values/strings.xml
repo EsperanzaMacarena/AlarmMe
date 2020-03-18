@@ -14,4 +14,10 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="string_alarm">Alarms</string>
+    <string name="create">Crear</string>
+    <string name="choose_type">Elige un tipo de alarma</string>
+    <string name="write_title">Escriba el título de la alarma</string>
+    <string name="choose_consorcio">Elige un consorcio</string>
+    <string name="choose_line">Elige una línea</string>
+    <string name="choose_parada">Elige una parada</string>
 </resources>
