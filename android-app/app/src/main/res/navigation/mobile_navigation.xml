@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_alarms"
-        android:name="com.escacena.alarmme.ui.home.HomeFragment"
+        android:name="com.escacena.alarmme.ui.alarms.AlarmFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_alarm_list" />
 
     <fragment
         android:id="@+id/navigation_dashboard"

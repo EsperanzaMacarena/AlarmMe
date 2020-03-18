@@ -25,10 +25,10 @@ public class AlarmRepository {
     private MutableLiveData<List<ResponseAllAlarm>> listAlarms = new MutableLiveData<>();
 
     public AlarmRepository() {
-        this.service = AlarmMeAPI.getInstance(false).getService();
+        this.service = AlarmMeAPI.getInstance(true).getService();
     }
 
-    public LiveData<List<ResponseAllAlarm>> getAllAlarms() {
+    public MutableLiveData<List<ResponseAllAlarm>> getAllAlarms() {
         Call<List<ResponseAllAlarm>> call = service.getAllAlarms();
         call.enqueue(new Callback<List<ResponseAllAlarm>>() {
             @Override

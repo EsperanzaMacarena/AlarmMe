@@ -11,7 +11,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-public class BoardActivity extends AppCompatActivity implements AlarmFragment.OnListFragmentInteractionListener {
+public class BoardActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +28,5 @@ public class BoardActivity extends AppCompatActivity implements AlarmFragment.On
         NavigationUI.setupWithNavController(navView, navController);
     }
 
-    @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
 
-    }
 }
