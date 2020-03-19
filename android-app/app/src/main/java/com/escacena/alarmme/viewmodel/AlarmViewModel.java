@@ -3,6 +3,7 @@ package com.escacena.alarmme.viewmodel;
 import android.app.Application;
 
 import com.escacena.alarmme.repository.AlarmRepository;
+import com.escacena.alarmme.request.RequestAlarmCreate;
 import com.escacena.alarmme.request.RequestLogin;
 import com.escacena.alarmme.response.ResponseAllAlarm;
 import com.escacena.alarmme.response.ResponseLogin;
@@ -33,4 +34,6 @@ public class AlarmViewModel extends AndroidViewModel {
         responseAllAlarmList = repository.getAllAlarms();
         return responseAllAlarmList;
     }
+
+    public LiveData<ResponseAllAlarm> createAlarm(RequestAlarmCreate req){return repository.createAlarm(req);}
 }

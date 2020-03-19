@@ -1,8 +1,10 @@
 package com.escacena.alarmme.service;
 
+import com.escacena.alarmme.request.RequestAlarmCreate;
 import com.escacena.alarmme.request.RequestLogin;
 import com.escacena.alarmme.request.RequestRegister;
 import com.escacena.alarmme.response.ResponseAllAlarm;
+import com.escacena.alarmme.response.ResponseType;
 import com.escacena.alarmme.response.ResponseLogin;
 
 import java.util.List;
@@ -22,5 +24,9 @@ public interface ServiceAlarmMeAPI {
     @GET("alarms/myalarms")
     Call<List<ResponseAllAlarm>> getAllAlarms ();
 
-    //@GET("types")
+    @GET("type")
+    Call<List<ResponseType>> getTypes();
+
+    @POST("alarms")
+    Call<ResponseAllAlarm> createAlarm(@Body RequestAlarmCreate req);
 }
