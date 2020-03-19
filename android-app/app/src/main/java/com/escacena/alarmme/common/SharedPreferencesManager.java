@@ -18,4 +18,11 @@ public class SharedPreferencesManager {
         editor.putString(label, value);
         editor.commit();
     }
+
+    public static void deleteSomeStringValue(String label){
+        SharedPreferences.Editor editor = getSharedPreferencesManager().edit();
+        editor.remove(label);
+        editor.commit();
+
+    }
 }

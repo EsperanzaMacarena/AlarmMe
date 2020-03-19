@@ -1,10 +1,16 @@
 package com.escacena.alarmme;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
+import com.escacena.alarmme.common.SharedPreferencesManager;
 import com.escacena.alarmme.dummy.DummyContent;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -28,5 +34,22 @@ public class BoardActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.upper_menu, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_item_log_out:
+                SharedPreferencesManager.deleteSomeStringValue("token");
+                Intent success = new Intent(BoardActivity.this, MainActivity.class );
+                startActivity(success);
+                finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

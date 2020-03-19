@@ -55,6 +55,13 @@ public class MainActivity extends AppCompatActivity {
 
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
+        String token = SharedPreferencesManager.getSharedPreferencesManager().getString("token", null);
+
+        if(token !=null){
+            Intent success = new Intent(MainActivity.this, BoardActivity.class );
+            startActivity(success);
+        }
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
