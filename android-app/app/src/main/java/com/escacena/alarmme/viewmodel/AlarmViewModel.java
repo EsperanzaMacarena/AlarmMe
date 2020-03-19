@@ -44,4 +44,8 @@ public class AlarmViewModel extends AndroidViewModel {
     public void setIdAlarmSeleccionado(String idAlarmSeleccionado) {
         this.idAlarmSeleccionado.setValue(idAlarmSeleccionado);
     }
+
+    public void deleteAlarm (String id){
+        repository.deleteAlarm(id);
+    }
 }

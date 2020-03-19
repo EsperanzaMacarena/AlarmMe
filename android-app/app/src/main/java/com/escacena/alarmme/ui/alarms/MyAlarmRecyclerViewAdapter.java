@@ -1,8 +1,11 @@
 package com.escacena.alarmme.ui.alarms;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,6 +60,17 @@ public class MyAlarmRecyclerViewAdapter extends RecyclerView.Adapter<MyAlarmRecy
                  alarmViewModel.setIdAlarmSeleccionado(holder.mItem.getId());
                // Intent success = new Intent(MyApp.getContext(), CLASE DE MODIFICAR O MAS INFO);
                 // context.startActivity(success);
+            }
+        });
+
+        holder.mView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                DialogFragment builder = new DialogFragment();
+
+
+                return false;
             }
         });
     }

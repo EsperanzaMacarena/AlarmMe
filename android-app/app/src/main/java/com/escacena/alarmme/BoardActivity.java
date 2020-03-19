@@ -48,11 +48,17 @@ public class BoardActivity extends AppCompatActivity {
             case R.id.menu_item_log_out:
                 SharedPreferencesManager.deleteSomeStringValue("token");
                 Intent success = new Intent(BoardActivity.this, MainActivity.class );
+
+                success.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 startActivity(success);
                 finish();
+                break;
+
             case R.id.menu_item_new_alarm:
                 Intent newAlarmActivity = new Intent(BoardActivity.this, AlarmCreateActivity.class );
                 startActivity(newAlarmActivity);
+                break;
 
         }
         return super.onOptionsItemSelected(item);
