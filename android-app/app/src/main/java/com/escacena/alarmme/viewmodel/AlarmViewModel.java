@@ -36,4 +36,16 @@ public class AlarmViewModel extends AndroidViewModel {
     }
 
     public LiveData<ResponseAllAlarm> createAlarm(RequestAlarmCreate req){return repository.createAlarm(req);}
+
+    public MutableLiveData<String> getIdAlarmSeleccionado() {
+        return idAlarmSeleccionado;
+    }
+
+    public void setIdAlarmSeleccionado(String idAlarmSeleccionado) {
+        this.idAlarmSeleccionado.setValue(idAlarmSeleccionado);
+    }
+
+    public void deleteAlarm (String id){
+        repository.deleteAlarm(id);
+    }
 }

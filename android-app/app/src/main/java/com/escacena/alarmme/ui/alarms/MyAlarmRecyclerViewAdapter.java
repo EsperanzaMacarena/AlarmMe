@@ -1,8 +1,12 @@
 package com.escacena.alarmme.ui.alarms;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +14,11 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 
+import com.escacena.alarmme.BoardActivity;
+import com.escacena.alarmme.MainActivity;
 import com.escacena.alarmme.R;
+import com.escacena.alarmme.RegisterActivity;
+import com.escacena.alarmme.common.MyApp;
 import com.escacena.alarmme.response.ResponseAllAlarm;
 import com.escacena.alarmme.viewmodel.AlarmViewModel;
 
@@ -24,6 +32,7 @@ public class MyAlarmRecyclerViewAdapter extends RecyclerView.Adapter<MyAlarmRecy
     private AlarmViewModel alarmViewModel;
     Context context;
     RecyclerView recyclerView;
+
 
     public MyAlarmRecyclerViewAdapter(List<ResponseAllAlarm> mValues, AlarmViewModel alarmViewModel, Context context) {
         this.mValues = mValues;
@@ -39,19 +48,36 @@ public class MyAlarmRecyclerViewAdapter extends RecyclerView.Adapter<MyAlarmRecy
     }
 
 
-
-
-
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.alarmTitle.setText(holder.mItem.getName());
         holder.activatedSwitch.setChecked(holder.mItem.getActivated());
+
+        holder.mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                 alarmViewModel.setIdAlarmSeleccionado(holder.mItem.getId());
+               // Intent success = new Intent(MyApp.getContext(), CLASE DE MODIFICAR O MAS INFO);
+                // context.startActivity(success);
+            }
+        });
+
+        holder.mView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                DialogFragment builder = new DialogFragment();
+
+
+                return false;
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        if(mValues != null){
+        if (mValues != null) {
             return mValues.size();
         } else {
             return 0;
@@ -68,7 +94,7 @@ public class MyAlarmRecyclerViewAdapter extends RecyclerView.Adapter<MyAlarmRecy
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            alarmTitle  = (TextView) view.findViewById(R.id.textView_alarm_title);
+            alarmTitle = (TextView) view.findViewById(R.id.textView_alarm_title);
             activatedSwitch = (Switch) view.findViewById(R.id.switchAlarmActivaded);
 
         }
@@ -76,11 +102,11 @@ public class MyAlarmRecyclerViewAdapter extends RecyclerView.Adapter<MyAlarmRecy
 
     }
 
-    public void setData(List<ResponseAllAlarm> list){
-        if(this.mValues != null) {
+    public void setData(List<ResponseAllAlarm> list) {
+        if (this.mValues != null) {
             this.mValues.clear();
         } else {
-            this.mValues =  new ArrayList<>();
+            this.mValues = new ArrayList<>();
         }
         this.mValues.addAll(list);
         notifyDataSetChanged();
