@@ -11,9 +11,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.escacena.alarmme.R;
 import com.escacena.alarmme.common.Constants;
+import com.escacena.alarmme.common.MyApp;
 import com.escacena.alarmme.request.RequestAlarmCreate;
 import com.escacena.alarmme.response.ResponseAllAlarm;
 import com.escacena.alarmme.response.ResponseType;
@@ -58,7 +60,13 @@ public class AlarmCreateActivity extends AppCompatActivity {
         alarmViewModel = new ViewModelProvider(this).get(AlarmViewModel.class);
 
         ubication= new String[2];
-        create.setEnabled(false);
+
+        create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MyApp.getContext(), "Debes indicar un tipo de alarma",Toast.LENGTH_SHORT).show();
+            }
+        });
 
         loadTypes();
 
@@ -74,51 +82,54 @@ public class AlarmCreateActivity extends AppCompatActivity {
     }
 
     void setDialogTypes(final List<ResponseType> responseTypes){
-        type.setOnClickListener(new View.OnClickListener() {
+        type.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View v) {
-                AlertDialog.Builder dialog = new AlertDialog.Builder(AlarmCreateActivity.this);
-                dialog.setTitle("Selecciona el tipo de alarma");
-                final String[] titles = new String[responseTypes.size()];
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(AlarmCreateActivity.this);
+                    dialog.setTitle("Selecciona el tipo de alarma");
+                    final String[] titles = new String[responseTypes.size()];
 
-                for (int i = 0; i < titles.length; i++) {
-                    titles[i] = responseTypes.get(i).getDescription();
+                    for (int i = 0; i < titles.length; i++) {
+                        titles[i] = responseTypes.get(i).getDescription();
+                    }
+
+                    dialog.setItems(titles, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            choosen = responseTypes.get(which);
+                            if (choosen.getPlaces().equals(Constants.TRANSPORT)) {
+                                //TODO: OPCIÓN DE TRANSPORTE (PONER transport EN VISIBLE)
+
+                            } else if (choosen.getPlaces().equals(Constants.GO_TO)) {
+                                //TODO: OPCIÓN DE SEÑALAR EN MAPA, ABRIR MAPA Y DEMÁS.
+                            }else{
+                                title.setText(choosen.getDescription());
+                            }
+
+                            type.setText(choosen.getDescription());
+
+                            setCreateButton();
+                            dialog.dismiss();
+
+                        }
+                    });
+                    AlertDialog alert = dialog.create();
+                    alert.show();
                 }
 
-                dialog.setItems(titles, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        choosen = responseTypes.get(which);
-                        if (choosen.getPlaces().equals(Constants.TRANSPORT)) {
-                            //TODO: OPCIÓN DE TRANSPORTE (PONER transport EN VISIBLE)
-
-                        } else if (choosen.getPlaces().equals(Constants.GO_TO)) {
-                            //TODO: OPCIÓN DE SEÑALAR EN MAPA, ABRIR MAPA Y DEMÁS.
-                        }else{
-                            title.setText(choosen.getDescription());
-                            title.setEnabled(false);
-                        }
-
-                        type.setText(choosen.getDescription());
-
-                        setCreateButton();
-                        dialog.dismiss();
-
-                    }
-                });
-                AlertDialog alert = dialog.create();
-                alert.show();
             }
         });
+
     }
 
     void setCreateButton(){
-        create.setEnabled(true);
+
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RequestAlarmCreate request = RequestAlarmCreate.builder()
-                        .name(title.getText().toString())
+                        .name(title.getText().toString().isEmpty()? choosen.getDescription():title.getText().toString() )
                         .type(choosen.get_id())
                         .ubication(ubication)
                         .build();
