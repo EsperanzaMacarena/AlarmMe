@@ -1,6 +1,7 @@
 package com.escacena.alarmme.service;
 
 import com.escacena.alarmme.request.RequestAlarmCreate;
+import com.escacena.alarmme.request.RequestDeleteAlarm;
 import com.escacena.alarmme.request.RequestLogin;
 import com.escacena.alarmme.request.RequestRegister;
 import com.escacena.alarmme.response.ResponseAllAlarm;
@@ -14,6 +15,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface ServiceAlarmMeAPI {
     @POST("login")
@@ -31,6 +33,6 @@ public interface ServiceAlarmMeAPI {
     @POST("alarms")
     Call<ResponseAllAlarm> createAlarm(@Body RequestAlarmCreate req);
 
-    @DELETE("alarms")
-    Call<Void> deleteAlarm(@Body String idToErease);
+    @DELETE("alarms/{id}")
+    Call<Void> deleteAlarm(@Path("id") String id);
 }

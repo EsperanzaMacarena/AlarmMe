@@ -2,11 +2,15 @@ package com.escacena.alarmme.ui.alarms;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,14 +31,15 @@ import java.util.List;
 
 
 public class MyAlarmRecyclerViewAdapter extends RecyclerView.Adapter<MyAlarmRecyclerViewAdapter.ViewHolder> {
-
+    private Activity activity;
     private List<ResponseAllAlarm> mValues;
     private AlarmViewModel alarmViewModel;
     Context context;
     RecyclerView recyclerView;
 
 
-    public MyAlarmRecyclerViewAdapter(List<ResponseAllAlarm> mValues, AlarmViewModel alarmViewModel, Context context) {
+    public MyAlarmRecyclerViewAdapter(Activity activity, List<ResponseAllAlarm> mValues, AlarmViewModel alarmViewModel, Context context) {
+        this.activity = activity;
         this.mValues = mValues;
         this.alarmViewModel = alarmViewModel;
         this.context = context;
@@ -57,8 +62,8 @@ public class MyAlarmRecyclerViewAdapter extends RecyclerView.Adapter<MyAlarmRecy
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 alarmViewModel.setIdAlarmSeleccionado(holder.mItem.getId());
-               // Intent success = new Intent(MyApp.getContext(), CLASE DE MODIFICAR O MAS INFO);
+                alarmViewModel.setIdAlarmSeleccionado(holder.mItem.getId());
+                // Intent success = new Intent(MyApp.getContext(), CLASE DE MODIFICAR O MAS INFO);
                 // context.startActivity(success);
             }
         });
@@ -66,9 +71,18 @@ public class MyAlarmRecyclerViewAdapter extends RecyclerView.Adapter<MyAlarmRecy
         holder.mView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                builder.setPositiveButton("Borrar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        alarmViewModel.deleteAlarm(holder.mItem.getId());
 
-                DialogFragment builder = new DialogFragment();
-
+                    }
+                });
+                builder.setNegativeButton("No", null);
+                builder.setMessage("¿Está seguro que desea borrar el alarma?");
+                builder.setTitle(R.string.app_name);
+                builder.show();
 
                 return false;
             }
@@ -111,4 +125,6 @@ public class MyAlarmRecyclerViewAdapter extends RecyclerView.Adapter<MyAlarmRecy
         this.mValues.addAll(list);
         notifyDataSetChanged();
     }
+
+
 }
