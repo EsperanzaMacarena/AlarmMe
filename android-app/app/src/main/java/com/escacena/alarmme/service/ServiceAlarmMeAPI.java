@@ -19,8 +19,8 @@ public interface ServiceAlarmMeAPI {
     @POST("register")
     Call<ResponseLogin> register(@Body RequestRegister request);
 
-    @GET("alarms")
+    @GET("alarms/myalarms")
     Call<List<ResponseAllAlarm>> getAllAlarms ();
 
-    @GET("types")
+    //@GET("types")
 }

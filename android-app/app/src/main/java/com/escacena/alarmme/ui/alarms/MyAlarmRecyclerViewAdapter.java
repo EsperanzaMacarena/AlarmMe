@@ -1,4 +1,4 @@
-package com.escacena.alarmme;
+package com.escacena.alarmme.ui.alarms;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,7 +10,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 
-import com.escacena.alarmme.dummy.DummyContent.DummyItem;
+import com.escacena.alarmme.R;
 import com.escacena.alarmme.response.ResponseAllAlarm;
 import com.escacena.alarmme.viewmodel.AlarmViewModel;
 

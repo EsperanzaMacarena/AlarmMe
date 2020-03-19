@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.escacena.alarmme.MyAlarmRecyclerViewAdapter;
 import com.escacena.alarmme.R;
 import com.escacena.alarmme.response.ResponseAllAlarm;
 import com.escacena.alarmme.viewmodel.AlarmViewModel;
@@ -84,7 +83,8 @@ public class AlarmFragment extends Fragment {
         alarmViewModel.getAllAlarms().observe(getActivity(), new Observer<List<ResponseAllAlarm>>() {
             @Override
             public void onChanged(List<ResponseAllAlarm> responseAllAlarms) {
-                alarmList.addAll(responseAllAlarms);
+                myAlarmRecyclerViewAdapter.setData(responseAllAlarms);
+
                 myAlarmRecyclerViewAdapter.notifyDataSetChanged();
             }
         });
