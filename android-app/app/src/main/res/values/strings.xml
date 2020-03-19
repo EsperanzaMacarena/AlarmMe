@@ -21,4 +21,5 @@
     <string name="choose_line">Elige una línea</string>
     <string name="choose_parada">Elige una parada</string>
     <string name="string_log_out">Log Out</string>
+    <string name="profile">Perfil</string>
 </resources>
