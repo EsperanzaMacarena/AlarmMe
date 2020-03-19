@@ -8,6 +8,7 @@ import android.view.MenuItem;
 
 import com.escacena.alarmme.common.SharedPreferencesManager;
 import com.escacena.alarmme.dummy.DummyContent;
+import com.escacena.alarmme.ui.AlarmCreateActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
@@ -27,7 +28,7 @@ public class BoardActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_alarms, R.id.navigation_dashboard, R.id.navigation_notifications)
+                R.id.navigation_alarms)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
@@ -49,6 +50,10 @@ public class BoardActivity extends AppCompatActivity {
                 Intent success = new Intent(BoardActivity.this, MainActivity.class );
                 startActivity(success);
                 finish();
+            case R.id.menu_item_new_alarm:
+                Intent newAlarmActivity = new Intent(BoardActivity.this, AlarmCreateActivity.class );
+                startActivity(newAlarmActivity);
+
         }
         return super.onOptionsItemSelected(item);
     }

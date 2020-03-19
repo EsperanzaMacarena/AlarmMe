@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.escacena.alarmme.R;
 import com.escacena.alarmme.response.ResponseAllAlarm;
 import com.escacena.alarmme.viewmodel.AlarmViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,8 @@ public class AlarmFragment extends Fragment {
     String alarmId;
     View view;
     List alarmList;
+
+    FloatingActionButton fabAddAlarm;
 
 
     /**

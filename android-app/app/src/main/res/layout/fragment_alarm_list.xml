@@ -10,4 +10,6 @@
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
     tools:context=".ui.alarms.AlarmFragment"
-    tools:listitem="@layout/fragment_alarm" />
+    tools:listitem="@layout/fragment_alarm"
+
+    />
