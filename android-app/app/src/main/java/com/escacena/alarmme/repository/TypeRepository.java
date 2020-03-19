@@ -9,6 +9,7 @@ import com.escacena.alarmme.common.MyApp;
 import com.escacena.alarmme.response.ResponseType;
 import com.escacena.alarmme.service.ServiceAlarmMeAPI;
 import com.google.gson.Gson;
+
 import java.util.List;
 
 import retrofit2.Call;

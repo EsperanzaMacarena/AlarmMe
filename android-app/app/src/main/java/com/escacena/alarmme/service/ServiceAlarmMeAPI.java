@@ -5,8 +5,10 @@ import com.escacena.alarmme.request.RequestDeleteAlarm;
 import com.escacena.alarmme.request.RequestLogin;
 import com.escacena.alarmme.request.RequestRegister;
 import com.escacena.alarmme.response.ResponseAllAlarm;
+import com.escacena.alarmme.response.ResponsePicture;
 import com.escacena.alarmme.response.ResponseType;
 import com.escacena.alarmme.response.ResponseLogin;
+import com.escacena.alarmme.response.ResponseUser;
 
 import java.util.List;
 
@@ -35,4 +37,11 @@ public interface ServiceAlarmMeAPI {
 
     @DELETE("alarms/{id}")
     Call<Void> deleteAlarm(@Path("id") String id);
+
+    @GET("user/me")
+    Call<ResponseUser> getCurrentUser();
+
+    @GET("img")
+    Call<ResponsePicture> getCurrentUserPicture();
+
 }
