@@ -244,5 +244,10 @@ EN CONSTRUCCIÓN
 
 [Datos de usuarios de prueba](./Informes/Entrega_18032020/DatosUsuarioAProbar.txt)
 
+### 19 Marzo 2020
+[DSP 02](./Informes/Entrega_19032020/DSP19032020.pdf)
+
+### 20 Marzo 2020
+[DSP 03](./Informes/Entrega_20032020/DSP20032020.pdf)
 <br/><br/>
 <br/><br/>
