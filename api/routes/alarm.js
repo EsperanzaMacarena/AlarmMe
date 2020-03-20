@@ -85,7 +85,4 @@ router.get("/:id", middleware.ensureAuthenticated, AlarmController.getById);
 
 
 
-
-
-
 module.exports = router;
