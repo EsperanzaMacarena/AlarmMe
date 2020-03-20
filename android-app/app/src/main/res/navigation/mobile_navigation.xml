@@ -7,19 +7,14 @@
 
     <fragment
         android:id="@+id/navigation_alarms"
-        android:name="com.escacena.alarmme.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:name="com.escacena.alarmme.ui.alarms.AlarmFragment"
+        android:label="@string/string_alarm"
+        tools:layout="@layout/fragment_alarm_list" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.escacena.alarmme.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_profile"
+        android:name="com.escacena.alarmme.ui.profile.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile" />
 
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.escacena.alarmme.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
 </navigation>

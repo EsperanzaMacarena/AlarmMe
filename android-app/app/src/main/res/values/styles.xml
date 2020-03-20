@@ -16,4 +16,17 @@
         <item name="colorPrimary">@color/blue_grey_300</item>
         <item name="android:textColorSecondary">@color/colorPrimaryDark</item>
     </style>
+
+    <style name="SCBSwitch" parent="Theme.AppCompat.Light">
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">#f1f1f1</item>ç
+        <item name="colorControlNormal">#FF6262</item>
+
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">#FF6262</item>
+
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">#42221f1f
+        </item>
+    </style>
 </resources>

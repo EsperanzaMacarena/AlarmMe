@@ -1,6 +1,7 @@
 package com.escacena.alarmme.client;
 
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.escacena.alarmme.common.Constants;
 import com.escacena.alarmme.common.SharedPreferencesManager;
@@ -28,7 +29,6 @@ public class AlarmMeAPI {
     }
 
     public static AlarmMeAPI getInstance(boolean withToken) {
-        if (instance == null)
             instance = new AlarmMeAPI(withToken);
         return instance;
     }

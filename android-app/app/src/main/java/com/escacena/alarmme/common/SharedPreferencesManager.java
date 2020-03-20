@@ -16,5 +16,13 @@ public class SharedPreferencesManager {
     public static void setSomeStringValue(String label, String value){
         SharedPreferences.Editor editor = getSharedPreferencesManager().edit();
         editor.putString(label, value);
+        editor.commit();
+    }
+
+    public static void deleteSomeStringValue(String label){
+        SharedPreferences.Editor editor = getSharedPreferencesManager().edit();
+        editor.remove(label);
+        editor.commit();
+
     }
 }

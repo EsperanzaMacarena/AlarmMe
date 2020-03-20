@@ -5,6 +5,8 @@ import android.widget.Toast;
 
 import com.escacena.alarmme.client.AlarmMeAPI;
 import com.escacena.alarmme.common.MyApp;
+import com.escacena.alarmme.request.RequestAlarmCreate;
+import com.escacena.alarmme.request.RequestDeleteAlarm;
 import com.escacena.alarmme.response.ResponseAllAlarm;
 import com.escacena.alarmme.response.ResponseLogin;
 import com.escacena.alarmme.response.ResponseNewAlarm;
@@ -12,6 +14,7 @@ import com.escacena.alarmme.service.ServiceAlarmMeAPI;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
@@ -23,12 +26,13 @@ import retrofit2.Response;
 public class AlarmRepository {
     private ServiceAlarmMeAPI service;
     private MutableLiveData<List<ResponseAllAlarm>> listAlarms = new MutableLiveData<>();
+    private MutableLiveData<ResponseAllAlarm> alarm = new MutableLiveData<>();
 
     public AlarmRepository() {
-        this.service = AlarmMeAPI.getInstance(false).getService();
+        this.service = AlarmMeAPI.getInstance(true).getService();
     }
 
-    public LiveData<List<ResponseAllAlarm>> getAllAlarms() {
+    public MutableLiveData<List<ResponseAllAlarm>> getAllAlarms() {
         Call<List<ResponseAllAlarm>> call = service.getAllAlarms();
         call.enqueue(new Callback<List<ResponseAllAlarm>>() {
             @Override
@@ -54,5 +58,51 @@ public class AlarmRepository {
             }
         });
         return listAlarms;
+    }
+
+    public MutableLiveData<ResponseAllAlarm> createAlarm(RequestAlarmCreate req) {
+        Call<ResponseAllAlarm> call = service.createAlarm(req);
+        call.enqueue(new Callback<ResponseAllAlarm>() {
+            @Override
+            public void onResponse(Call<ResponseAllAlarm> call, Response<ResponseAllAlarm> response) {
+                if (response.isSuccessful()) {
+                    alarm.setValue(response.body());
+                } else {
+                    try {
+                        Gson gson = new Gson();
+                        Log.d("ERROR", response.toString());
+                        Error error = gson.fromJson(response.errorBody().string(), Error.class);
+                        Toast.makeText(MyApp.getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    } catch (IOException ex) {
+                        Log.d("EX", ex.getMessage());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseAllAlarm> call, Throwable t) {
+                Toast.makeText(MyApp.getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        return alarm;
+    }
+
+    public List<ResponseAllAlarm> deleteAlarm(String id){
+        final List<ResponseAllAlarm> responseAllAlarmListToReturn = new ArrayList<>();
+
+        Call<Void> call = service.deleteAlarm(id);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                List<ResponseAllAlarm> responseAllAlarmList = getAllAlarms().getValue();
+                responseAllAlarmListToReturn.addAll(responseAllAlarmList);
+            }
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+        return  responseAllAlarmListToReturn;
     }
 }

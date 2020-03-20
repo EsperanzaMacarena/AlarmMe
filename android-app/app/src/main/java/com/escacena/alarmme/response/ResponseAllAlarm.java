@@ -5,6 +5,10 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
 public class ResponseAllAlarm {
 
     @SerializedName("activated")
@@ -28,6 +32,9 @@ public class ResponseAllAlarm {
     @SerializedName("__v")
     @Expose
     private Integer v;
+    @SerializedName("type")
+    @Expose
+    private ResponseType type;
 
     public Boolean getActivated() {
         return activated;
@@ -85,4 +92,11 @@ public class ResponseAllAlarm {
         this.v = v;
     }
 
+    public ResponseType getType() {
+        return type;
+    }
+
+    public void setType(ResponseType type) {
+        this.type = type;
+    }
 }

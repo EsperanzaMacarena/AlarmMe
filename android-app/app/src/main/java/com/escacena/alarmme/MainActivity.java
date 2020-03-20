@@ -45,6 +45,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        String token = SharedPreferencesManager.getSharedPreferencesManager().getString("token", null);
+
+        if(token !=null){
+            Intent success = new Intent(MainActivity.this, BoardActivity.class );
+            startActivity(success);
+        }
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
@@ -54,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
         Glide.with(this).load(R.drawable.logo).into(logo);
 
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+
+
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
