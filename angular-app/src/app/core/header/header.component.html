@@ -8,7 +8,7 @@
   
   <div fxFlex class="myStyle">
     <a>Tipos de alarma</a>
-    <a>Usuarios</a>
+    <a [routerLink]="['/admin/users']">Usuarios</a>
   </div>
   <button [matMenuTriggerFor]="user" mat-icon-button class="ml-xs">
     <mat-icon>person</mat-icon>
@@ -18,7 +18,7 @@
       <mat-icon>account_box</mat-icon>
       Perfil
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item (click)="logOut()">
       <mat-icon>exit_to_app</mat-icon>
       Cerrar sesión
     </button>

@@ -31,6 +31,7 @@ import { registerLocaleData } from '@angular/common';
 import { LOCALE_ID } from '@angular/core';
 import { TipoCreateDialogComponent } from './tipo-create-dialog/tipo-create-dialog.component';
 import { TipoDeleteDialogComponent } from './tipo-delete-dialog/tipo-delete-dialog.component';
+import { UserListComponent } from './user-list/user-list.component';
 registerLocaleData(localeEs, 'es');
 
 
@@ -57,7 +58,7 @@ registerLocaleData(localeEs, 'es');
     FlexLayoutModule,
     MatTableModule,
   ],
-  declarations: [DashboardComponent, TipoListaComponent, TipoCreateDialogComponent, TipoDeleteDialogComponent],
+  declarations: [DashboardComponent, TipoListaComponent, TipoCreateDialogComponent, TipoDeleteDialogComponent, UserListComponent],
   providers:[
     AlarmMeApiService,
     { provide: LOCALE_ID, useValue: 'es' },
