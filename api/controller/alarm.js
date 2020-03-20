@@ -9,12 +9,13 @@ module.exports = {
             name: req.body.name,
             type: req.body.type,
             done: false,
-            activated: true
+            activated: true,
+            ubication:req.body.ubication
         });
         alarm.save()
-                .then(e => e.populate({path: 'createdBy', select: ['email', 'name']}).execPopulate())
+                .then(e => e.populate([{path: 'createdBy', select: ['email', 'fullname']},{path: 'type', select: ['description']}]).execPopulate())
                 .then(e => res.status(201).json(e))
-                .catch(error => res.send(400).json(err.message));
+                .catch(error => res.status(400).json(error.message));
     },
     editAlarm: (req, res) => {
         const _id = req.params.id;
@@ -65,7 +66,10 @@ module.exports = {
             
         
             let result = null;
-            result = await Alarm.find({createdBy: req.user._id}).exec();
+            result = await Alarm.find({createdBy: req.user._id})
+            .populate({ path: 'type', select: ['description'] })
+            .populate({ path: 'createdBy', select: ['email', 'fullname'] })
+            .exec();
             res.status(200).json(result);
         }catch (error) {
             res.status(500).json(error.message);

@@ -18,7 +18,9 @@ const typeSchema = new Schema({
         'BICYCLE_STORE',
         'STORE',
         'SUPERMARKET',
-        'PET_STORE'
+        'PET_STORE',
+        'TRANSPORT',
+        'GO_TO'
     ],
       required: true
     }
