@@ -1,0 +1,35 @@
+table {
+    width: 80%;
+    background-color: #81c784;
+    margin: 20px auto;
+  }
+  
+  th{
+      background-color: #49694b;
+      color: white;
+      font-size: 20px;
+  }
+  
+  th:nth-child(3), th:nth-child(4), td:nth-child(3),td:nth-child(4){
+      text-align: center;
+  }
+  
+  
+  .mat-flat-button.mat-accent,
+  .mat-raised-button.mat-accent,
+  .mat-fab.mat-accent,
+  .mat-mini-fab.mat-accent {
+    background-color: #49694b;
+  }
+  body {
+    background-color: #263238;
+  }
+  
+  .mat-flat-button,
+  .mat-raised-button,
+  .mat-fab,
+  .mat-mini-fab {
+    color: white;
+    background-color:#49694b;
+  }
+  
