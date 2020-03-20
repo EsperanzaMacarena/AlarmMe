@@ -29,6 +29,8 @@ login(loginDto: LoginDto): Observable<LoginResponse> {
     );
   }
 
+  
+
   public static getToken(): string {
     return localStorage.getItem("token");
   }
@@ -42,7 +44,22 @@ login(loginDto: LoginDto): Observable<LoginResponse> {
   public setEmail(email: string) {
     localStorage.setItem("email", email);
   }
+
   public clearToken() {
     localStorage.removeItem("token");
   }
+  public clearRol() {
+    localStorage.removeItem("rol");
+  }
+  public clearEmail() {
+    localStorage.removeItem("email");
+  }
+
+  public logOut(): void{
+    localStorage.removeItem("token");
+    localStorage.removeItem("rol");
+    localStorage.removeItem("email");
+  }
+
+
 }
