@@ -1,16 +1,17 @@
 package com.escacena.alarmme.viewmodel;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.escacena.alarmme.repository.AlarmRepository;
 import com.escacena.alarmme.request.RequestAlarmCreate;
-import com.escacena.alarmme.request.RequestLogin;
+import com.escacena.alarmme.request.RequestDeleteAlarm;
 import com.escacena.alarmme.response.ResponseAllAlarm;
-import com.escacena.alarmme.response.ResponseLogin;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -45,7 +46,10 @@ public class AlarmViewModel extends AndroidViewModel {
         this.idAlarmSeleccionado.setValue(idAlarmSeleccionado);
     }
 
+
+
     public void deleteAlarm (String id){
-        repository.deleteAlarm(id);
+        responseAllAlarmList.setValue(repository.deleteAlarm(id));
+
     }
 }

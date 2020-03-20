@@ -23,6 +23,7 @@
     <string name="string_log_out">Log Out</string>
     <string name="profile">Perfil</string>
     <string name="string_new_alarm">New Alarm</string>
+    <string name="alert_dialog_ok">Borrar</string>
     <string name="your_profile">Tu perfil</string>
     <string name="edit_password">Editar contraseña</string>
     <string name="edit_name">Editar nombre</string>

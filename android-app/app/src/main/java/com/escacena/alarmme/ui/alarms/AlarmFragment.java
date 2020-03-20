@@ -66,7 +66,6 @@ public class AlarmFragment extends Fragment {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -83,7 +82,7 @@ public class AlarmFragment extends Fragment {
 
     public void loadAlarms(){
         alarmList = new ArrayList();
-        myAlarmRecyclerViewAdapter = new MyAlarmRecyclerViewAdapter(alarmList, alarmViewModel, getActivity());
+        myAlarmRecyclerViewAdapter = new MyAlarmRecyclerViewAdapter(getActivity(), alarmList, alarmViewModel, getActivity());
         recyclerView.setAdapter(myAlarmRecyclerViewAdapter);
         alarmViewModel.getAllAlarms().observe(getActivity(), new Observer<List<ResponseAllAlarm>>() {
             @Override
@@ -94,5 +93,7 @@ public class AlarmFragment extends Fragment {
             }
         });
     }
+
+
 
 }
