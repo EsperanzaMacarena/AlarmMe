@@ -72,7 +72,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_alarm_type">
+        app:layout_constraintTop_toBottomOf="@+id/create_alarm_title">
 
         <TextView
             android:id="@+id/textView3"

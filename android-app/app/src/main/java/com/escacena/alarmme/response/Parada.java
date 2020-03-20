@@ -9,6 +9,9 @@ public class Parada {
     @SerializedName("idParada")
     @Expose
     private String idParada;
+    @SerializedName("idLinea")
+    @Expose
+    private String idLinea;
     @SerializedName("idNucleo")
     @Expose
     private String idNucleo;
@@ -24,15 +27,15 @@ public class Parada {
     @SerializedName("longitud")
     @Expose
     private String longitud;
-    @SerializedName("idMunicipio")
+    @SerializedName("sentido")
     @Expose
-    private String idMunicipio;
-    @SerializedName("municipio")
+    private String sentido;
+    @SerializedName("orden")
     @Expose
-    private String municipio;
-    @SerializedName("nucleo")
+    private Integer orden;
+    @SerializedName("modos")
     @Expose
-    private String nucleo;
+    private String modos;
 
     public String getIdParada() {
         return idParada;
@@ -40,6 +43,14 @@ public class Parada {
 
     public void setIdParada(String idParada) {
         this.idParada = idParada;
+    }
+
+    public String getIdLinea() {
+        return idLinea;
+    }
+
+    public void setIdLinea(String idLinea) {
+        this.idLinea = idLinea;
     }
 
     public String getIdNucleo() {
@@ -82,28 +93,28 @@ public class Parada {
         this.longitud = longitud;
     }
 
-    public String getIdMunicipio() {
-        return idMunicipio;
+    public String getSentido() {
+        return sentido;
     }
 
-    public void setIdMunicipio(String idMunicipio) {
-        this.idMunicipio = idMunicipio;
+    public void setSentido(String sentido) {
+        this.sentido = sentido;
     }
 
-    public String getMunicipio() {
-        return municipio;
+    public Integer getOrden() {
+        return orden;
     }
 
-    public void setMunicipio(String municipio) {
-        this.municipio = municipio;
+    public void setOrden(Integer orden) {
+        this.orden = orden;
     }
 
-    public String getNucleo() {
-        return nucleo;
+    public String getModos() {
+        return modos;
     }
 
-    public void setNucleo(String nucleo) {
-        this.nucleo = nucleo;
+    public void setModos(String modos) {
+        this.modos = modos;
     }
 
 }

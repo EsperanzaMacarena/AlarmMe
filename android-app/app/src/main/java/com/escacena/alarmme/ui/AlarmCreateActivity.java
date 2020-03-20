@@ -100,6 +100,7 @@ public class AlarmCreateActivity extends AppCompatActivity {
                             choosen = responseTypes.get(which);
                             if (choosen.getPlaces().equals(Constants.TRANSPORT)) {
                                 //TODO: OPCIÓN DE TRANSPORTE (PONER transport EN VISIBLE)
+                                transport.setVisibility(View.VISIBLE);
 
                             } else if (choosen.getPlaces().equals(Constants.GO_TO)) {
                                 //TODO: OPCIÓN DE SEÑALAR EN MAPA, ABRIR MAPA Y DEMÁS.
