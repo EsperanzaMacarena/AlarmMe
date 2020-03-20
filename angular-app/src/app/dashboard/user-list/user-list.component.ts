@@ -36,17 +36,24 @@ export class UserListComponent implements OnInit {
   }
 
   changeEnabled(user: AllUserResponse) {
-    if (user.enabled == true) {
+    console.log(user)
+    if (user.enabled === true) {
+      console.log("HOLA PACO")
       this.body={
         enabled:false
       }
-      this.service.changeEnabled(user._id, this.body);
+      this.service.changeEnabled(user._id, this.body).subscribe(resp =>{
+          window.location.reload()
+      });
     } else {
+      console.log("ADIOS PACO")
       this.body={
         enabled:true
       }
-      this.service.changeEnabled(user._id, this.body);
+      this.service.changeEnabled(user._id, this.body).subscribe(resp =>{
+        window.location.reload()
+    });
     }
-    window.location.reload();
+    
   }
 }
