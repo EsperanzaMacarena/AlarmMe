@@ -23,7 +23,7 @@ public class CtanAPI {
        create();
     }
 
-    public static CtanAPI getInstance(boolean withToken) {
+    public static CtanAPI getInstance() {
         instance = new CtanAPI();
         return instance;
     }
