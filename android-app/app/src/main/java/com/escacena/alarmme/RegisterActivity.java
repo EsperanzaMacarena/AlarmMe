@@ -19,6 +19,7 @@ import com.escacena.alarmme.request.RequestLogin;
 import com.escacena.alarmme.request.RequestRegister;
 import com.escacena.alarmme.response.ResponseLogin;
 import com.escacena.alarmme.viewmodel.LoginViewModel;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -46,6 +47,14 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        
+        String email = getIntent().getStringExtra("email");
+        if(email!=null){
+            editTextRegisterEmail.setText(email);
+            String fullname = getIntent().getStringExtra("fullname");
+            if(fullname!=null) editTextRegisterFullname.setText(fullname);
+        }
+
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,7 +67,6 @@ public class RegisterActivity extends AppCompatActivity {
                                     SharedPreferencesManager.setSomeStringValue("token", responseLogin.getToken());
                                     Intent success = new Intent(RegisterActivity.this, BoardActivity.class );
                                     startActivity(success);
-                                    Toast.makeText(MyApp.getContext(), "LOGIN SUCCESSFUL", Toast.LENGTH_LONG).show();
                                 }
                             });
                 } else {

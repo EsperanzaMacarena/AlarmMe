@@ -6,5 +6,6 @@ public class Constants {
     public static final String TRANSPORT = "TRANSPORT";
     public static final String GO_TO="GO_TO";
     public static final String ROUTE_ALARMME_IMG_CURRENT_USER="img";
+    public static final int GOOGLE_SIGN_IN = 123;
 
 }

@@ -1,5 +1,6 @@
 package com.escacena.alarmme;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -7,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -17,11 +19,19 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
+import com.escacena.alarmme.common.Constants;
 import com.escacena.alarmme.common.MyApp;
 import com.escacena.alarmme.common.SharedPreferencesManager;
 import com.escacena.alarmme.request.RequestLogin;
+import com.escacena.alarmme.request.RequestRegister;
 import com.escacena.alarmme.response.ResponseLogin;
 import com.escacena.alarmme.viewmodel.LoginViewModel;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,19 +50,28 @@ public class MainActivity extends AppCompatActivity {
     EditText password;
     @BindView(R.id.sign_up)
     TextView signup;
+    @BindView(R.id.sign_in_google)
+    Button google;
 
     LoginViewModel loginViewModel;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         String token = SharedPreferencesManager.getSharedPreferencesManager().getString("token", null);
 
-        if(token !=null){
-            Intent success = new Intent(MainActivity.this, BoardActivity.class );
+        if (token != null) {
+            Intent success = new Intent(MainActivity.this, BoardActivity.class);
             startActivity(success);
         }
 
         super.onCreate(savedInstanceState);
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        final GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         setContentView(R.layout.activity_main);
 
@@ -63,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
 
-
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,9 +90,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onChanged(ResponseLogin responseLogin) {
                         SharedPreferencesManager.setSomeStringValue("token", responseLogin.getToken());
-                        Intent success = new Intent(MainActivity.this, BoardActivity.class );
+                        Intent success = new Intent(MainActivity.this, BoardActivity.class);
                         startActivity(success);
-                        Toast.makeText(MyApp.getContext(), "LOGIN SUCCESSFUL", Toast.LENGTH_LONG).show();
                     }
                 });
             }
@@ -82,9 +99,45 @@ public class MainActivity extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent register = new Intent(MainActivity.this, RegisterActivity.class );
+                Intent register = new Intent(MainActivity.this, RegisterActivity.class);
                 startActivity(register);
             }
         });
+
+        google.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent google = mGoogleSignInClient.getSignInIntent();
+                startActivityForResult(google, Constants.GOOGLE_SIGN_IN);
+            }
+        });
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constants.GOOGLE_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
+    }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+
+            Intent toRegister = new Intent(this, RegisterActivity.class);
+
+            toRegister.putExtra("email", account.getEmail());
+            toRegister.putExtra("fullname", account.getDisplayName());
+
+            startActivity(toRegister);
+
+        } catch (ApiException e) {
+            Log.d("signInResult:failed code=" , String.valueOf(e.getStatusCode()));
+            Toast.makeText(MainActivity.this, "No se ha podido iniciar sesión con google", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 }
