@@ -8,7 +8,6 @@ const controller = require('../controller/type')
  * @apiGroup Type
  * @apiPermission admin
  * @apiParam {String} access_token admin access token.
- * @apiUse listParams
  * @apiSuccess (Success 200) {Object[]} List of types.
  * @apiError 401 Admin can access only.
  */

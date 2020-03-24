@@ -2,6 +2,22 @@
 
 
 
+- [Alarm](#alarm)
+	- [Create alarm](#create-alarm)
+	- [Delete alarm](#delete-alarm)
+	- [Retrieve alarms](#retrieve-alarms)
+	- [Retrieve alarm](#retrieve-alarm)
+	- [Retrieve alarms by creator id](#retrieve-alarms-by-creator-id)
+	- [Update alarm](#update-alarm)
+	
+- [Type](#type)
+	- [Create type](#create-type)
+	- [Delete type](#delete-type)
+	- [Retrieve type](#retrieve-type)
+	- [Retrieve types](#retrieve-types)
+	- [Retrieve types of Places (enum)](#retrieve-types-of-places-(enum))
+	- [Update type](#update-type)
+	
 - [User](#user)
 	- [Delete of current user&#39;s picture](#delete-of-current-user&#39;s-picture)
 	- [Retrieve current user](#retrieve-current-user)
@@ -18,13 +34,157 @@
 	
 
 
+# Alarm
+
+## Create alarm
+
+
+
+	POST api/alarm
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| type			| 			|  <p>Alarm's type.</p>							|
+| done			| 			|  <p>Alarm's done.</p>							|
+| activated			| 			|  <p>Alarm's activated.</p>							|
+
+## Delete alarm
+
+
+
+	DELETE api/alarm/:id
+
+
+## Retrieve alarms
+
+
+
+	GET api/alarm
+
+
+## Retrieve alarm
+
+
+
+	GET api/alarm/:id
+
+
+## Retrieve alarms by creator id
+
+
+
+	GET api/alarm/myalarms
+
+
+## Update alarm
+
+
+
+	PUT api/alarm/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| type			| 			|  <p>Alarm's type.</p>							|
+| done			| 			|  <p>Alarm's done.</p>							|
+| activated			| 			|  <p>Alarm's activated.</p>							|
+
+# Type
+
+## Create type
+
+
+
+	POST /type
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| description			| 			|  <p>Type's description.</p>							|
+| typePlaces			| 			|  <p>Type's typePlaces.</p>							|
+
+## Delete type
+
+
+
+	DELETE /api/type/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Retrieve type
+
+
+
+	GET /api/type/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Retrieve types
+
+
+
+	GET /api/type
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Retrieve types of Places (enum)
+
+
+
+	GET /api/places
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Update type
+
+
+
+	PUT /api/type/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| description			| 			|  <p>Type's description.</p>							|
+| typePlaces			| 			|  <p>Type's typePlaces.</p>							|
+
 # User
 
 ## Delete of current user&#39;s picture
 
 
 
-	DELETE /user/img
+	DELETE /api/user/img
 
 
 ### Parameters
@@ -63,21 +223,21 @@
 
 
 
-	PUT /user/:id
+	PUT /api/user/:id
 
 
 ### Parameters
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>User access_token.</p>							|
+| access_token			| String			|  <p>Admin access_token.</p>							|
 | enabled			| String			|  <p>True if user is enabled, false if user is disabled.</p>							|
 
 ## Update current user&#39;s password
 
 
 
-	PUT /user/password
+	PUT /api/user/password
 
 
 ### Parameters
@@ -91,7 +251,7 @@
 
 
 
-	PUT /user/img
+	PUT /api/user/img
 
 
 ### Parameters
@@ -105,7 +265,7 @@
 
 
 
-	PUT /user
+	PUT /api/user
 
 
 ### Parameters
