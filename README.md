@@ -223,7 +223,7 @@ const alarmSchema = new Schema({
 <br/><br/>
 
 ## Documentación de rutas de AlarmMeAPI.<a name="ROUTES"></a>
-EN CONSTRUCCIÓN
+[Documentación de rutas](/api/DocumentationRoutesAlarmMeAPI.md)
 <br/><br/>
 <br/><br/>
 
