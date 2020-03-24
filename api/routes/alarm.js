@@ -64,7 +64,6 @@ router.delete("/", middleware.ensureAuthenticated, AlarmController.deleteAlarm);
  * @apiName RetrieveAlarms
  * @apiGroup Alarm
  * @apiPermission user
- * @apiUse listParams
  * @apiSuccess {Object[]}  List of alarms.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 401 user access only.
