@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "830103564874",
+    "firebase_url": "https://alarmme-95541.firebaseio.com",
+    "project_id": "alarmme-95541",
+    "storage_bucket": "alarmme-95541.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:830103564874:android:b41a7fed568a0772cbecb3",
+        "android_client_info": {
+          "package_name": "com.escacena.alarmme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "830103564874-vi7c88qj3d3oshad59rovfl8c1p0gn4f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.escacena.alarmme",
+            "certificate_hash": "1d7db90b3ae8579b748ace60ff4e81095512a777"
+          }
+        },
+        {
+          "client_id": "830103564874-0b4jv5d8huo46aigctf5074aehiiq8e1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNbThkAz94Df_Y2QmJjlnZNbl0urueB8Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "830103564874-0b4jv5d8huo46aigctf5074aehiiq8e1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
