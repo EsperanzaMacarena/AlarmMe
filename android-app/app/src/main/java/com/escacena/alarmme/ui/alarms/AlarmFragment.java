@@ -152,6 +152,11 @@ public class AlarmFragment extends Fragment implements OnCompleteListener<Void> 
                 if (!resp.get(i).getType().getPlaces().equals(Constants.TRANSPORT) && !resp.get(i).getType().getPlaces().equals(Constants.GO_TO)) {
                     String location = resp.get(i).getUbication().get(0) + "," + resp.get(i).getUbication().get(1);
                     getPlacesGoogle1000(location, resp.get(i).getType().getPlaces().toLowerCase());
+                } else if (resp.get(i).getType().getPlaces().equals(Constants.TRANSPORT)) {
+                    String chain = resp.get(i).getName() + "#" + " esta próximo a tu localización " + "#" + resp.get(i).getType().getPlaces().toLowerCase();
+                    Double lat = Double.parseDouble(resp.get(i).getUbication().get(0));
+                    Double lng = Double.parseDouble(resp.get(i).getUbication().get(1));
+                    populateGeofenceList(chain, lat, lng);
                 }
             }
         }

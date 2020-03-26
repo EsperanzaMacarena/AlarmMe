@@ -16,7 +16,7 @@ public class ResponseAllAlarm {
     private Boolean activated;
     @SerializedName("ubication")
     @Expose
-    private List<Object> ubication = null;
+    private List<String> ubication = null;
     @SerializedName("_id")
     @Expose
     private String id;
@@ -44,11 +44,11 @@ public class ResponseAllAlarm {
         this.activated = activated;
     }
 
-    public List<Object> getUbication() {
+    public List<String> getUbication() {
         return ubication;
     }
 
-    public void setUbication(List<Object> ubication) {
+    public void setUbication(List<String> ubication) {
         this.ubication = ubication;
     }
 
