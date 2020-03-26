@@ -6,6 +6,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.escacena.alarmme.client.AlarmMeAPI;
 import com.escacena.alarmme.common.MyApp;
+import com.escacena.alarmme.request.RequestUpdateName;
+import com.escacena.alarmme.request.RequestUpdatePassword;
 import com.escacena.alarmme.response.ResponseDeletePicture;
 import com.escacena.alarmme.response.ResponsePicture;
 import com.escacena.alarmme.response.ResponseUser;
@@ -116,4 +118,37 @@ public class UserRepository {
         });
         return user;
     }
+
+    public void updateName (String fullname){
+        RequestUpdateName req = new RequestUpdateName(fullname);
+        Call<Void> call = service.updateName(req);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void updatePassword(String password, String passwordTwo){
+        RequestUpdatePassword req = new RequestUpdatePassword(password, passwordTwo);
+        Call<Void> call = service.updatePassword(req);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+    }
+
 }
