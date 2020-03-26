@@ -192,81 +192,8 @@ public class AlarmCreateActivity extends AppCompatActivity implements OnComplete
                                 transport.setVisibility(View.VISIBLE);
 
                                 //Boton de elegir consorcio
-                                consorcio.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                                    @Override
-                                    public void onFocusChange(View view, boolean b) {
-                                        final AlertDialog.Builder dialog = new AlertDialog.Builder(AlarmCreateActivity.this);
-                                        dialog.setTitle("Selecciona el consorcio");
-                                        ctanViewModel.getResponseConsorciosMutableLiveData().observe(AlarmCreateActivity.this, new Observer<ResponseConsorcios>() {
-                                            @Override
-                                            public void onChanged(final ResponseConsorcios responseConsorcios) {
-                                                final String[] titles = new String[responseConsorcios.getConsorcios().size()];
-                                                for (int i = 0; i < titles.length; i++) {
-                                                    titles[i] = responseConsorcios.getConsorcios().get(i).getNombre();
-                                                }
-                                                    dialog.setItems(titles, new DialogInterface.OnClickListener() {
-                                                        @Override
-                                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                                            consorcioElegido = responseConsorcios.getConsorcios().get(i);
-                                                            consorcio.setText(consorcioElegido.getNombre());
-                                                            linea.setVisibility(View.VISIBLE);
-                                                            linea.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                                                                @Override
-                                                                public void onFocusChange(View view, boolean b) {
-                                                                    final AlertDialog.Builder dialog = new AlertDialog.Builder(AlarmCreateActivity.this);
-                                                                    dialog.setTitle("Seleccione la linea");
-                                                                    ctanViewModel.getResponseLineasMutableLiveData(consorcioElegido.getIdConsorcio()).observe(AlarmCreateActivity.this, new Observer<ResponseLineas>() {
-                                                                        @Override
-                                                                        public void onChanged(final ResponseLineas responseLineas) {
-                                                                            final String[] titles = new String[responseLineas.getLineas().size()];
-                                                                            for (int i = 0; i < titles.length; i++) {
-                                                                                titles[i] = responseLineas.getLineas().get(i).getNombre();
-                                                                            }
-                                                                            dialog.setItems(titles, new DialogInterface.OnClickListener() {
-                                                                                @Override
-                                                                                public void onClick(DialogInterface dialogInterface, int i) {
-                                                                                    lineaElegida = responseLineas.getLineas().get(i);
-                                                                                    linea.setText(lineaElegida.getNombre());
-                                                                                    parada.setVisibility(View.VISIBLE);
-                                                                                    parada.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                                                                                        @Override
-                                                                                        public void onFocusChange(View view, boolean b) {
-                                                                                            final AlertDialog.Builder dialog = new AlertDialog.Builder(AlarmCreateActivity.this);
-                                                                                            dialog.setTitle("Seleccione parada");
-                                                                                            ctanViewModel.getResponseParadasMutableLiveData(consorcioElegido.getIdConsorcio(), lineaElegida.getIdLinea()).observe(AlarmCreateActivity.this, new Observer<ResponseParadas>() {
-                                                                                                @Override
-                                                                                                public void onChanged(final ResponseParadas responseParadas) {
-                                                                                                    final String[] titles = new String[responseParadas.getParadas().size()];
-                                                                                                    for (int i = 0; i < titles.length; i++) {
-                                                                                                        titles[i] = responseParadas.getParadas().get(i).getNombre();
-                                                                                                    }
-                                                                                                    dialog.setItems(titles, new DialogInterface.OnClickListener() {
-                                                                                                        @Override
-                                                                                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                                                                                            paradaElegida = responseParadas.getParadas().get(i);
-                                                                                                            parada.setText(paradaElegida.getNombre());
-                                                                                                            ubication[0] = paradaElegida.getLatitud();
-                                                                                                            ubication[1] = paradaElegida.getLongitud();
-                                                                                                        }
-                                                                                                    });
-                                                                                                }
-                                                                                            });
-                                                                                        }
-                                                                                    });
+                                elegirConsorcio();
 
-                                                                                }
-                                                                            });
-                                                                        }
-                                                                    });
-                                                                }
-                                                            });
-                                                        }
-                                                    });
-                                                }
-
-                                        });
-                                    }
-                                });
 
                             } else if (choosen.getPlaces().equals(Constants.GO_TO)) {
                                 //TODO: OPCIÓN DE SEÑALAR EN MAPA, ABRIR MAPA Y DEMÁS.
@@ -281,7 +208,6 @@ public class AlarmCreateActivity extends AppCompatActivity implements OnComplete
                         }
                     });
                     AlertDialog alert = dialog.create();
-                    alert.show();
                     alert.show();
                 }
             }
@@ -532,6 +458,113 @@ public class AlarmCreateActivity extends AppCompatActivity implements OnComplete
                 .edit()
                 .putBoolean(Constants.GEOFENCES_ADDED_KEY, added)
                 .apply();
+    }
+
+
+    public void elegirConsorcio() {
+        consorcio.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (b) {
+                    final AlertDialog.Builder dialogConsorcio = new AlertDialog.Builder(AlarmCreateActivity.this);
+                    dialogConsorcio.setTitle("Selecciona el consorcio");
+                    ctanViewModel.getResponseConsorciosMutableLiveData().observe(AlarmCreateActivity.this, new Observer<ResponseConsorcios>() {
+                        @Override
+                        public void onChanged(final ResponseConsorcios responseConsorcios) {
+                            final String[] titles = new String[responseConsorcios.getConsorcios().size()];
+                            for (int i = 0; i < titles.length; i++) {
+                                titles[i] = responseConsorcios.getConsorcios().get(i).getNombre();
+                            }
+                            dialogConsorcio.setItems(titles, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    consorcioElegido = responseConsorcios.getConsorcios().get(i);
+                                    consorcio.setText(consorcioElegido.getNombre());
+                                    linea.setVisibility(View.VISIBLE);
+                                    dialogInterface.dismiss();
+                                    elegirLinea();
+                                }
+                            });
+
+                            AlertDialog alertConsorcio = dialogConsorcio.create();
+                            alertConsorcio.show();
+
+
+                        }
+                    });
+
+                }
+            }
+        });
+
+    }
+
+    public void elegirLinea() {
+        linea.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (b) {
+                    final AlertDialog.Builder dialogLinea = new AlertDialog.Builder(AlarmCreateActivity.this);
+                    dialogLinea.setTitle("Seleccione la linea");
+                    ctanViewModel.getResponseLineasMutableLiveData(consorcioElegido.getIdConsorcio()).observe(AlarmCreateActivity.this, new Observer<ResponseLineas>() {
+                        @Override
+                        public void onChanged(final ResponseLineas responseLineas) {
+                            final String[] titles = new String[responseLineas.getLineas().size()];
+                            for (int i = 0; i < titles.length; i++) {
+                                titles[i] = responseLineas.getLineas().get(i).getNombre();
+                            }
+                            dialogLinea.setItems(titles, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    lineaElegida = responseLineas.getLineas().get(i);
+                                    linea.setText(lineaElegida.getNombre());
+                                    parada.setVisibility(View.VISIBLE);
+                                    dialogInterface.dismiss();
+                                    elegirParada();
+                                }
+                            });
+
+                            AlertDialog alertLinea = dialogLinea.create();
+                            alertLinea.show();
+
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    public void elegirParada() {
+        parada.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (b) {
+                    final AlertDialog.Builder dialogParada = new AlertDialog.Builder(AlarmCreateActivity.this);
+                    dialogParada.setTitle("Seleccione parada");
+                    ctanViewModel.getResponseParadasMutableLiveData(consorcioElegido.getIdConsorcio(), lineaElegida.getIdLinea()).observe(AlarmCreateActivity.this, new Observer<ResponseParadas>() {
+                        @Override
+                        public void onChanged(final ResponseParadas responseParadas) {
+                            final String[] titles = new String[responseParadas.getParadas().size()];
+                            for (int i = 0; i < titles.length; i++) {
+                                titles[i] = responseParadas.getParadas().get(i).getNombre();
+                            }
+                            dialogParada.setItems(titles, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    paradaElegida = responseParadas.getParadas().get(i);
+                                    parada.setText(paradaElegida.getNombre());
+                                    ubication[0] = paradaElegida.getLatitud();
+                                    ubication[1] = paradaElegida.getLongitud();
+                                    dialogInterface.dismiss();
+                                }
+                            });
+                            AlertDialog alertParada = dialogParada.create();
+                            alertParada.show();
+                        }
+                    });
+                }
+            }
+        });
     }
 
 

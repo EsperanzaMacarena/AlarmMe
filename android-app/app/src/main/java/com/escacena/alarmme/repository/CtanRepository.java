@@ -19,9 +19,9 @@ import retrofit2.Response;
 public class CtanRepository {
 
     private ServiceCTAN service;
-    private MutableLiveData<ResponseConsorcios> responseConsorcios;
-    private MutableLiveData<ResponseLineas> responseLineas;
-    private MutableLiveData<ResponseParadas> responseParadas;
+    private MutableLiveData<ResponseConsorcios> responseConsorcios = new MutableLiveData<>();
+    private MutableLiveData<ResponseLineas> responseLineas = new MutableLiveData<>();
+    private MutableLiveData<ResponseParadas> responseParadas = new MutableLiveData<>();
 
     public CtanRepository() {
         this.service = CtanAPI.getInstance().getService();
