@@ -202,9 +202,9 @@ public class AlarmCreateActivity extends AppCompatActivity {
                 alarmViewModel.createAlarm(request).observe(AlarmCreateActivity.this, new Observer<ResponseAllAlarm>() {
                     @Override
                     public void onChanged(ResponseAllAlarm alarm) {
-                        if (alarm != null) {
+
                             finish();
-                        }
+
                     }
                 });
             }
