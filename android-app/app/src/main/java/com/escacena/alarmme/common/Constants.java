@@ -14,9 +14,11 @@ public class Constants {
 
     public static final String GOOGLE_PLACES_RADIUS_1000 = "1000";
     public static final String GOOGLE_PLACES_RADIUS_2000 = "2000";
+    public static final String GOOGLE_PLACES_NO_RESULTS="ZERO_RESULTS";
 
     public static final float GEOFENCING_RADIUS =100;
     public static final long GEOFENCE_EXPIRATION = 12 * 60 * 60 * 1000;
     public static final String PACKAGE_NAME = "com.google.android.gms.location.Geofence";
     public  static final String GEOFENCES_ADDED_KEY = PACKAGE_NAME + ".GEOFENCES_ADDED_KEY";
+
 }

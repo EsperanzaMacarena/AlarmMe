@@ -18,6 +18,7 @@ import androidx.core.app.NotificationCompat;
 import com.escacena.alarmme.BoardActivity;
 import com.escacena.alarmme.MainActivity;
 import com.escacena.alarmme.R;
+import com.escacena.alarmme.common.Constants;
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingEvent;
 
@@ -121,16 +122,44 @@ public class GeofenceTransitionsIntentService extends JobIntentService {
 
         // Get a notification builder that's compatible with platform versions >= 4
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        String[] detail = notificationDetails.split("#");
+        int icon =0;
+        switch (detail[2].toUpperCase()){
+            case Constants.TRANSPORT:
+                icon=R.drawable.ic_directions_bus_primary_24dp;
+                break;
+            case Constants.GO_TO:
+                icon= R.drawable.ic_map_primary_24dp;
+                break;
+            case "ATM":
+                icon= R.drawable.ic_local_atm_primary_24dp;
+                break;
+            case "BANK":
+                icon= R.drawable.ic_local_atm_primary_24dp;
+                break;
+            case "PHARMACY":
+                icon= R.drawable.ic_local_hospital_primary_24dp;
+                break;
+            case "BICYCLE_STORE":
+                icon= R.drawable.ic_directions_bike_priamry_24dp;
+                break;
+            case "PET_STORE":
+                icon= R.drawable.ic_pets_primary_24dp;
+                break;
+            default:
+                icon= R.drawable.ic_store_primary_24dp;
+                break;
+        }
+
 
         // Define the notification settings.
         builder.setSmallIcon(R.drawable.ic_launcher)
                 // In a real app, you may want to use a library like Volley
                 // to decode the Bitmap.
-                .setLargeIcon(BitmapFactory.decodeResource(getResources(),
-                        R.drawable.ic_launcher))
-                .setColor(Color.RED)
-                .setContentTitle(notificationDetails)
-                .setContentText(getString(R.string.geofence_transition_notification_text))
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), icon))
+                .setColor(getResources().getColor(R.color.colorPrimaryDark))
+                .setContentTitle(detail[0])
+                .setContentText("Tu destino está en "+detail[1])
                 .setContentIntent(notificationPendingIntent);
 
         // Set the Channel ID for Android O.
