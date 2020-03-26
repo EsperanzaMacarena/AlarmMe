@@ -1,5 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
+
+def apikeyPropertiesFile = rootProject.file("apikey.properties")
+def apikeyProperties = new Properties()
+apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -10,6 +15,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "MIGUEL_GRACIAS_KEY", apikeyProperties['MIGUEL_GRACIAS_KEY'])
     }
     buildTypes {
         release {
@@ -61,6 +67,9 @@ dependencies {
     //Firebase-auth
     implementation 'com.google.firebase:firebase-auth:19.1.0'
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    //location
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+
 
 
 
