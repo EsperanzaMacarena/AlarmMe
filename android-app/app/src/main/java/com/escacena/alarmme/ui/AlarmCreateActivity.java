@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -35,10 +36,17 @@ import com.escacena.alarmme.model.Place;
 import com.escacena.alarmme.receiver.GeofenceBroadcastReceiver;
 import com.escacena.alarmme.receiver.GeofenceErrorMessages;
 import com.escacena.alarmme.request.RequestAlarmCreate;
+import com.escacena.alarmme.response.Consorcio;
+import com.escacena.alarmme.response.Linea;
+import com.escacena.alarmme.response.Parada;
 import com.escacena.alarmme.response.ResponseAllAlarm;
+import com.escacena.alarmme.response.ResponseConsorcios;
 import com.escacena.alarmme.response.ResponseGooglePlaces;
+import com.escacena.alarmme.response.ResponseLineas;
+import com.escacena.alarmme.response.ResponseParadas;
 import com.escacena.alarmme.response.ResponseType;
 import com.escacena.alarmme.viewmodel.AlarmViewModel;
+import com.escacena.alarmme.viewmodel.CtanViewModel;
 import com.escacena.alarmme.viewmodel.GooglePlacesViewModel;
 import com.escacena.alarmme.viewmodel.TypeViewModel;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -97,14 +105,20 @@ public class AlarmCreateActivity extends AppCompatActivity implements OnComplete
     FusedLocationProviderClient mFusedLocationClient;
     private String ubication[];
     private ResponseType choosen;
+    private Consorcio consorcioElegido;
+    private Linea lineaElegida;
+    private Parada paradaElegida;
 
     //VIEWMODEL
     private TypeViewModel typeViewModel;
     private AlarmViewModel alarmViewModel;
     private GooglePlacesViewModel googlePlacesViewModel;
+    private CtanViewModel ctanViewModel;
 
     //
     HashMap<String, Double[]> geoValues = new HashMap<>();
+
+    Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +130,7 @@ public class AlarmCreateActivity extends AppCompatActivity implements OnComplete
         typeViewModel = new ViewModelProvider(this).get(TypeViewModel.class);
         alarmViewModel = new ViewModelProvider(this).get(AlarmViewModel.class);
         googlePlacesViewModel = new ViewModelProvider(this).get(GooglePlacesViewModel.class);
+        ctanViewModel = new ViewModelProvider(this).get(CtanViewModel.class);
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         ubication = new String[2];
@@ -173,8 +188,85 @@ public class AlarmCreateActivity extends AppCompatActivity implements OnComplete
                             choosen = responseTypes.get(which);
                             type.setText(choosen.getDescription());
                             if (choosen.getPlaces().equals(Constants.TRANSPORT)) {
-                                //TODO: OPCIÓN DE TRANSPORTE (PONER transport EN VISIBLE)
+                                //OPCIÓN DE TRANSPORTE (PONER transport EN VISIBLE)
                                 transport.setVisibility(View.VISIBLE);
+
+                                //Boton de elegir consorcio
+                                consorcio.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                                    @Override
+                                    public void onFocusChange(View view, boolean b) {
+                                        final AlertDialog.Builder dialog = new AlertDialog.Builder(AlarmCreateActivity.this);
+                                        dialog.setTitle("Selecciona el consorcio");
+                                        ctanViewModel.getResponseConsorciosMutableLiveData().observe(AlarmCreateActivity.this, new Observer<ResponseConsorcios>() {
+                                            @Override
+                                            public void onChanged(final ResponseConsorcios responseConsorcios) {
+                                                final String[] titles = new String[responseConsorcios.getConsorcios().size()];
+                                                for (int i = 0; i < titles.length; i++) {
+                                                    titles[i] = responseConsorcios.getConsorcios().get(i).getNombre();
+                                                }
+                                                    dialog.setItems(titles, new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                            consorcioElegido = responseConsorcios.getConsorcios().get(i);
+                                                            consorcio.setText(consorcioElegido.getNombre());
+                                                            linea.setVisibility(View.VISIBLE);
+                                                            linea.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                                                                @Override
+                                                                public void onFocusChange(View view, boolean b) {
+                                                                    final AlertDialog.Builder dialog = new AlertDialog.Builder(AlarmCreateActivity.this);
+                                                                    dialog.setTitle("Seleccione la linea");
+                                                                    ctanViewModel.getResponseLineasMutableLiveData(consorcioElegido.getIdConsorcio()).observe(AlarmCreateActivity.this, new Observer<ResponseLineas>() {
+                                                                        @Override
+                                                                        public void onChanged(final ResponseLineas responseLineas) {
+                                                                            final String[] titles = new String[responseLineas.getLineas().size()];
+                                                                            for (int i = 0; i < titles.length; i++) {
+                                                                                titles[i] = responseLineas.getLineas().get(i).getNombre();
+                                                                            }
+                                                                            dialog.setItems(titles, new DialogInterface.OnClickListener() {
+                                                                                @Override
+                                                                                public void onClick(DialogInterface dialogInterface, int i) {
+                                                                                    lineaElegida = responseLineas.getLineas().get(i);
+                                                                                    linea.setText(lineaElegida.getNombre());
+                                                                                    parada.setVisibility(View.VISIBLE);
+                                                                                    parada.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                                                                                        @Override
+                                                                                        public void onFocusChange(View view, boolean b) {
+                                                                                            final AlertDialog.Builder dialog = new AlertDialog.Builder(AlarmCreateActivity.this);
+                                                                                            dialog.setTitle("Seleccione parada");
+                                                                                            ctanViewModel.getResponseParadasMutableLiveData(consorcioElegido.getIdConsorcio(), lineaElegida.getIdLinea()).observe(AlarmCreateActivity.this, new Observer<ResponseParadas>() {
+                                                                                                @Override
+                                                                                                public void onChanged(final ResponseParadas responseParadas) {
+                                                                                                    final String[] titles = new String[responseParadas.getParadas().size()];
+                                                                                                    for (int i = 0; i < titles.length; i++) {
+                                                                                                        titles[i] = responseParadas.getParadas().get(i).getNombre();
+                                                                                                    }
+                                                                                                    dialog.setItems(titles, new DialogInterface.OnClickListener() {
+                                                                                                        @Override
+                                                                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                                                                            paradaElegida = responseParadas.getParadas().get(i);
+                                                                                                            parada.setText(paradaElegida.getNombre());
+                                                                                                            ubication[0] = paradaElegida.getLatitud();
+                                                                                                            ubication[1] = paradaElegida.getLongitud();
+                                                                                                        }
+                                                                                                    });
+                                                                                                }
+                                                                                            });
+                                                                                        }
+                                                                                    });
+
+                                                                                }
+                                                                            });
+                                                                        }
+                                                                    });
+                                                                }
+                                                            });
+                                                        }
+                                                    });
+                                                }
+
+                                        });
+                                    }
+                                });
 
                             } else if (choosen.getPlaces().equals(Constants.GO_TO)) {
                                 //TODO: OPCIÓN DE SEÑALAR EN MAPA, ABRIR MAPA Y DEMÁS.
@@ -315,12 +407,12 @@ public class AlarmCreateActivity extends AppCompatActivity implements OnComplete
             public void onChanged(ResponseGooglePlaces responseGooglePlaces) {
                 if (responseGooglePlaces.getStatus().equals("ZERO_RESULTS"))
                     getPlacesGoogle2000(location, type);
-                else{
-                    for(Place p: responseGooglePlaces.getResults()){
+                else {
+                    for (Place p : responseGooglePlaces.getResults()) {
                         Double[] loc = new Double[2];
-                        loc[0]=Double.parseDouble(p.getGeometry().getLocation().getLat());
-                        loc[1]=Double.parseDouble(p.getGeometry().getLocation().getLng());
-                        geoValues.put(p.getName() + "#" + p.getVicinity() + "#" + p.getTypes()[0],loc);
+                        loc[0] = Double.parseDouble(p.getGeometry().getLocation().getLat());
+                        loc[1] = Double.parseDouble(p.getGeometry().getLocation().getLng());
+                        geoValues.put(p.getName() + "#" + p.getVicinity() + "#" + p.getTypes()[0], loc);
                     }
                 }
             }
@@ -334,11 +426,11 @@ public class AlarmCreateActivity extends AppCompatActivity implements OnComplete
                 if (responseGooglePlaces.equals("ZERO_RESULTS"))
                     Toast.makeText(MyApp.getContext(), "No hay ningún " + choosen.getPlaces().toLowerCase() + "cercano a tu ubicación", Toast.LENGTH_SHORT).show();
                 else {
-                    for(Place p: responseGooglePlaces.getResults()){
+                    for (Place p : responseGooglePlaces.getResults()) {
                         Double[] loc = new Double[2];
-                        loc[0]=Double.parseDouble(p.getGeometry().getLocation().getLat());
-                        loc[1]=Double.parseDouble(p.getGeometry().getLocation().getLng());
-                        geoValues.put(p.getName() + "#" + p.getVicinity() + "#" + p.getTypes()[0],loc);
+                        loc[0] = Double.parseDouble(p.getGeometry().getLocation().getLat());
+                        loc[1] = Double.parseDouble(p.getGeometry().getLocation().getLng());
+                        geoValues.put(p.getName() + "#" + p.getVicinity() + "#" + p.getTypes()[0], loc);
                     }
                 }
             }
@@ -346,7 +438,7 @@ public class AlarmCreateActivity extends AppCompatActivity implements OnComplete
     }
 
     public void populateGeofenceList(HashMap<String, Double[]> values) {
-        for (Map.Entry<String,Double[]> m: values.entrySet()) {
+        for (Map.Entry<String, Double[]> m : values.entrySet()) {
             geofences.add(new Geofence.Builder()
                     .setRequestId(m.getKey())
                     .setCircularRegion(
