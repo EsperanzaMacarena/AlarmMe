@@ -4,6 +4,8 @@ import com.escacena.alarmme.request.RequestAlarmCreate;
 import com.escacena.alarmme.request.RequestDeleteAlarm;
 import com.escacena.alarmme.request.RequestLogin;
 import com.escacena.alarmme.request.RequestRegister;
+import com.escacena.alarmme.request.RequestUpdateName;
+import com.escacena.alarmme.request.RequestUpdatePassword;
 import com.escacena.alarmme.response.ResponseAllAlarm;
 import com.escacena.alarmme.response.ResponseDeletePicture;
 import com.escacena.alarmme.response.ResponsePicture;
@@ -58,5 +60,11 @@ public interface ServiceAlarmMeAPI {
     @Multipart
     @PUT("user/img")
     Call<ResponseUser> updatePicture(@Part MultipartBody.Part avatar );
+
+    @PUT("user")
+    Call<Void> updateName (@Body RequestUpdateName req);
+
+    @PUT("user/password")
+    Call<Void> updatePassword (@Body RequestUpdatePassword req);
 
 }
