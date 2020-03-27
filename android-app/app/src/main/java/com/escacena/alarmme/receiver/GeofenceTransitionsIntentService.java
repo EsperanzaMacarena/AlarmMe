@@ -7,13 +7,9 @@ import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
-
-import androidx.core.app.JobIntentService;
-import androidx.core.app.NotificationCompat;
 
 import com.escacena.alarmme.BoardActivity;
 import com.escacena.alarmme.MainActivity;
@@ -24,6 +20,9 @@ import com.google.android.gms.location.GeofencingEvent;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.core.app.JobIntentService;
+import androidx.core.app.NotificationCompat;
 
 
 public class GeofenceTransitionsIntentService extends JobIntentService {

@@ -1,8 +1,6 @@
 package com.escacena.alarmme.client;
 
 import com.escacena.alarmme.common.Constants;
-import com.escacena.alarmme.common.SharedPreferencesManager;
-import com.escacena.alarmme.service.ServiceAlarmMeAPI;
 import com.escacena.alarmme.service.ServiceCTAN;
 
 import okhttp3.OkHttpClient;

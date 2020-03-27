@@ -9,7 +9,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.escacena.alarmme.common.SharedPreferencesManager;
-import com.escacena.alarmme.dummy.DummyContent;
 import com.escacena.alarmme.ui.AlarmCreateActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

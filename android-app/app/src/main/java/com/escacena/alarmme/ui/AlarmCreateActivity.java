@@ -1,47 +1,28 @@
 package com.escacena.alarmme.ui;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.app.ActivityCompat;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
-import android.Manifest;
 import android.app.Activity;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
-import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.escacena.alarmme.MainActivity;
 import com.escacena.alarmme.R;
 import com.escacena.alarmme.common.Constants;
 import com.escacena.alarmme.common.MyApp;
-import com.escacena.alarmme.model.Place;
-import com.escacena.alarmme.receiver.GeofenceBroadcastReceiver;
-import com.escacena.alarmme.receiver.GeofenceErrorMessages;
 import com.escacena.alarmme.request.RequestAlarmCreate;
 import com.escacena.alarmme.response.Consorcio;
 import com.escacena.alarmme.response.Linea;
 import com.escacena.alarmme.response.Parada;
 import com.escacena.alarmme.response.ResponseAllAlarm;
 import com.escacena.alarmme.response.ResponseConsorcios;
-import com.escacena.alarmme.response.ResponseGooglePlaces;
 import com.escacena.alarmme.response.ResponseLineas;
 import com.escacena.alarmme.response.ResponseParadas;
 import com.escacena.alarmme.response.ResponseType;
@@ -50,24 +31,21 @@ import com.escacena.alarmme.viewmodel.CtanViewModel;
 import com.escacena.alarmme.viewmodel.GooglePlacesViewModel;
 import com.escacena.alarmme.viewmodel.TypeViewModel;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.Geofence;
-import com.google.android.gms.location.GeofencingClient;
-import com.google.android.gms.location.GeofencingRequest;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

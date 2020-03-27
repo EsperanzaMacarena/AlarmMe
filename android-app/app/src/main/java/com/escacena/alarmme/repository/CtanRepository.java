@@ -9,8 +9,6 @@ import com.escacena.alarmme.response.ResponseLineas;
 import com.escacena.alarmme.response.ResponseParadas;
 import com.escacena.alarmme.service.ServiceCTAN;
 
-import java.util.List;
-
 import androidx.lifecycle.MutableLiveData;
 import retrofit2.Call;
 import retrofit2.Callback;

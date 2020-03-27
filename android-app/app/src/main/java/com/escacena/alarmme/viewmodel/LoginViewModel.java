@@ -2,14 +2,13 @@ package com.escacena.alarmme.viewmodel;
 
 import android.app.Application;
 
-import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
-
 import com.escacena.alarmme.repository.LoginRegisterRepository;
 import com.escacena.alarmme.request.RequestLogin;
 import com.escacena.alarmme.request.RequestRegister;
 import com.escacena.alarmme.response.ResponseLogin;
 
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import lombok.NonNull;
 
 public class LoginViewModel extends AndroidViewModel {

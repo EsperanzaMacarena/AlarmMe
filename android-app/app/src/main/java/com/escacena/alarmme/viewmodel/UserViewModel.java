@@ -2,15 +2,13 @@ package com.escacena.alarmme.viewmodel;
 
 import android.app.Application;
 
-import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
-
 import com.escacena.alarmme.repository.UserRepository;
-
 import com.escacena.alarmme.response.ResponseDeletePicture;
 import com.escacena.alarmme.response.ResponsePicture;
 import com.escacena.alarmme.response.ResponseUser;
 
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import lombok.NonNull;
 import okhttp3.MultipartBody;
 

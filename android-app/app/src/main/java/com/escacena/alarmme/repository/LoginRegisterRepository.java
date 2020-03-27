@@ -3,24 +3,20 @@ package com.escacena.alarmme.repository;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-
 import com.escacena.alarmme.client.AlarmMeAPI;
 import com.escacena.alarmme.common.MyApp;
 import com.escacena.alarmme.request.RequestLogin;
 import com.escacena.alarmme.request.RequestRegister;
 import com.escacena.alarmme.response.ResponseLogin;
 import com.escacena.alarmme.service.ServiceAlarmMeAPI;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
 import java.io.IOException;
 
-import okhttp3.ResponseBody;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Converter;
 import retrofit2.Response;
 
 public class LoginRegisterRepository {

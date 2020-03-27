@@ -1,11 +1,5 @@
 package com.escacena.alarmme;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,13 +7,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.escacena.alarmme.common.MyApp;
 import com.escacena.alarmme.common.SharedPreferencesManager;
-import com.escacena.alarmme.request.RequestLogin;
 import com.escacena.alarmme.request.RequestRegister;
 import com.escacena.alarmme.response.ResponseLogin;
 import com.escacena.alarmme.viewmodel.LoginViewModel;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class RegisterActivity extends AppCompatActivity {
 

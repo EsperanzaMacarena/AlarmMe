@@ -2,8 +2,6 @@ package com.escacena.alarmme.repository;
 
 import android.widget.Toast;
 
-import androidx.lifecycle.MutableLiveData;
-
 import com.escacena.alarmme.client.AlarmMeAPI;
 import com.escacena.alarmme.common.MyApp;
 import com.escacena.alarmme.response.ResponseType;
@@ -12,6 +10,7 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
+import androidx.lifecycle.MutableLiveData;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

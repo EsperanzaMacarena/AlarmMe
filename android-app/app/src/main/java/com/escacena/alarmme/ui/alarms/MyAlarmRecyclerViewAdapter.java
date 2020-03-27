@@ -1,17 +1,8 @@
 package com.escacena.alarmme.ui.alarms;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,18 +11,16 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
-
-import com.escacena.alarmme.BoardActivity;
-import com.escacena.alarmme.MainActivity;
 import com.escacena.alarmme.R;
-import com.escacena.alarmme.RegisterActivity;
 import com.escacena.alarmme.common.Constants;
-import com.escacena.alarmme.common.MyApp;
 import com.escacena.alarmme.response.ResponseAllAlarm;
 import com.escacena.alarmme.viewmodel.AlarmViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 public class MyAlarmRecyclerViewAdapter extends RecyclerView.Adapter<MyAlarmRecyclerViewAdapter.ViewHolder> {
@@ -146,6 +135,7 @@ public class MyAlarmRecyclerViewAdapter extends RecyclerView.Adapter<MyAlarmRecy
 
         switch (mItem.getType().getPlaces()){
             case Constants.TRANSPORT:
+                icon= R.drawable.ic_directions_bus_primary_24dp;
                 break;
             case Constants.GO_TO:
                 icon= R.drawable.ic_map_primary_24dp;
