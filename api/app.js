@@ -12,7 +12,6 @@ const bcrypt = require('bcryptjs');
 const user_routes = require('./routes/users');
 const type_routes = require('./routes/type');
 const alarm_routes = require ('./routes/alarm')
-
 const middleware = require('./middleware/index');
 const User = require('./model/user');
 require('dotenv').config();
