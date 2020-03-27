@@ -49,6 +49,11 @@ Estará alojada en heroku:
 
 ### AlarmMe Web
 La aplicación Web está realizada con Angular Material y está diseñada para el administrador de AlarmMe.
+Estará alojada en heroku:
+    
+    Repositorio Heroku: https://git.heroku.com/alarme-angular.git
+    URL Heroku: https://alarme-angular.herokuapp.com/
+
 
 En esta aplicación podremos:
 
