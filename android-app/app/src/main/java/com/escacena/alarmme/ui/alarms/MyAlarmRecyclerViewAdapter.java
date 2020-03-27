@@ -10,10 +10,13 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -22,6 +25,7 @@ import com.escacena.alarmme.BoardActivity;
 import com.escacena.alarmme.MainActivity;
 import com.escacena.alarmme.R;
 import com.escacena.alarmme.RegisterActivity;
+import com.escacena.alarmme.common.Constants;
 import com.escacena.alarmme.common.MyApp;
 import com.escacena.alarmme.response.ResponseAllAlarm;
 import com.escacena.alarmme.viewmodel.AlarmViewModel;
@@ -58,6 +62,12 @@ public class MyAlarmRecyclerViewAdapter extends RecyclerView.Adapter<MyAlarmRecy
         holder.mItem = mValues.get(position);
         holder.alarmTitle.setText(holder.mItem.getName());
         holder.activatedSwitch.setChecked(holder.mItem.getActivated());
+        holder.activatedSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                alarmViewModel.activateOrDeactivateAlarm(holder.mItem.getId());
+            }
+        });
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +97,8 @@ public class MyAlarmRecyclerViewAdapter extends RecyclerView.Adapter<MyAlarmRecy
                 return false;
             }
         });
+
+        holder.imageViewIcon.setImageResource(setIcon(holder.mItem));
     }
 
     @Override
@@ -102,6 +114,7 @@ public class MyAlarmRecyclerViewAdapter extends RecyclerView.Adapter<MyAlarmRecy
         public final View mView;
         public final TextView alarmTitle;
         public final Switch activatedSwitch;
+        public final ImageView imageViewIcon;
 
         public ResponseAllAlarm mItem;
 
@@ -110,6 +123,7 @@ public class MyAlarmRecyclerViewAdapter extends RecyclerView.Adapter<MyAlarmRecy
             mView = view;
             alarmTitle = (TextView) view.findViewById(R.id.textView_alarm_title);
             activatedSwitch = (Switch) view.findViewById(R.id.switchAlarmActivaded);
+            imageViewIcon = (ImageView) view.findViewById(R.id.imageViewIcon);
 
         }
 
@@ -126,5 +140,36 @@ public class MyAlarmRecyclerViewAdapter extends RecyclerView.Adapter<MyAlarmRecy
         notifyDataSetChanged();
     }
 
+
+    public int setIcon(ResponseAllAlarm mItem){
+        int icon = 0;
+
+        switch (mItem.getType().getPlaces()){
+            case Constants.TRANSPORT:
+                break;
+            case Constants.GO_TO:
+                icon= R.drawable.ic_map_primary_24dp;
+                break;
+            case "ATM":
+                icon= R.drawable.ic_local_atm_primary_24dp;
+                break;
+            case "BANK":
+                icon= R.drawable.ic_local_atm_primary_24dp;
+                break;
+            case "PHARMACY":
+                icon= R.drawable.ic_local_hospital_primary_24dp;
+                break;
+            case "BICYCLE_STORE":
+                icon= R.drawable.ic_directions_bike_priamry_24dp;
+                break;
+            case "PET_STORE":
+                icon= R.drawable.ic_pets_primary_24dp;
+                break;
+            default:
+                icon= R.drawable.ic_store_primary_24dp;
+                break;
+        }
+        return icon;
+    }
 
 }

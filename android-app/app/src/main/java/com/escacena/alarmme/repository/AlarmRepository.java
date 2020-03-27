@@ -105,4 +105,19 @@ public class AlarmRepository {
         });
         return  responseAllAlarmListToReturn;
     }
+
+    public void activateOrDeactivateAlarm(String id){
+        Call<Void> call = service.activateOrDeactiveAlarm(id);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+    }
 }

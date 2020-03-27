@@ -67,4 +67,7 @@ public interface ServiceAlarmMeAPI {
     @PUT("user/password")
     Call<Void> updatePassword (@Body RequestUpdatePassword req);
 
+    @PUT("alarms/activateordeactivate/{id}")
+    Call<Void> activateOrDeactiveAlarm (@Path("id") String id);
+
 }
