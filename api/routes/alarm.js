@@ -57,7 +57,18 @@ router.put("/", middleware.ensureAuthenticated, AlarmController.editAlarm);
  * @apiError 404 Alarm not found.
  * @apiError 401 user access only.
  */
-router.delete("/", middleware.ensureAuthenticated, AlarmController.deleteAlarm);
+router.delete("/:id", middleware.ensureAuthenticated, AlarmController.deleteAlarm);
+
+/**
+ * @api {delete} api/alarm/activateordeactivate/:id Activate or deactivate alarm
+ * @apiName ActivateOrDeactivate alarm
+ * @apiGroup Alarm
+ * @apiPermission user
+ * @apiSuccess (Success 204) 204 No Content.
+ * @apiError 404 Alarm not found.
+ * @apiError 401 user access only.
+ */
+router.put("/activateordeactivate/:id", middleware.ensureAuthenticated, AlarmController.activateOrDeactivate);
 
 /**
  * @api {get} api/alarm Retrieve alarms
