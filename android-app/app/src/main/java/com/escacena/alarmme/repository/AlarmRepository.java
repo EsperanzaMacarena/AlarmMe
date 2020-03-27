@@ -6,10 +6,7 @@ import android.widget.Toast;
 import com.escacena.alarmme.client.AlarmMeAPI;
 import com.escacena.alarmme.common.MyApp;
 import com.escacena.alarmme.request.RequestAlarmCreate;
-import com.escacena.alarmme.request.RequestDeleteAlarm;
 import com.escacena.alarmme.response.ResponseAllAlarm;
-import com.escacena.alarmme.response.ResponseLogin;
-import com.escacena.alarmme.response.ResponseNewAlarm;
 import com.escacena.alarmme.service.ServiceAlarmMeAPI;
 import com.google.gson.Gson;
 
@@ -17,7 +14,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -104,5 +100,20 @@ public class AlarmRepository {
             }
         });
         return  responseAllAlarmListToReturn;
+    }
+
+    public void activateOrDeactivateAlarm(String id){
+        Call<Void> call = service.activateOrDeactiveAlarm(id);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
     }
 }

@@ -1,14 +1,15 @@
 package com.escacena.alarmme.service;
 
 import com.escacena.alarmme.request.RequestAlarmCreate;
-import com.escacena.alarmme.request.RequestDeleteAlarm;
 import com.escacena.alarmme.request.RequestLogin;
 import com.escacena.alarmme.request.RequestRegister;
+import com.escacena.alarmme.request.RequestUpdateName;
+import com.escacena.alarmme.request.RequestUpdatePassword;
 import com.escacena.alarmme.response.ResponseAllAlarm;
 import com.escacena.alarmme.response.ResponseDeletePicture;
+import com.escacena.alarmme.response.ResponseLogin;
 import com.escacena.alarmme.response.ResponsePicture;
 import com.escacena.alarmme.response.ResponseType;
-import com.escacena.alarmme.response.ResponseLogin;
 import com.escacena.alarmme.response.ResponseUser;
 
 import java.util.List;
@@ -20,10 +21,8 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
-
 import retrofit2.http.Path;
 
 
@@ -58,5 +57,14 @@ public interface ServiceAlarmMeAPI {
     @Multipart
     @PUT("user/img")
     Call<ResponseUser> updatePicture(@Part MultipartBody.Part avatar );
+
+    @PUT("user")
+    Call<Void> updateName (@Body RequestUpdateName req);
+
+    @PUT("user/password")
+    Call<Void> updatePassword (@Body RequestUpdatePassword req);
+
+    @PUT("alarms/activateordeactivate/{id}")
+    Call<Void> activateOrDeactiveAlarm (@Path("id") String id);
 
 }

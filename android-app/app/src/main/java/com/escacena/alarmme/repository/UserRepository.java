@@ -2,16 +2,17 @@ package com.escacena.alarmme.repository;
 
 import android.widget.Toast;
 
-import androidx.lifecycle.MutableLiveData;
-
 import com.escacena.alarmme.client.AlarmMeAPI;
 import com.escacena.alarmme.common.MyApp;
+import com.escacena.alarmme.request.RequestUpdateName;
+import com.escacena.alarmme.request.RequestUpdatePassword;
 import com.escacena.alarmme.response.ResponseDeletePicture;
 import com.escacena.alarmme.response.ResponsePicture;
 import com.escacena.alarmme.response.ResponseUser;
 import com.escacena.alarmme.service.ServiceAlarmMeAPI;
 import com.google.gson.Gson;
 
+import androidx.lifecycle.MutableLiveData;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -116,4 +117,37 @@ public class UserRepository {
         });
         return user;
     }
+
+    public void updateName (String fullname){
+        RequestUpdateName req = new RequestUpdateName(fullname);
+        Call<Void> call = service.updateName(req);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void updatePassword(String password, String passwordTwo){
+        RequestUpdatePassword req = new RequestUpdatePassword(password, passwordTwo);
+        Call<Void> call = service.updatePassword(req);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+    }
+
 }

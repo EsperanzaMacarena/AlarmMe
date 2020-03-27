@@ -1,28 +1,23 @@
 package com.escacena.alarmme.ui.profile;
 
 import android.app.Activity;
-import android.content.ClipData;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -33,21 +28,21 @@ import com.escacena.alarmme.common.Constants;
 import com.escacena.alarmme.common.MyApp;
 import com.escacena.alarmme.common.SharedPreferencesManager;
 import com.escacena.alarmme.response.ResponseDeletePicture;
-import com.escacena.alarmme.response.ResponsePicture;
 import com.escacena.alarmme.response.ResponseUser;
-import com.escacena.alarmme.ui.AlarmCreateActivity;
 import com.escacena.alarmme.viewmodel.UserViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import org.w3c.dom.Text;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import okhttp3.MediaType;
@@ -144,7 +139,32 @@ public class ProfileFragment extends Fragment {
                 editName.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //TODO: EDITAR NOMBRE
+                        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+                        dialogBuilder.setTitle("Cambiar nombre");
+                        final EditText input = new EditText(MyApp.getContext());
+                        input.setInputType(InputType.TYPE_CLASS_TEXT);
+                        input.setHint("Introduzca contraseña");
+                        dialogBuilder.setView(input);
+
+                        dialogBuilder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                String inputText = input.getText().toString();
+                                userViewModel.updateName(inputText);
+                            }
+                        });
+                        dialogBuilder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        });
+
+
+
+
+                        AlertDialog alert = dialogBuilder.create();
+                        alert.show();
 
                     }
                 });
@@ -152,7 +172,42 @@ public class ProfileFragment extends Fragment {
                 editPass.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //TODO: EDITAR PASSWORD
+                        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+                        dialogBuilder.setTitle("Cambiar contraseña");
+
+                        Context context = MyApp.getContext();
+                        LinearLayout layout = new LinearLayout(context);
+                        layout.setOrientation(LinearLayout.VERTICAL);
+
+                        final EditText inputPassword = new EditText(MyApp.getContext());
+                        inputPassword.setInputType(InputType.TYPE_CLASS_TEXT);
+                        inputPassword.setHint("Introduzca contraseña");
+                        layout.addView(inputPassword);
+
+                        final EditText inputPasswordTwo = new EditText(MyApp.getContext());
+                        inputPasswordTwo.setInputType(InputType.TYPE_CLASS_TEXT);
+                        inputPasswordTwo.setHint("Vuelva a introducir contraseña");
+                        layout.addView(inputPasswordTwo);
+
+                        dialogBuilder.setView(layout);
+
+                        dialogBuilder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                String password = inputPassword.getText().toString();
+                                String passwordTwo = inputPasswordTwo.getText().toString();
+                                userViewModel.updatePassword(password, passwordTwo);
+                            }
+                        });
+                        dialogBuilder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        });
+
+                        AlertDialog alert = dialogBuilder.create();
+                        alert.show();
                     }
                 });
             }

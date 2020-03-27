@@ -1,12 +1,10 @@
 
 package com.escacena.alarmme.response;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.util.List;
 
 
 public class ResponseAllAlarm {
@@ -16,7 +14,7 @@ public class ResponseAllAlarm {
     private Boolean activated;
     @SerializedName("ubication")
     @Expose
-    private List<Object> ubication = null;
+    private List<String> ubication = null;
     @SerializedName("_id")
     @Expose
     private String id;
@@ -44,11 +42,11 @@ public class ResponseAllAlarm {
         this.activated = activated;
     }
 
-    public List<Object> getUbication() {
+    public List<String> getUbication() {
         return ubication;
     }
 
-    public void setUbication(List<Object> ubication) {
+    public void setUbication(List<String> ubication) {
         this.ubication = ubication;
     }
 
