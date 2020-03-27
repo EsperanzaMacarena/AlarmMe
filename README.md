@@ -247,7 +247,7 @@ const alarmSchema = new Schema({
 ---
 ### API REST AlarmMe
 
-#### Paquete: models
+#### Carpeta models
 En este paquete se definen las clases POJO del API:
 
 ##### Alarm
@@ -280,8 +280,8 @@ El rol puede ser admin o user.
 
 Picture es un objeto que contiene dos atributos: data y el tipo de imagen.
 <br/><br/>
-<br/><br/>
-#### Paquete controller
+
+#### Carpeta controller
 
 ##### Alarm
 
@@ -321,7 +321,7 @@ Devuelve todas las alarmas de un usuario en concreto.
 * Método activateOrDeactivate
 
 Activa o desactiva una alarma. Recibe el id de la alarma por parámetro en la url.
-<br/><br/>
+
 ##### Type
 
 * Método register
@@ -368,7 +368,6 @@ Devuelve un tipo de alarma predefinido en concreto. El id se pasa por parámetro
 * Método getPlaces
 
 Devuelve el enum de los tipos de lugares a los que se le debe asociar a un tipo de alarma predefinida.
-<br/><br/>
 
 ##### User
 
@@ -426,15 +425,13 @@ Elimina la foto del usuario actual por el usuario actual.
 
 Devuelve la foto del usuario actual, demandada por el usuario actual
 <br/><br/>
-<br/><br/>
 
-#### Routes
+#### Carpeta Routes
 
 [Puede ver la documentación de este paquete en el siguiente aquí](/api/DocumentationRoutesAlarmMeAPI.md)
 <br/><br/>
-<br/><br/>
 
-#### Middleware
+#### Carpeta Middleware
 En este paquete se configura los diferentes middlewares de la aplicación.
 
 * Método ensureAuthenticated: verifica que la petición sea hecha por un usuario autenticado.
@@ -483,7 +480,6 @@ En este paquete se encuentran los clientes Retrofit e interceptores que actúan 
 
 * InterceptorToken: Interceptor que sirve para añadir el token de autorización al las peticiones del api de alarme
 <br/><br/>
-<br/><br/>
 
 #### Paquete common
 Clases de configuración e información general para el funcionamiento del proyecto.
@@ -494,11 +490,10 @@ Clases de configuración e información general para el funcionamiento del proye
 
 * SharedPreferenceManager: Clase para usar de manera mas sencilla SharedPreference
 <br/><br/>
-<br/><br/>
+
 
 #### Paquete model
 Paquete que contiene clases modelos, en concreto, de objetos de Google Place API.
-<br/><br/>
 <br/><br/>
 
 #### Paquete receiver
@@ -510,21 +505,17 @@ En este paquete se configura el geovallado, tanto el servicio como el receptor.
 
 * GeofenceErrorMessages: maneja los errores del geovallado.
 <br/><br/>
-<br/><br/>
 
 #### Paquete repository
 Paquete donde se encuentran los repositorios del proyecto, son las clases que se encargan de hacer la conexión entre los viewmodels y el cliente.
-<br/><br/>
 <br/><br/>
 
 #### Paquete request
 Paquete que contiene todos los modelos de cuerpos de petición de las apis.
 <br/><br/>
-<br/><br/>
 
 #### Paquete response
 Paquete que contiene todos los modelos de respuesta de las peticiones de la api.
-<br/><br/>
 <br/><br/>
 
 #### Paquete service
@@ -544,10 +535,6 @@ Paquete donde se encuentran las clases servicios que contienen las peticiones a 
     * ProfileFragment: se muestra la información del usuario y las opciones de modificar esta información.
 
 * AlarmCreateActivity: Aquí creamos una alarma. Dependiendo de si es de transporte o no, se mostrará unos campos u otros. Además, hay un método que recoge la última localización del usuario para poder darle la ubicación a la alarma y así crear el geovallado.
-
-
-
-<br/><br/>
 <br/><br/>
 
 
