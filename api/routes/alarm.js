@@ -3,6 +3,21 @@ const router = express.Router();
 const AlarmController = require("../controller/alarm");
 const middleware = require("../middleware/index");
 
+
+
+
+/**
+ * @api {get} api/alarm/myalarms Retrieve alarms by creator id
+ * @apiName Retrieve alarms by creator
+ * @apiGroup Alarm
+ * @apiPermission user
+ * @apiSuccess {Object} alarm Alarm's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Alarm not found.
+ * @apiError 401 user access only.
+ */
+router.get("/myalarms", middleware.ensureAuthenticated, AlarmController.getByUserId);
+
 /**
  * @api {post} api/alarm Create alarm
  * @apiName Create Alarm
@@ -67,5 +82,10 @@ router.get("/", middleware.ensureAuthenticated, AlarmController.getAll);
  * @apiError 401 user access only.
  */
 router.get("/:id", middleware.ensureAuthenticated, AlarmController.getById);
+
+
+
+
+
 
 module.exports = router;

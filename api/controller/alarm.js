@@ -6,6 +6,7 @@ module.exports = {
     newAlarm:(req,res)=>{
         let alarm = new Alarm({
             createdBy: req.user._id,
+            name: req.body.name,
             type: req.body.type,
             done: false,
             activated: true
@@ -52,10 +53,22 @@ module.exports = {
             .populate({ path: 'type', select: ['description'] })
             .populate({ path: 'createdBy', select: ['email', 'fullname'] })
             .exec(function(err, alarm) {
-                if (err) res.send(404).json(err.message);
+                if (err) res.status(404).json(err.message);
                 res.status(200).json({
                     alarm: alarm
                 });
             });
+    },
+    getByUserId: async(req, res) => {
+        console.log(req.user._id);
+        try {
+            
+        
+            let result = null;
+            result = await Alarm.find({createdBy: req.user._id}).exec();
+            res.status(200).json(result);
+        }catch (error) {
+            res.status(500).json(error.message);
+        }
     }
 }

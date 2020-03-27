@@ -69,9 +69,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(passport.initialize())
 app.use('/api/', type_routes);
-
 app.use('/api/', user_routes);
-app.use('/api/', alarm_routes);
+app.use('/api/alarms/', alarm_routes);
 app.use(middleware.errorHandler);
 app.use(middleware.notFoundHandler);
 

@@ -23,9 +23,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}api/login",
+							"raw": "{{url}}api/login",
 							"host": [
-								"{{BASE_URL}}api"
+								"{{url}}api"
 							],
 							"path": [
 								"login"
@@ -50,11 +50,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}api/user/me",
+							"raw": "localhost:3000/api/user/me",
 							"host": [
-								"{{BASE_URL}}api"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
+								"api",
 								"user",
 								"me"
 							]
@@ -88,11 +90,13 @@
 							]
 						},
 						"url": {
-							"raw": "{{BASE_URL}}api/user/img",
+							"raw": "localhost:3000/api/user/img",
 							"host": [
-								"{{BASE_URL}}api"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
+								"api",
 								"user",
 								"img"
 							],
@@ -132,11 +136,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}api/user/",
+							"raw": "localhost:3000/api/user/",
 							"host": [
-								"{{BASE_URL}}api"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
+								"api",
 								"user",
 								""
 							]
@@ -160,11 +166,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}api/img/",
+							"raw": "localhost:3000/api/img/",
 							"host": [
-								"{{BASE_URL}}api"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
+								"api",
 								"img",
 								""
 							]
@@ -190,11 +198,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}api/register",
+							"raw": "localhost:3000/api/register",
 							"host": [
-								"{{BASE_URL}}api"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
+								"api",
 								"register"
 							],
 							"query": [
@@ -225,14 +235,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}api/alarms/",
-							"host": [
-								"{{BASE_URL}}api"
-							],
-							"path": [
-								"alarms",
-								""
-							]
+							"raw": ""
 						}
 					},
 					"response": []
@@ -240,17 +243,10 @@
 				{
 					"name": "Create alarm",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}api/alarms/",
-							"host": [
-								"{{BASE_URL}}api"
-							],
-							"path": [
-								"alarms",
-								""
-							]
+							"raw": ""
 						}
 					},
 					"response": []
@@ -261,14 +257,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}api/alarms/myalarms",
-							"host": [
-								"{{BASE_URL}}api"
-							],
-							"path": [
-								"alarms",
-								"myalarms"
-							]
+							"raw": ""
 						}
 					},
 					"response": []
@@ -279,21 +268,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}api/alarms/{{alarm_id}}",
-							"host": [
-								"{{BASE_URL}}api"
-							],
-							"path": [
-								"alarms",
-								"{{alarm_id}}"
-							],
-							"query": [
-								{
-									"key": "id",
-									"value": null,
-									"disabled": true
-								}
-							]
+							"raw": ""
 						}
 					},
 					"response": []
@@ -320,9 +295,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}api/type/5e70bb362662dc0017c613a1",
+							"raw": "{{url}}api/type/5e70bb362662dc0017c613a1",
 							"host": [
-								"{{BASE_URL}}api"
+								"{{url}}api"
 							],
 							"path": [
 								"type",
@@ -348,9 +323,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}api/type/places",
+							"raw": "{{url}}api/type/places",
 							"host": [
-								"{{BASE_URL}}api"
+								"{{url}}api"
 							],
 							"path": [
 								"type",
@@ -385,9 +360,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}api/type",
+							"raw": "{{url}}api/type",
 							"host": [
-								"{{BASE_URL}}api"
+								"{{url}}api"
 							],
 							"path": [
 								"type"
@@ -412,9 +387,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}api/type",
+							"raw": "{{url}}api/type",
 							"host": [
-								"{{BASE_URL}}api"
+								"{{url}}api"
 							],
 							"path": [
 								"type"

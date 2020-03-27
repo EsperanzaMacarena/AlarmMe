@@ -1,0 +1,15 @@
+
+ADMINISTRADOR:
+{
+	"username": "admin@administrador.com",
+    "password":"12345678"
+}
+
+
+USUARIO: 
+(pone admin,solo se cambio administrador 
+por prueba, pero tiene rol de user)
+{
+	"username": "admin@prueba.com",
+    "password":"12345678"
+}
