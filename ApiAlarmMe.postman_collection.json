@@ -212,6 +212,41 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}api/users",
+							"host": [
+								"{{BASE_URL}}api"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change enabled",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}api/users/",
+							"host": [
+								"{{BASE_URL}}api"
+							],
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -294,6 +329,17 @@
 									"disabled": true
 								}
 							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activate or Deactivate Alarm",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
 						}
 					},
 					"response": []
