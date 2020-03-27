@@ -548,7 +548,7 @@ Puede probar esta aplicación con el siguiente usuario administrador:
     email: admin@administrador.com
     pass: 12345678
 
-También, puede clonar el repositorio y abrir la carpeta angular-app en Visual Studio Code, o similar. Sólo tendrá que ejecutar desde el terminal para obtener todo lo necesario para la compilación el siguiente comando:
+También, puede clonar este mismo repositorio y abrir la carpeta angular-app en Visual Studio Code, o similar. Sólo tendrá que ejecutar desde el terminal para obtener todo lo necesario para la compilación el siguiente comando:
 ````
 npm i 
 ````
