@@ -605,7 +605,8 @@ Para probar esta aplicación puede registrarse con Google o creando un perfil nu
 
 ### 26 Marzo 2020
 [DSP 05](./Informes/Entrega_26032020/DSP26032020.pdf)
+
+### INFORME FINAL DEL PROYECTO
+[INF02](./Informes/INF02_InformeFinalProyecto.pdf)
 <br/><br/>
 <br/><br/>
-
-
