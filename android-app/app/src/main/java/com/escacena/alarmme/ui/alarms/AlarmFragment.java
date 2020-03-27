@@ -1,6 +1,7 @@
 package com.escacena.alarmme.ui.alarms;
 
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
@@ -65,6 +66,7 @@ public class AlarmFragment extends Fragment implements OnCompleteListener<Void> 
     String alarmId;
     View view;
     List alarmList;
+    private ProgressDialog myProgress;
 
     private GooglePlacesViewModel googlePlacesViewModel;
 
@@ -113,6 +115,12 @@ public class AlarmFragment extends Fragment implements OnCompleteListener<Void> 
         geofencingClient = LocationServices.getGeofencingClient(getActivity());
         geofences = new ArrayList<>();
         geofencePendingIntent = null;
+
+        myProgress = new ProgressDialog(getActivity());
+        myProgress.setTitle("Cargando alarmas");
+        myProgress.setMessage("Por favor, espere...");
+        myProgress.setCancelable(false);
+        myProgress.setIndeterminate(true);
     }
 
 
@@ -131,12 +139,14 @@ public class AlarmFragment extends Fragment implements OnCompleteListener<Void> 
 
 
     public void loadAlarms() {
+        myProgress.show();
         alarmList = new ArrayList();
         myAlarmRecyclerViewAdapter = new MyAlarmRecyclerViewAdapter(getActivity(), alarmList, alarmViewModel, getActivity());
         recyclerView.setAdapter(myAlarmRecyclerViewAdapter);
         alarmViewModel.getAllAlarms().observe(getActivity(), new Observer<List<ResponseAllAlarm>>() {
             @Override
             public void onChanged(List<ResponseAllAlarm> responseAllAlarms) {
+                myProgress.dismiss();
                 myAlarmRecyclerViewAdapter.setData(responseAllAlarms);
 
                 myAlarmRecyclerViewAdapter.notifyDataSetChanged();

@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.ActionBar;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -54,12 +55,19 @@ public class MainActivity extends AppCompatActivity {
     Button google;
 
     LoginViewModel loginViewModel;
-
+    private ProgressDialog myProgress;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         String token = SharedPreferencesManager.getSharedPreferencesManager().getString("token", null);
+
+
+        myProgress = new ProgressDialog(this);
+        myProgress.setTitle("Iniciando sesión");
+        myProgress.setMessage("Por favor, espere...");
+        myProgress.setCancelable(false);
+        myProgress.setIndeterminate(true);
 
         if (token != null) {
             Intent success = new Intent(MainActivity.this, BoardActivity.class);
@@ -85,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                myProgress.show();
                 loginViewModel.login(new RequestLogin(email.getText().toString(),
                         password.getText().toString())).observe(MainActivity.this, new Observer<ResponseLogin>() {
                     @Override
@@ -92,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
                         SharedPreferencesManager.setSomeStringValue("token", responseLogin.getToken());
                         Intent success = new Intent(MainActivity.this, BoardActivity.class);
                         startActivity(success);
+                        finish();
                     }
                 });
             }
