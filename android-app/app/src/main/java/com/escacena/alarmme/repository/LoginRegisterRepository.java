@@ -38,7 +38,6 @@ public class LoginRegisterRepository {
                 } else {
                     try {
                         Gson gson = new Gson();
-                        Log.d("ERROR", response.toString());
                         Error error = gson.fromJson(response.errorBody().string(), Error.class);
                         Toast.makeText(MyApp.getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                     }catch(IOException ex){
@@ -67,7 +66,6 @@ public class LoginRegisterRepository {
                 } else {
                     try {
                         Gson gson = new Gson();
-                        Log.d("ERROR", response.toString());
                         Error error = gson.fromJson(response.errorBody().string(), Error.class);
                         Toast.makeText(MyApp.getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                     }catch(IOException ex){

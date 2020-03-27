@@ -31,12 +31,10 @@ public class GooglePlacesRepository {
             @Override
             public void onResponse(Call<ResponseGooglePlaces> call, Response<ResponseGooglePlaces> response) {
                 if (response.isSuccessful()) {
-                    Log.d("RESPONSE GOOGLE PLACES REPO", response.body().toString());
                     places1000.setValue(response.body());
                 } else {
                     try {
                         Gson gson = new Gson();
-                        Log.d("ERROR", response.toString());
                         Error error = gson.fromJson(response.errorBody().string(), Error.class);
                         Toast.makeText(MyApp.getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                     } catch (IOException ex) {
@@ -60,12 +58,10 @@ public class GooglePlacesRepository {
             @Override
             public void onResponse(Call<ResponseGooglePlaces> call, Response<ResponseGooglePlaces> response) {
                 if (response.isSuccessful()) {
-                    Log.d("RESPONSE GOOGLE PLACES REPO", response.body().toString());
                     places2000.setValue(response.body());
                 } else {
                     try {
                         Gson gson = new Gson();
-                        Log.d("ERROR", response.toString());
                         Error error = gson.fromJson(response.errorBody().string(), Error.class);
                         Toast.makeText(MyApp.getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                     } catch (IOException ex) {

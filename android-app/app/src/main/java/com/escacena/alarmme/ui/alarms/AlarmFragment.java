@@ -199,8 +199,6 @@ public class AlarmFragment extends Fragment implements OnCompleteListener<Void> 
     }
 
     public void populateGeofenceList(String chain, Double lat, Double lng) {
-        Log.d("POPULATE", "ENTRA AHORA");
-
         geofences.add(new Geofence.Builder()
                 .setRequestId(chain)
                 .setCircularRegion(
@@ -266,9 +264,6 @@ public class AlarmFragment extends Fragment implements OnCompleteListener<Void> 
     }
 
 
-    /**
-     * Returns true if geofences were added, otherwise false.
-     */
     private boolean getGeofencesAdded() {
         return PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(
                 Constants.GEOFENCES_ADDED_KEY, false);

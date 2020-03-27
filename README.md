@@ -16,17 +16,24 @@ Dadas las circunstancias causadas por el COVID-19 y las resoluciones e instrucci
 Para ello, el equipo docente de Salesianos Triana ha marcado una serie de documentación a realizar en diferentes fechas de entrega y es por ello por lo que esta documentación se articulará con los siguientes documentos:
 
 
-1. [Descripción detallada del sistema](#DDS)
-2. [Documento de historias de usuario](#DHU)
-3. [Diagrama UML de AlarmMe API](#UML)
-4. [Modelo de la Base de Datos de AlarmMe en MongoDB](#DB)
-4. [Sketching web y android](#SKETCHING)
-5. [Documentación de rutas AlarmMeAPI](#ROUTES)
-6. [Proyecto de empresa](#EMPRESA)
-7. [Informes de seguimiento del proyecto](#SEGUIMIENTO)
+1. [Proyecto de empresa](#EMPRESA)
+2. [Descripción detallada del sistema](#DDS)
+3. [Documento de historias de usuario](#DHU)
+4. [Diagrama UML de AlarmMe API](#UML)
+5. [Modelo de la Base de Datos de AlarmMe en MongoDB](#DB)
+6. [Sketching web y android](#SKETCHING)
+7. [Documentación de rutas AlarmMeAPI](#ROUTES)
+8. [Implementación de AlarmMeAPI](#IMP)
+9. [Cómo usar las aplicaciones angular y android de AlarmMeAPI](#HOWTO)
+10. [Informes de seguimiento del proyecto](#SEGUIMIENTO)
 <br/><br/>
 <br/><br/>
 
+## Proyecto de empresa AlarmMe.<a name ="EMPRESA"></a>
+---
+[Proyecto de empresa AlarmMe](./Documentation/ProyectoEmpresaAlarmMe_Bargueno_Escacena.pdf)
+<br/><br/>
+<br/><br/>
 
 ## Descripción detallada del sistema.<a name="DDS"></a>
 ---
@@ -34,6 +41,11 @@ AlarmMe se configura a través de tres aplicaciones:
 
 ### API REST AlarmMe
 Aplicación realizada con NodeJs, Express y MongoDB. Se realizarán los métodos básicos CRUD de los modelos User, Alarm y Type, además de los convenientes para la ejecución de los requisitos mínimos del sistema.
+
+Estará alojada en heroku:
+    
+    Repositorio Heroku: https://git.heroku.com/alarm-me-api.git
+    URL Heroku: https://alarm-me-api.herokuapp.com/
 
 ### AlarmMe Web
 La aplicación Web está realizada con Angular Material y está diseñada para el administrador de AlarmMe.
@@ -140,11 +152,13 @@ Total de puntos de esfuerzo de cada alumno:
 <br/><br/>
 
 ## Diagrama UML de AlarmMe API.<a name="UML"></a>
+---
 ![Diagrama UML](./Documentation/AlarmMeUML.jpg)
 <br/><br/>
 <br/><br/>
 
 ## Modelo de la Base de Datos de AlarmMe en MongoDB.<a name="DB"></a>
+---
 ```javascript
 const userSchema = new Schema({
     email: {
@@ -218,22 +232,371 @@ const alarmSchema = new Schema({
 <br/><br/>
 
 ## Sketching web y android.<a name="SKETCHING"></a>
+---
 [Sketching](./Documentation/SketchingAlarmMe.pdf)
 <br/><br/>
 <br/><br/>
 
 ## Documentación de rutas de AlarmMeAPI.<a name="ROUTES"></a>
+---
 [Documentación de rutas](/api/DocumentationRoutesAlarmMeAPI.md)
 <br/><br/>
 <br/><br/>
 
-## Proyecto de empresa AlarmMe.<a name ="EMPRESA"></a>
-[Proyecto de empresa AlarmMe](./Documentation/ProyectoEmpresaAlarmMe_Bargueno_Escacena.pdf)
+## Implementación de AlarmMeAPI.<a name ="IMP"></a>
+---
+### API REST AlarmMe
+
+#### Paquete: models
+En este paquete se definen las clases POJO del API:
+
+##### Alarm
+Tendrá un título y se le asociará un tipo de alarma y una ubicación. Dependiendo del tipo de alarma, si es de tipo transporte o no, debe guardarse en ubicación la localización (latitud y longitud) de la parada del autobús o la ubicación del usuario en ese moemnto. También tiene un atributo para señalar si está activada o no la alarma, para que, si el usuario necesita una alarma recurrente, le sea fácil volverla a activar.
+
+##### Type
+Es el modelo que configura las alarmas predefinidas. Contiene un campo descriptivo de la alarma y un campo que contiene el tipo de negocio o lugar al que se le asocia la tarea que se describe. El tipo de negocio o lugar es un enum que contiene los siguientes valores:
+````javascript
+ enum:  [
+        'ATM',
+        'BAKERY',
+        'BANK',
+        'BOOK_STORE',
+        'PHARMACY', 
+        'DRUGSTORE',
+        'BICYCLE_STORE',
+        'STORE',
+        'SUPERMARKET',
+        'PET_STORE',
+        'TRANSPORT',
+        'GO_TO'
+    ],
+````
+Estos tipos se corresponden a los tipos de lugares listados en el [Google Place API](https://developers.google.com/places/web-service/supported_types?hl=es)
+
+##### User
+Es el modelo que dibuja el usuario, el cual tendrá los atributos email, fullname, password, role y picture. 
+
+El rol puede ser admin o user.
+
+Picture es un objeto que contiene dos atributos: data y el tipo de imagen.
+<br/><br/>
+<br/><br/>
+#### Paquete controller
+
+##### Alarm
+
+* Método newAlarm
+
+Crea una nueva alarma. Recibe en el body los siguientes atributos:
+````javascript
+name: String,
+type: Schema.ObjectId,
+ubication: [String]
+````
+El atributo activated se seteará como true por defecto y se cogerá de la request el id del usuario para setearlo en el atributo createdBy.
+
+* Método editAlarm
+
+Modifica el campo activado de una alarma existente. Recibe por parámetro en la url el id de la alarma y en el body debe recibir:
+````javascript
+done: boolean
+````
+
+* Método deleteAlarm
+
+Elimina una alarma existente. Debe recibir por parámetro en la url el id de la alarma.
+
+* Método getAll
+
+Lista todas las alarmas.
+
+* Método getById
+
+Devuelve la alarma solicitada por parámetro en la url.
+
+* Método getByUserId
+
+Devuelve todas las alarmas de un usuario en concreto. 
+
+* Método activateOrDeactivate
+
+Activa o desactiva una alarma. Recibe el id de la alarma por parámetro en la url.
+<br/><br/>
+##### Type
+
+* Método register
+
+Crea un nuevo tipo de alarma predefinida. Se le pasa un body con los siguientes parámetros:
+````javascript
+description: String,
+ places: String
+````
+Recordamos que el campo places debe ser alguno de las siguientes cadenas:
+````javascript
+ enum:  [
+        'ATM',
+        'BAKERY',
+        'BANK',
+        'BOOK_STORE',
+        'PHARMACY', 
+        'DRUGSTORE',
+        'BICYCLE_STORE',
+        'STORE',
+        'SUPERMARKET',
+        'PET_STORE',
+        'TRANSPORT',
+        'GO_TO'
+    ],
+````
+
+* Método getAll
+
+Obtiene todos los tipos de alarma predefinidas.
+
+* Método update
+
+Modifica una alarma predefinida. Debe recibir el mismo body que el método register.
+
+* Método delete
+
+Elimina una alarma por el id pasado por parámetro en la url.
+
+* Método getOne
+
+Devuelve un tipo de alarma predefinido en concreto. El id se pasa por parámetro en la url.
+
+* Método getPlaces
+
+Devuelve el enum de los tipos de lugares a los que se le debe asociar a un tipo de alarma predefinida.
+<br/><br/>
+
+##### User
+
+* Método register
+
+Método que registra un nuevo usuario. recibe en el body:
+```` javascript
+ email: String,
+ fullname: String,
+ password: String
+````
+La contraseña es codificada.
+
+* Método login
+
+Loguea al usuario en nuestra aplicación. Recibe en el body:
+```` javascript
+ email: String,
+ password: String
+````
+Devuelve el email y nombre del usuario y un token.
+
+* Método getUsers
+
+Lista a todos los usuarios. Sólo puede hacerlo el administrador.
+
+* Método getMe
+
+Devuelve el usuario logueado actual.
+
+* Método updateName
+
+Modificación el nombre del usuario actual por el usuario actual. Recibe en el body un único parámetro
+```` javascript
+ fullname: String
+````
+
+* Método updateImg
+
+Modificación la imagen del usuario actual por el usuario actual. 
+
+* Método updatePassword
+
+Modificación de la contraseña del usuario actual por el usuario actual.
+
+* Método disabledUser
+
+Deshabilita un usuario, realizado únicamente por el administrador.
+
+* Método deleteImg
+
+Elimina la foto del usuario actual por el usuario actual.
+
+* Método getImg
+
+Devuelve la foto del usuario actual, demandada por el usuario actual
+<br/><br/>
+<br/><br/>
+
+#### Routes
+
+[Puede ver la documentación de este paquete en el siguiente aquí](/api/DocumentationRoutesAlarmMeAPI.md)
+<br/><br/>
+<br/><br/>
+
+#### Middleware
+En este paquete se configura los diferentes middlewares de la aplicación.
+
+* Método ensureAuthenticated: verifica que la petición sea hecha por un usuario autenticado.
+
+* Método endureAuthenticatedAndAdmin: verifica que la petición sea realizada por un usuario con rol administrador.
+
+* Método errorHandler: maneja los errores que pueda surgir durante la petición.
+
+<br/><br/>
+<br/><br/>
+
+### Aplicación AlarmMe Angular - Interfaz Administrador
+
+#### Directorio dashboard
+
+* Componente login: sirve para loguear al usuario con interfaz.
+
+* Componente tipo-lista: se encarga de listar los tipos de alarma predefinidas y mostrar las opciones CRUD.
+
+* Compontente tipo-create-dialog: diálogo que se encarga de crear o modificar un tipo de alarma predefinida.
+
+* Componente tipo-delete-dialog: diálogo que se encarga de verificar si el administrador quiere eliminar un tipo de alama y si confirma, elimina.
+
+* Componente user-list: lista a todos los usuarios y muestra la opción de deshabilitar usuario.
+
+* dashboard.routing.ts: contiene las rutas de estos componentes.
+
+* dashboard.module.ts: contiene los modules añadidos al proyecto.
+
+
+<br/><br/>
+<br/><br/>
+
+### Aplicación AlarmMe Android - Interfaz Usuario.
+
+#### Paquete client 
+En este paquete se encuentran los clientes Retrofit e interceptores que actúan sobre las peticiones.
+
+* Clase AlarmMeAPI: Cliente de retrofit que actúa sobre el api de nuestra plataforma.
+
+* CtanAPI: Cliente de retrofit que actúa sobre el api del consorcio de transporte de Andalucía
+
+* GoogleAPI: Cliente de retrofit que actúa sobre los servicios de Google
+
+* InterceptorGoogleQueryToken: Interceptor para añadir el apikey a las peticiones de Google
+
+* InterceptorToken: Interceptor que sirve para añadir el token de autorización al las peticiones del api de alarme
+<br/><br/>
+<br/><br/>
+
+#### Paquete common
+Clases de configuración e información general para el funcionamiento del proyecto.
+
+* Constants: Clase con ciertas constantes para el uso adecuado del app
+
+* MyApp: Clase para conseguir el contexto
+
+* SharedPreferenceManager: Clase para usar de manera mas sencilla SharedPreference
+<br/><br/>
+<br/><br/>
+
+#### Paquete model
+Paquete que contiene clases modelos, en concreto, de objetos de Google Place API.
+<br/><br/>
+<br/><br/>
+
+#### Paquete receiver
+En este paquete se configura el geovallado, tanto el servicio como el receptor.
+
+* GeofenceBroadcastReciever: configura el receptor del geovallado cuando el usuario está cerca de la ubicación dada. Para ello deberá darse al geovallado un radio, en metros, una duración y la ubicación del destino. Android developer recomienda un radio mínimo de 100 metros. Este receptor lo conecta con la siguiente clase, que es el servicio.
+
+* GeofenceTransitionsIntentService: trata el comportamiento en la app cuando recibe que el usuario está cerca de su destino. En esta clase se configura también una notificación.
+
+* GeofenceErrorMessages: maneja los errores del geovallado.
+<br/><br/>
+<br/><br/>
+
+#### Paquete repository
+Paquete donde se encuentran los repositorios del proyecto, son las clases que se encargan de hacer la conexión entre los viewmodels y el cliente.
+<br/><br/>
+<br/><br/>
+
+#### Paquete request
+Paquete que contiene todos los modelos de cuerpos de petición de las apis.
+<br/><br/>
+<br/><br/>
+
+#### Paquete response
+Paquete que contiene todos los modelos de respuesta de las peticiones de la api.
+<br/><br/>
+<br/><br/>
+
+#### Paquete service
+Paquete donde se encuentran las clases servicios que contienen las peticiones a las apis.
+
+
+#### Activities
+
+* MainActivity: Establece el login de la app.
+
+* RegisterActivity: Establece el registro de un usuario. Una vez registrado loguea al usuario de forma automática.
+
+* BoardActivity: Contiene los siguientes fragments que configuran el grueso de la app:
+    
+    * AlarmFragment: lista las alarmas. En esta lista se puede activar o desactivar una alarma, se puede acceder a crear una alarma, al perfil o se puede desconectar el usuario. Además en este fragmento se inican los geovallados de las alarmas listadas.
+
+    * ProfileFragment: se muestra la información del usuario y las opciones de modificar esta información.
+
+* AlarmCreateActivity: Aquí creamos una alarma. Dependiendo de si es de transporte o no, se mostrará unos campos u otros. Además, hay un método que recoge la última localización del usuario para poder darle la ubicación a la alarma y así crear el geovallado.
+
+
+
+<br/><br/>
+<br/><br/>
+
+
+## Cómo usar las aplicaciones angular y android de AlarmMeAPI.<a name ="HOWTO"></a>
+---
+### AlarmMe Angular
+Puede encontrar esta aplicación desplegada en Heroku a través del siguiente enlace: [Angular web](https://alarme-angular.herokuapp.com/).
+
+Puede probar esta aplicación con el siguiente usuario administrador:
+
+    email: admin@administrador.com
+    pass: 12345678
+
+También, puede clonar el repositorio y abrir la carpeta angular-app en Visual Studio Code, o similar. Sólo tendrá que ejecutar desde el terminal para obtener todo lo necesario para la compilación el siguiente comando:
+````
+npm i 
+````
+Posteriormente, para ejecutarlo en el localhost, debe ejecutar:
+````
+ng serve -o
+````
+
+Se abrirá la aplicación angular en su navegador predeterminado. No recomendamos el uso de Internet Explorer.
+
+<br/><br/>
+
+### AlarmMe Android
+En este caso, puede encontrar la apk en la raíz del repositorio para instalarlo en su smartphone android.
+
+También puede importar el proyecto y abrirlo en Android Studio y probarlo en el emulador o bien, conectar su móvil para que se realice la instalación via usb activando el modo desarrollador.
+
+En este caso, debe crear un archivo en la raíz del proyecto android llamado:
+
+    apikey.properties
+  
+E insertar una variable de entorno llamada MIGUEL_GRACIAS_KEY, cuyo valor debe ser la API KEY de Google Maps. Ejemplo:
+
+    MIGUEL_GRACIAS_KEY="AHoihg98789giohIHGhgoia"
+
+Para probar esta aplicación puede registrarse con Google o creando un perfil nuevo o bien puede loguearse con el siguiente usuario:
+    	
+      email: usuario@usuario.com
+      password: 12345678
+
 <br/><br/>
 <br/><br/>
 
 ## Informes de seguimiento del proyecto.<a name ="SEGUIMIENTO"></a>
-
+---
 #### 17 Marzo 2020
 [Informe 01](./Informes/Entrega_17032020/INF01_17032020.pdf)
 
@@ -254,6 +617,8 @@ const alarmSchema = new Schema({
 [DSP 04](./Informes/Entrega_23032020/DSP23032020.pdf)
 
 ### 26 Marzo 2020
-[DSP 04](./Informes/Entrega_26032020/DSP26032020.pdf)
+[DSP 05](./Informes/Entrega_26032020/DSP26032020.pdf)
 <br/><br/>
 <br/><br/>
+
+

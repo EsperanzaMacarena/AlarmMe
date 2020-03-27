@@ -143,7 +143,7 @@ public class ProfileFragment extends Fragment {
                         dialogBuilder.setTitle("Cambiar nombre");
                         final EditText input = new EditText(MyApp.getContext());
                         input.setInputType(InputType.TYPE_CLASS_TEXT);
-                        input.setHint("Introduzca contraseña");
+                        input.setHint("Introduzca un nuevo nombre de usuario");
                         dialogBuilder.setView(input);
 
                         dialogBuilder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
